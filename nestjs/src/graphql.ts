@@ -10,7 +10,6 @@
 export class CreateUserInput {
     email: string;
     password: string;
-    name: string;
     createdAt?: Nullable<DateTime>;
 }
 
@@ -22,7 +21,6 @@ export class User {
     id: number;
     email: string;
     password: string;
-    name: string;
     createdAt?: Nullable<DateTime>;
 }
 

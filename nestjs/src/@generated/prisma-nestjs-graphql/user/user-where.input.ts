@@ -3,6 +3,8 @@ import { InputType } from '@nestjs/graphql';
 import { IntFilter } from '../prisma/int-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
+import { ClientRelationFilter } from '../client/client-relation-filter.input';
+import { CoachRelationFilter } from '../coach/coach-relation-filter.input';
 
 @InputType()
 export class UserWhereInput {
@@ -25,9 +27,12 @@ export class UserWhereInput {
     @Field(() => StringFilter, {nullable:true})
     password?: StringFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    name?: StringFilter;
-
     @Field(() => DateTimeFilter, {nullable:true})
     createdAt?: DateTimeFilter;
+
+    @Field(() => ClientRelationFilter, {nullable:true})
+    client?: ClientRelationFilter;
+
+    @Field(() => CoachRelationFilter, {nullable:true})
+    coach?: CoachRelationFilter;
 }

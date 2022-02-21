@@ -1,0 +1,17 @@
+import { Field } from '@nestjs/graphql';
+import { InputType } from '@nestjs/graphql';
+import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
+import { ClientUpdateManyWithoutCoachInput } from '../client/client-update-many-without-coach.input';
+
+@InputType()
+export class CoachUpdateWithoutUserInput {
+
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    surname?: StringFieldUpdateOperationsInput;
+
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    name?: StringFieldUpdateOperationsInput;
+
+    @Field(() => ClientUpdateManyWithoutCoachInput, {nullable:true})
+    clients?: ClientUpdateManyWithoutCoachInput;
+}

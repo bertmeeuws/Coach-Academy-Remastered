@@ -6,10 +6,10 @@ generator client {
 }
 
 generator nestgraphql {
-    provider = "node node_modules/prisma-nestjs-graphql"
-    output = "../src/@generated/prisma-nestjs-graphql"
-    fields_Validator_from = "class-validator"
-    fields_Validator_input = true
+  provider               = "node node_modules/prisma-nestjs-graphql"
+  output                 = "../src/@generated/prisma-nestjs-graphql"
+  fields_Validator_from  = "class-validator"
+  fields_Validator_input = true
 }
 
 datasource db {
@@ -17,11 +17,37 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User{
-  id Int @id @default(autoincrement())
+model User {
+  id        Int      @id @default(autoincrement())
   /// @Validator.IsEmail()
-  email String
-  password String
-  name String
+  email     String
+  password  String
   createdAt DateTime @default(now())
+  client    Client?
+  coach     Coach?
+}
+
+model Client {
+  id      Int       @id @default(autoincrement())
+  user    User      @relation(fields: [userId], references: [id])
+  userId  Int       @unique
+  surname String
+  name    String
+  dob     DateTime?
+  phone   String?
+  address String?
+  number  Int?
+  postal  Int?
+  city    String?
+  Coach   Coach?    @relation(fields: [coachId], references: [id])
+  coachId Int?
+}
+
+model Coach {
+  id      Int      @id @default(autoincrement())
+  user    User     @relation(fields: [userId], references: [id])
+  userId  Int      @unique
+  surname String
+  name    String
+  clients Client[]
 }
