@@ -1,3 +1,4 @@
+import { UsersService } from './users/users.service';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { AppController } from './app.controller';
@@ -6,13 +7,13 @@ import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
 import { UsersModule } from './users/users.module';
 import { ApolloDriver } from '@nestjs/apollo';
 import { GraphQLDateTime } from 'graphql-iso-date';
-import { RedisModule, RedisModuleOptions } from 'nestjs-redis';
-
-const options: RedisModuleOptions = {
-  url: 'http://localhost',
-  port: 6379,
-  password: 'MDNcVb924a',
-};
+import { InjectRedis, RedisModule } from '@liaoliaots/nestjs-redis';
+import { config } from './config/index';
+import { AuthService } from './auth/auth.service';
+import { AuthModule } from './auth/auth.module';
+import { Redis } from 'ioredis';
+import { CoachModule } from './coach/coach.module';
+import { ClientModule } from './client/client.module';
 
 @Module({
   imports: [
@@ -23,8 +24,16 @@ const options: RedisModuleOptions = {
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
       resolvers: { DateTime: GraphQLDateTime },
     }),
+    RedisModule.forRoot({
+      closeClient: true,
+      config: {
+        ...config.redis,
+      },
+    }),
+    AuthModule,
     UsersModule,
-    RedisModule.register(options),
+    CoachModule,
+    ClientModule,
   ],
   controllers: [AppController],
   providers: [AppService],

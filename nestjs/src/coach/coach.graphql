@@ -1,0 +1,30 @@
+type Coach {
+  # Example field (placeholder)
+  id: Int!
+  surname: String!
+  name: String!
+  user: User!
+  clients: [Client]
+}
+
+input CreateCoachInput {
+  surname: String!
+  name: String!
+  user: CreateUserInput
+  clients: CreateClientInput
+}
+
+input UpdateCoachInput {
+  id: Int!
+}
+
+type Query {
+  coaches: [Coach]!
+  coach(id: Int!): Coach
+}
+
+type Mutation {
+  createCoach(createCoachInput: CreateCoachInput!): Coach!
+  updateCoach(updateCoachInput: UpdateCoachInput!): Coach!
+  removeCoach(id: Int!): Coach
+}

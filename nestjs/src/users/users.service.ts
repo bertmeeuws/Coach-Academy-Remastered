@@ -1,15 +1,20 @@
+import { InjectRedis } from '@liaoliaots/nestjs-redis';
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { UpdateUserInput } from 'src/graphql';
 import { PrismaService } from '../../prisma/prisma.service';
 import { UserCreateInput } from '../@generated/prisma-nestjs-graphql/user/user-create.input';
 import * as bcrypt from 'bcrypt';
+import { Redis } from 'ioredis';
 
 @Injectable()
 export class UsersService {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    @InjectRedis('default') private readonly client: Redis,
+  ) {}
 
-  create(createUserInput: UserCreateInput) {
+  async create(createUserInput: UserCreateInput) {
     const salt = bcrypt.genSaltSync(10);
     const hashed: string = bcrypt.hashSync(createUserInput.password, salt);
 
@@ -23,7 +28,9 @@ export class UsersService {
     });
   }
 
-  findAll() {
+  async findAll() {
+    const cats = await this.client.get('cats');
+    console.log(cats);
     return this.prisma.user.findMany();
   }
 

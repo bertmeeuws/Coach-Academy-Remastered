@@ -1,10 +1,17 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
+import { createClient, Provider } from "urql";
+
+const client = createClient({
+  url: "http://localhost:3000/graphql",
+});
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-      <Component {...pageProps} />
+      <Provider value={client}>
+        <Component {...pageProps} />
+      </Provider>
     </>
   );
 }

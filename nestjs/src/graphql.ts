@@ -7,6 +7,34 @@
 
 /* tslint:disable */
 /* eslint-disable */
+export class CreateClientInput {
+    userId: number;
+    surname: string;
+    name: string;
+    dob?: Nullable<DateTime>;
+    phone?: Nullable<string>;
+    address?: Nullable<string>;
+    number?: Nullable<number>;
+    postal?: Nullable<number>;
+    city?: Nullable<string>;
+    coachId?: Nullable<number>;
+}
+
+export class UpdateClientInput {
+    id: number;
+}
+
+export class CreateCoachInput {
+    surname: string;
+    name: string;
+    user?: Nullable<CreateUserInput>;
+    clients?: Nullable<CreateClientInput>;
+}
+
+export class UpdateCoachInput {
+    id: number;
+}
+
 export class CreateUserInput {
     email: string;
     password: string;
@@ -17,25 +45,67 @@ export class UpdateUserInput {
     id: number;
 }
 
-export class User {
+export class Client {
     id: number;
-    email: string;
-    password: string;
-    createdAt?: Nullable<DateTime>;
+    user?: Nullable<User>;
+    surname?: Nullable<string>;
+    name?: Nullable<string>;
+    dob?: Nullable<DateTime>;
+    phone?: Nullable<string>;
+    address?: Nullable<string>;
+    number?: Nullable<number>;
+    postal?: Nullable<number>;
+    city?: Nullable<string>;
+    coachId?: Nullable<Coach>;
 }
 
 export abstract class IQuery {
+    abstract clients(): Nullable<Client>[] | Promise<Nullable<Client>[]>;
+
+    abstract client(id: number): Nullable<Client> | Promise<Nullable<Client>>;
+
+    abstract coaches(): Nullable<Coach>[] | Promise<Nullable<Coach>[]>;
+
+    abstract coach(id: number): Nullable<Coach> | Promise<Nullable<Coach>>;
+
     abstract users(): Nullable<User>[] | Promise<Nullable<User>[]>;
 
     abstract user(id: number): Nullable<User> | Promise<Nullable<User>>;
 }
 
 export abstract class IMutation {
+    abstract createClient(createClientInput: CreateClientInput): Client | Promise<Client>;
+
+    abstract updateClient(updateClientInput: UpdateClientInput): Client | Promise<Client>;
+
+    abstract removeClient(id: number): Nullable<Client> | Promise<Nullable<Client>>;
+
+    abstract createCoach(createCoachInput: CreateCoachInput): Coach | Promise<Coach>;
+
+    abstract updateCoach(updateCoachInput: UpdateCoachInput): Coach | Promise<Coach>;
+
+    abstract removeCoach(id: number): Nullable<Coach> | Promise<Nullable<Coach>>;
+
     abstract createUser(createUserInput: CreateUserInput): User | Promise<User>;
 
     abstract updateUser(updateUserInput: UpdateUserInput): User | Promise<User>;
 
     abstract removeUser(id: number): Nullable<User> | Promise<Nullable<User>>;
+}
+
+export class Coach {
+    id: number;
+    surname: string;
+    name: string;
+    user: User;
+    clients?: Nullable<Nullable<Client>[]>;
+}
+
+export class User {
+    id: number;
+    email: string;
+    password: string;
+    createdAt?: Nullable<DateTime>;
 }
 
 export type DateTime = any;

@@ -4,6 +4,7 @@ import { Prisma } from '@prisma/client';
 import { UserCreateInput } from '../@generated/prisma-nestjs-graphql/user/user-create.input';
 import { UserUpdateInput } from '../@generated/prisma-nestjs-graphql/user/user-update.input';
 import { UpdateUserInput } from 'src/graphql';
+import { Session } from '@nestjs/common';
 
 @Resolver('User')
 export class UsersResolver {
@@ -15,7 +16,8 @@ export class UsersResolver {
   }
 
   @Query('users')
-  findAll() {
+  findAll(@Session() session: Record<string, any>) {
+    console.log(session);
     return this.usersService.findAll();
   }
 
