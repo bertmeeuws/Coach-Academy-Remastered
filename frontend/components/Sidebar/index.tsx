@@ -8,28 +8,42 @@ import {
   HomeIcon,
   InboxIcon,
   MenuIcon,
+  TemplateIcon,
+  UserGroupIcon,
   UsersIcon,
   XIcon,
-} from "@heroicons/react/outline";
+} from "@heroicons/react/solid";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import classNames from "classnames";
+import { useMutation } from "urql";
+import { LOG_USER_OUT } from "../../graphql/auth/Mutation.gql";
 
 const navigation = [
-  { name: "Dashboard", href: "/dashboard", icon: HomeIcon, current: false },
+  { name: "Dashboard", href: "/dashboard", icon: TemplateIcon, current: false },
   {
     name: "Clients",
     href: "/dashboard/clients",
-    icon: InboxIcon,
+    icon: UserGroupIcon,
+    current: false,
+  },
+  {
+    name: "Calendar",
+    href: "/dashboard/calendar",
+    icon: CalendarIcon,
     current: false,
   },
 ];
 
-export default function Example({ children }) {
+export default function Example({ children }: { children: JSX.Element }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const router = useRouter();
+  const [logoutResult, executeLogout] = useMutation<any>(LOG_USER_OUT);
 
-  console.log(router.pathname);
+  const handleLogout = async () => {
+    await executeLogout();
+    router.push("/auth/login");
+  };
 
   return (
     <>
@@ -159,9 +173,9 @@ export default function Example({ children }) {
         </Transition.Root>
 
         {/* Static sidebar for desktop */}
-        <div className="hidden md:flex md:w-[300px] md:flex-col md:fixed md:inset-y-0">
+        <div className="hidden md:flex md:w-[300px] md:flex-col md:fixed md:inset-y-0 ">
           {/* Sidebar component, swap this element with another sidebar if you like */}
-          <div className="flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white pt-4">
+          <div className="flex-1 flex flex-col min-h-0  bg-fluoGreen pt-4">
             <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
               <div className="flex items-center flex-shrink-0 px-4">
                 <img
@@ -170,8 +184,8 @@ export default function Example({ children }) {
                   alt="Workflow"
                 />
               </div>
-              <nav className="flex-1 px-4 bg-white space-y-4 mt-12">
-                <p className="text-gray-500 font-medium text-xs">Personal</p>
+              <nav className="flex-1 px-4 space-y-4 mt-12">
+                <p className="font-medium text-xs text-white">Personal</p>
                 {navigation.map((item) => (
                   <Link passHref href={item.href}>
                     <div
@@ -179,26 +193,18 @@ export default function Example({ children }) {
                       key={item.name}
                       className={classNames(
                         {
-                          "bg-fluoGreen text-white":
+                          "bg-white bg-opacity-20":
                             router.pathname === item.href,
                         },
                         {
-                          "bg-gray-100 text-red-900":
-                            router.pathname !== item.href,
+                          "bg-transparent": router.pathname !== item.href,
                         },
-                        "group flex items-center px-4 py-2 text-base  rounded-md font-medium cursor-pointer"
+                        "text-white group flex items-center px-[21px] py-[14px] text-lg  font-semibold cursor-pointer hover:bg-white hover:bg-opacity-20 transition-all duration-100"
                       )}
                     >
                       <item.icon
                         className={classNames(
-                          {
-                            " text-white": router.pathname === item.href,
-                          },
-                          {
-                            "bg-gray-100 text-red-900":
-                              router.pathname !== item.href,
-                          },
-                          "w-6 h-6 mr-3"
+                          "w-[20px] h-[20px] mr-[22px] text-white"
                         )}
                         aria-hidden="true"
                       />
@@ -208,7 +214,7 @@ export default function Example({ children }) {
                 ))}
               </nav>
             </div>
-            <div className="flex-shrink-0 flex border-t border-gray-200 p-4">
+            <div className="flex-shrink-0 flex p-10">
               <a href="#" className="flex-shrink-0 w-full group block">
                 <div className="flex items-center">
                   <div>
@@ -219,11 +225,12 @@ export default function Example({ children }) {
                     />
                   </div>
                   <div className="ml-3">
-                    <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">
-                      Tom Cook
-                    </p>
-                    <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">
-                      View profile
+                    <p className="text-sm font-medium text-white">Tom Cook</p>
+                    <p
+                      onClick={(e) => handleLogout()}
+                      className="text-xs font-medium text-white cursor-pointer"
+                    >
+                      Log out
                     </p>
                   </div>
                 </div>

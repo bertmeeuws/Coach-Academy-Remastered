@@ -7,9 +7,22 @@
 
 /* tslint:disable */
 /* eslint-disable */
+export enum UserType {
+    CLIENT = "CLIENT",
+    COACH = "COACH"
+}
+
 export class CreateLoginInput {
     email: string;
     password: string;
+}
+
+export class RegisterUserInput {
+    email: string;
+    password: string;
+    surname: string;
+    name: string;
+    type: UserType;
 }
 
 export class CreateClientInput {
@@ -53,6 +66,7 @@ export class UpdateUserInput {
 export class Login {
     email: string;
     password: string;
+    type: UserType;
 }
 
 export abstract class IQuery {
@@ -72,7 +86,9 @@ export abstract class IQuery {
 }
 
 export abstract class IMutation {
-    abstract createLogin(createLogin: CreateLoginInput): string | Promise<string>;
+    abstract createLogin(createLogin: CreateLoginInput): number | Promise<number>;
+
+    abstract registerUser(registerUser: RegisterUserInput): number | Promise<number>;
 
     abstract logout(): Nullable<boolean> | Promise<Nullable<boolean>>;
 

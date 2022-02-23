@@ -1,31 +1,34 @@
 import React from "react";
 import { useMutation, useQuery } from "urql";
-import { LOG_USER_OUT, REGISTER_USER } from "../../graphql/auth/Mutation.gql";
-import { GET_ALL_CLIENTS } from "../../graphql/clients/Query.gql";
+import {
+  LOGIN_USER,
+  LOG_USER_OUT,
+  REGISTER_USER,
+} from "../../graphql/auth/Mutation.gql";
+import withUrqlClient from "../../libs/withUrqlClient";
+import { useRouter } from "next/router";
+import { UserContext } from "../../context/UserContext";
 
-export default function register() {
+function Login() {
+  const router = useRouter();
   const [email, setEmail] = React.useState("bert12345@gmail.com");
   const [password, setPassword] = React.useState("test");
+  const [err, setErr] = React.useState("");
+  const { setAuth } = React.useContext(UserContext);
 
-  const [registerResult, executeMutation] = useMutation<any>(REGISTER_USER);
-  const [logoutResult, executeLogout] = useMutation<any>(LOG_USER_OUT);
-
-  const [resultQuery] = useQuery({
-    query: GET_ALL_CLIENTS,
-  });
-
-  console.log(resultQuery.data);
+  const [registerResult, executeMutation] = useMutation<any>(LOGIN_USER);
 
   const handleLogin = async () => {
-    await executeMutation({
-      createLogin: { email: "bert12345@gmail.com", password: "test" },
+    setErr("");
+    const { data } = await executeMutation({
+      createLogin: { email, password },
     });
-    console.log(registerResult);
-  };
-
-  const handleLogout = async () => {
-    await executeLogout();
-    console.log(logoutResult);
+    if (data?.createLogin) {
+      setAuth(data.createLogin);
+      router.push("/dashboard");
+      return;
+    }
+    setErr("Invalid credentials");
   };
 
   return (
@@ -37,6 +40,7 @@ export default function register() {
             <div className="text-center mb-10">
               <h1 className="font-bold text-3xl text-gray-900">LOGIN</h1>
               <p>Please login</p>
+              <p className="text-red-500">{err}</p>
             </div>
             <div>
               <div className="flex -mx-3">
@@ -83,7 +87,6 @@ export default function register() {
                   </button>
                 </div>
               </div>
-              <button onClick={(e) => handleLogout()}>Logout</button>
             </div>
           </div>
         </div>
@@ -91,3 +94,5 @@ export default function register() {
     </div>
   );
 }
+
+export default withUrqlClient(Login);

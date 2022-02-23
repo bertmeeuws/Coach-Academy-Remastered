@@ -1,6 +1,7 @@
+import { AuthService } from './auth.service';
 import { GetUserId } from './decorators/getuserid.decorator';
 import { UsersService } from 'src/users/users.service';
-import { CreateLoginInput } from './../graphql';
+import { CreateLoginInput, RegisterUserInput } from './../graphql';
 import { PrismaService } from './../../prisma/prisma.service';
 import { Args, Context, Mutation, Resolver, Query } from '@nestjs/graphql';
 import { GraphQLError } from 'graphql';
@@ -16,6 +17,7 @@ export class AuthResolver {
   constructor(
     private prisma: PrismaService,
     private readonly userService: UsersService,
+    private readonly authService: AuthService,
   ) {}
 
   @UseGuards(AuthGuard)
@@ -29,21 +31,16 @@ export class AuthResolver {
   async login(
     @Args('createLogin') createLogin: CreateLoginInput,
     @Context() context: MyContext,
-  ): Promise<string> {
-    const user = await this.userService.findByEmail(createLogin.email);
-    if (!user) {
-      throw new GraphQLError('Login not valid');
-    }
+  ): Promise<number> {
+    return this.authService.login(createLogin, context);
+  }
 
-    const isMatch = await bcrypt.compare(createLogin.password, user.password);
-
-    if (!isMatch) {
-      throw new GraphQLError('Login not valid');
-    }
-
-    (context.req.session as any)['userId'] = user.id;
-
-    return 'OK';
+  @Mutation('registerUser')
+  async register(
+    @Args('registerUser') registerUser: RegisterUserInput,
+    @Context() context: MyContext,
+  ): Promise<number> {
+    return this.authService.login(registerUser, context);
   }
 
   @Mutation('logout')

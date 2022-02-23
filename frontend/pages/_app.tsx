@@ -1,14 +1,16 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { UserContext } from "../context/UserContext";
-import { useMemo, useState } from "react";
-import { withUrqlClient } from "next-urql";
-import { GRAPHQL_SERVER } from "../constants/server";
-import { dedupExchange, cacheExchange, fetchExchange } from "urql";
+import { useEffect, useMemo, useState } from "react";
+import { ME } from "../graphql/auth/Query.gql";
+import client from "../libs/clientSideUrqlClient";
+import withUrqlClient from "../libs/withUrqlClient";
+import { useQuery } from "urql";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [value, setValue] = useState(1);
-  const providerValue = useMemo(() => ({ value, setValue }), [value, setValue]);
+  const [auth, setAuth] = useState(null);
+
+  const providerValue = useMemo(() => ({ auth, setAuth }), [auth, setAuth]);
 
   return (
     <>
@@ -19,23 +21,4 @@ function MyApp({ Component, pageProps }: AppProps) {
   );
 }
 
-export default withUrqlClient(
-  (ssr, ctx) => ({
-    //@ts-ignore
-    fetchOptions: () => ({
-      credentials: "include",
-      headers: {
-        cookie: ctx && ctx.req ? ctx.req.headers.cookie : document.cookie,
-      },
-    }),
-    exchanges: [
-      // These are just the default exchanges.
-      dedupExchange,
-      cacheExchange,
-      ssr,
-      fetchExchange,
-    ],
-    url: GRAPHQL_SERVER,
-  }),
-  { ssr: true }
-)(MyApp);
+export default withUrqlClient(MyApp);

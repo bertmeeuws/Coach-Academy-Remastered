@@ -1,0 +1,3 @@
+ENUM_USER_ROLES[
+e.target.value as keyof typeof ENUM_USER_ROLES
+]

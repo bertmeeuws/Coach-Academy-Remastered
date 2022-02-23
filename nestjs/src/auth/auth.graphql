@@ -1,6 +1,7 @@
 type Login {
   email: String!
   password: String!
+  type: UserType!
 }
 
 input CreateLoginInput {
@@ -8,11 +9,25 @@ input CreateLoginInput {
   password: String!
 }
 
+input RegisterUserInput {
+  email: String!
+  password: String!
+  surname: String!
+  name: String!
+  type: UserType!
+}
+
+enum UserType {
+  CLIENT
+  COACH
+}
+
 type Query {
   me: Int
 }
 
 type Mutation {
-  createLogin(createLogin: CreateLoginInput!): String!
+  createLogin(createLogin: CreateLoginInput!): Int!
+  registerUser(registerUser: RegisterUserInput!): Int!
   logout: Boolean
 }
