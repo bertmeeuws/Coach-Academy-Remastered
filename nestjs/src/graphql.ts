@@ -7,6 +7,11 @@
 
 /* tslint:disable */
 /* eslint-disable */
+export class CreateLoginInput {
+    email: string;
+    password: string;
+}
+
 export class CreateClientInput {
     userId: number;
     surname: string;
@@ -45,6 +50,35 @@ export class UpdateUserInput {
     id: number;
 }
 
+export class Login {
+    email: string;
+    password: string;
+}
+
+export abstract class IMutation {
+    abstract createLogin(createLogin: CreateLoginInput): string | Promise<string>;
+
+    abstract logout(): Nullable<boolean> | Promise<Nullable<boolean>>;
+
+    abstract createClient(createClientInput: CreateClientInput): Client | Promise<Client>;
+
+    abstract updateClient(updateClientInput: UpdateClientInput): Client | Promise<Client>;
+
+    abstract removeClient(id: number): Nullable<Client> | Promise<Nullable<Client>>;
+
+    abstract createCoach(createCoachInput: CreateCoachInput): Coach | Promise<Coach>;
+
+    abstract updateCoach(updateCoachInput: UpdateCoachInput): Coach | Promise<Coach>;
+
+    abstract removeCoach(id: number): Nullable<Coach> | Promise<Nullable<Coach>>;
+
+    abstract createUser(createUserInput: CreateUserInput): User | Promise<User>;
+
+    abstract updateUser(updateUserInput: UpdateUserInput): User | Promise<User>;
+
+    abstract removeUser(id: number): Nullable<User> | Promise<Nullable<User>>;
+}
+
 export class Client {
     id: number;
     user?: Nullable<User>;
@@ -71,26 +105,6 @@ export abstract class IQuery {
     abstract users(): Nullable<User>[] | Promise<Nullable<User>[]>;
 
     abstract user(id: number): Nullable<User> | Promise<Nullable<User>>;
-}
-
-export abstract class IMutation {
-    abstract createClient(createClientInput: CreateClientInput): Client | Promise<Client>;
-
-    abstract updateClient(updateClientInput: UpdateClientInput): Client | Promise<Client>;
-
-    abstract removeClient(id: number): Nullable<Client> | Promise<Nullable<Client>>;
-
-    abstract createCoach(createCoachInput: CreateCoachInput): Coach | Promise<Coach>;
-
-    abstract updateCoach(updateCoachInput: UpdateCoachInput): Coach | Promise<Coach>;
-
-    abstract removeCoach(id: number): Nullable<Coach> | Promise<Nullable<Coach>>;
-
-    abstract createUser(createUserInput: CreateUserInput): User | Promise<User>;
-
-    abstract updateUser(updateUserInput: UpdateUserInput): User | Promise<User>;
-
-    abstract removeUser(id: number): Nullable<User> | Promise<Nullable<User>>;
 }
 
 export class Coach {

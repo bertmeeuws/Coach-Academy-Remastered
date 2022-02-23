@@ -1,3 +1,4 @@
+import { Req, Session, UseGuards } from '@nestjs/common';
 import { User } from './../@generated/prisma-nestjs-graphql/user/user.model';
 import { UsersService } from './../users/users.service';
 import { PrismaService } from './../../prisma/prisma.service';
@@ -8,11 +9,15 @@ import {
   Args,
   Parent,
   ResolveField,
+  Context,
 } from '@nestjs/graphql';
 import { ClientService } from './client.service';
 import { ClientCreateInput } from '../@generated/prisma-nestjs-graphql/client/client-create.input';
 import { ClientUpdateInput } from '../@generated/prisma-nestjs-graphql/client/client-update.input';
 import { Client } from 'src/@generated/prisma-nestjs-graphql/client/client.model';
+import { Request } from 'express';
+import { MyContext } from 'src/types/my-context';
+import { AuthGuard } from 'src/auth/guards/auth.gql.guard';
 
 @Resolver('Client')
 export class ClientResolver {
@@ -24,7 +29,8 @@ export class ClientResolver {
   }
 
   @Query('clients')
-  findAll() {
+  @UseGuards(AuthGuard)
+  findAll(@Context() ctx: MyContext) {
     return this.clientService.findAll();
   }
 

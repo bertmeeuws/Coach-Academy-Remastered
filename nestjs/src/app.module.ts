@@ -23,6 +23,15 @@ import { ClientModule } from './client/client.module';
       playground: false,
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
       resolvers: { DateTime: GraphQLDateTime },
+      cors: {
+        credentials: true,
+        origin: [
+          'https://studio.apollogaphql.com',
+          'http://localhost:3000/graphql',
+        ],
+        methods: 'GET, PUT, POST, DELETE',
+      },
+      context: ({ req, res }) => ({ req, res }),
     }),
     RedisModule.forRoot({
       closeClient: true,
