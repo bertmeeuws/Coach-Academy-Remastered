@@ -45,8 +45,7 @@ export class UpdateClientInput {
 export class CreateCoachInput {
     surname: string;
     name: string;
-    user?: Nullable<CreateUserInput>;
-    clients?: Nullable<CreateClientInput>;
+    userId: number;
 }
 
 export class UpdateCoachInput {

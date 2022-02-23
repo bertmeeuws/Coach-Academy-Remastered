@@ -18,4 +18,7 @@ export class UserCreateManyInput {
 
     @Field(() => Date, {nullable:true})
     createdAt?: Date | string;
+
+    @Field(() => String, {nullable:true})
+    role?: string;
 }

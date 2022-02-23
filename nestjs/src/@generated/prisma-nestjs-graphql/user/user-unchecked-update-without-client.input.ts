@@ -3,7 +3,7 @@ import { InputType } from '@nestjs/graphql';
 import { IntFieldUpdateOperationsInput } from '../prisma/int-field-update-operations.input';
 import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
-import { CoachUncheckedUpdateOneWithoutUserInput } from '../coach/coach-unchecked-update-one-without-user.input';
+import { CoachUncheckedUpdateManyWithoutUserInput } from '../coach/coach-unchecked-update-many-without-user.input';
 
 @InputType()
 export class UserUncheckedUpdateWithoutClientInput {
@@ -20,6 +20,9 @@ export class UserUncheckedUpdateWithoutClientInput {
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     createdAt?: DateTimeFieldUpdateOperationsInput;
 
-    @Field(() => CoachUncheckedUpdateOneWithoutUserInput, {nullable:true})
-    coach?: CoachUncheckedUpdateOneWithoutUserInput;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    role?: StringFieldUpdateOperationsInput;
+
+    @Field(() => CoachUncheckedUpdateManyWithoutUserInput, {nullable:true})
+    Coach?: CoachUncheckedUpdateManyWithoutUserInput;
 }

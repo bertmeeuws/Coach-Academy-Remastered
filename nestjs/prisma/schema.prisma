@@ -23,8 +23,9 @@ model User {
   email     String
   password  String
   createdAt DateTime @default(now())
-  client    Client?
-  coach     Coach?
+  role      String   @default("client")
+  Client    Client[]
+  Coach     Coach[]
 }
 
 model Client {

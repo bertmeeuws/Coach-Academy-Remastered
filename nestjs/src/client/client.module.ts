@@ -6,6 +6,7 @@ import { ClientResolver } from './client.resolver';
 
 @Module({
   imports: [UsersModule],
+  exports: [ClientService],
   providers: [ClientResolver, ClientService, PrismaService],
 })
 export class ClientModule {}

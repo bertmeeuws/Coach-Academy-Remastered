@@ -10,6 +10,7 @@ export class ClientService {
     private prisma: PrismaService,
     private readonly userService: UsersService,
   ) {}
+
   create(createClientInput: ClientCreateInput) {
     return this.prisma.client.create({
       data: createClientInput,

@@ -15,4 +15,7 @@ export class UserMaxAggregateInput {
 
     @Field(() => Boolean, {nullable:true})
     createdAt?: true;
+
+    @Field(() => Boolean, {nullable:true})
+    role?: true;
 }

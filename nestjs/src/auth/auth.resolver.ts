@@ -40,7 +40,7 @@ export class AuthResolver {
     @Args('registerUser') registerUser: RegisterUserInput,
     @Context() context: MyContext,
   ): Promise<number> {
-    return this.authService.login(registerUser, context);
+    return this.authService.register(registerUser, context);
   }
 
   @Mutation('logout')

@@ -2,8 +2,8 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
-import { ClientUpdateOneWithoutUserInput } from '../client/client-update-one-without-user.input';
-import { CoachUpdateOneWithoutUserInput } from '../coach/coach-update-one-without-user.input';
+import { ClientUpdateManyWithoutUserInput } from '../client/client-update-many-without-user.input';
+import { CoachUpdateManyWithoutUserInput } from '../coach/coach-update-many-without-user.input';
 
 @InputType()
 export class UserUpdateInput {
@@ -17,9 +17,12 @@ export class UserUpdateInput {
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     createdAt?: DateTimeFieldUpdateOperationsInput;
 
-    @Field(() => ClientUpdateOneWithoutUserInput, {nullable:true})
-    client?: ClientUpdateOneWithoutUserInput;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    role?: StringFieldUpdateOperationsInput;
 
-    @Field(() => CoachUpdateOneWithoutUserInput, {nullable:true})
-    coach?: CoachUpdateOneWithoutUserInput;
+    @Field(() => ClientUpdateManyWithoutUserInput, {nullable:true})
+    Client?: ClientUpdateManyWithoutUserInput;
+
+    @Field(() => CoachUpdateManyWithoutUserInput, {nullable:true})
+    Coach?: CoachUpdateManyWithoutUserInput;
 }

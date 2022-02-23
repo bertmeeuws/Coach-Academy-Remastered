@@ -10,8 +10,7 @@ type Coach {
 input CreateCoachInput {
   surname: String!
   name: String!
-  user: CreateUserInput
-  clients: CreateClientInput
+  userId: Int!
 }
 
 input UpdateCoachInput {

@@ -3,6 +3,7 @@ import { ObjectType } from '@nestjs/graphql';
 import { ID } from '@nestjs/graphql';
 import { Client } from '../client/client.model';
 import { Coach } from '../coach/coach.model';
+import { UserCount } from './user-count.output';
 
 @ObjectType()
 export class User {
@@ -19,9 +20,15 @@ export class User {
     @Field(() => Date, {nullable:false})
     createdAt!: Date;
 
-    @Field(() => Client, {nullable:true})
-    client?: Client | null;
+    @Field(() => String, {nullable:false,defaultValue:'client'})
+    role!: string;
 
-    @Field(() => Coach, {nullable:true})
-    coach?: Coach | null;
+    @Field(() => [Client], {nullable:true})
+    Client?: Array<Client>;
+
+    @Field(() => [Coach], {nullable:true})
+    Coach?: Array<Coach>;
+
+    @Field(() => UserCount, {nullable:false})
+    _count?: UserCount;
 }
