@@ -8,6 +8,10 @@ input CreateLoginInput {
   password: String!
 }
 
+type Query {
+  me: Int
+}
+
 type Mutation {
   createLogin(createLogin: CreateLoginInput!): String!
   logout: Boolean

@@ -26,6 +26,7 @@ async function bootstrap() {
     origin: [
       'https://studio.apollogaphql.com',
       'http://localhost:3000/graphql',
+      'http://localhost:3002',
     ],
     methods: 'GET, PUT, POST, DELETE',
   });
@@ -38,9 +39,9 @@ async function bootstrap() {
       secret: SESSION_SECRET,
       resave: false,
       cookie: {
-        sameSite: 'none',
+        sameSite: 'lax',
         httpOnly: true,
-        secure: true, //true in production
+        secure: false, //true in production or apollo playground
         maxAge: 1000 * 60 * 60 * 24 * 7,
       },
     }),

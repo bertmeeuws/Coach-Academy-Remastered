@@ -28,6 +28,7 @@ import { ClientModule } from './client/client.module';
         origin: [
           'https://studio.apollogaphql.com',
           'http://localhost:3000/graphql',
+          'http://localhost:3002',
         ],
         methods: 'GET, PUT, POST, DELETE',
       },

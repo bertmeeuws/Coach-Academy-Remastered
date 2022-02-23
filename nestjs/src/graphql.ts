@@ -55,6 +55,22 @@ export class Login {
     password: string;
 }
 
+export abstract class IQuery {
+    abstract me(): Nullable<number> | Promise<Nullable<number>>;
+
+    abstract clients(): Nullable<Client>[] | Promise<Nullable<Client>[]>;
+
+    abstract client(id: number): Nullable<Client> | Promise<Nullable<Client>>;
+
+    abstract coaches(): Nullable<Coach>[] | Promise<Nullable<Coach>[]>;
+
+    abstract coach(id: number): Nullable<Coach> | Promise<Nullable<Coach>>;
+
+    abstract users(): Nullable<User>[] | Promise<Nullable<User>[]>;
+
+    abstract user(id: number): Nullable<User> | Promise<Nullable<User>>;
+}
+
 export abstract class IMutation {
     abstract createLogin(createLogin: CreateLoginInput): string | Promise<string>;
 
@@ -91,20 +107,6 @@ export class Client {
     postal?: Nullable<number>;
     city?: Nullable<string>;
     coachId?: Nullable<Coach>;
-}
-
-export abstract class IQuery {
-    abstract clients(): Nullable<Client>[] | Promise<Nullable<Client>[]>;
-
-    abstract client(id: number): Nullable<Client> | Promise<Nullable<Client>>;
-
-    abstract coaches(): Nullable<Coach>[] | Promise<Nullable<Coach>[]>;
-
-    abstract coach(id: number): Nullable<Coach> | Promise<Nullable<Coach>>;
-
-    abstract users(): Nullable<User>[] | Promise<Nullable<User>[]>;
-
-    abstract user(id: number): Nullable<User> | Promise<Nullable<User>>;
 }
 
 export class Coach {

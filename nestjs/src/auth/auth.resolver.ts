@@ -1,28 +1,34 @@
+import { GetUserId } from './decorators/getuserid.decorator';
 import { UsersService } from 'src/users/users.service';
 import { CreateLoginInput } from './../graphql';
 import { PrismaService } from './../../prisma/prisma.service';
-import { Args, Context, Mutation, Resolver } from '@nestjs/graphql';
+import { Args, Context, Mutation, Resolver, Query } from '@nestjs/graphql';
 import { GraphQLError } from 'graphql';
 import * as bcrypt from 'bcrypt';
 import { MyContext } from 'src/types/my-context';
-import { Req } from '@nestjs/common';
+import { Req, UseGuards } from '@nestjs/common';
 import { Request } from 'express';
-
-import { session } from 'passport';
+import { AuthGuard } from 'src/auth/guards/auth.gql.guard';
 import { Session } from './decorators/session.gql.decorators';
 
-@Resolver('Login')
+@Resolver('Auth')
 export class AuthResolver {
   constructor(
     private prisma: PrismaService,
     private readonly userService: UsersService,
   ) {}
 
+  @UseGuards(AuthGuard)
+  @Query('me')
+  async me(@GetUserId() userId: number): Promise<number> {
+    const user = await this.userService.findOne(userId);
+    return user.id;
+  }
+
   @Mutation('createLogin')
   async login(
     @Args('createLogin') createLogin: CreateLoginInput,
     @Context() context: MyContext,
-    @Session() session,
   ): Promise<string> {
     const user = await this.userService.findByEmail(createLogin.email);
     if (!user) {
@@ -34,11 +40,8 @@ export class AuthResolver {
     if (!isMatch) {
       throw new GraphQLError('Login not valid');
     }
-    console.log(context.req.sessionID);
 
     (context.req.session as any)['userId'] = user.id;
-
-    //context.req.session['role'] = ['USER'];
 
     return 'OK';
   }
@@ -51,11 +54,11 @@ export class AuthResolver {
     }
     ctx.req.session['userId'] = null;
 
-    if (!ctx.res) {
-      console.log('Res error!');
-    }
-
-    await ctx.req.session.destroy((err) => {});
+    await ctx.req.session.destroy((err) => {
+      if (err) {
+        console.log('Error while deleting cookie');
+      }
+    });
 
     ctx.res.clearCookie('qid');
 
