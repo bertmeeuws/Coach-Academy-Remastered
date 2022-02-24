@@ -1,8 +1,8 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { SortOrder } from '../prisma/sort-order.enum';
-import { ClientOrderByRelationAggregateInput } from '../client/client-order-by-relation-aggregate.input';
-import { CoachOrderByRelationAggregateInput } from '../coach/coach-order-by-relation-aggregate.input';
+import { ClientOrderByWithRelationInput } from '../client/client-order-by-with-relation.input';
+import { CoachOrderByWithRelationInput } from '../coach/coach-order-by-with-relation.input';
 
 @InputType()
 export class UserOrderByWithRelationInput {
@@ -22,9 +22,9 @@ export class UserOrderByWithRelationInput {
     @Field(() => SortOrder, {nullable:true})
     role?: keyof typeof SortOrder;
 
-    @Field(() => ClientOrderByRelationAggregateInput, {nullable:true})
-    Client?: ClientOrderByRelationAggregateInput;
+    @Field(() => ClientOrderByWithRelationInput, {nullable:true})
+    client?: ClientOrderByWithRelationInput;
 
-    @Field(() => CoachOrderByRelationAggregateInput, {nullable:true})
-    Coach?: CoachOrderByRelationAggregateInput;
+    @Field(() => CoachOrderByWithRelationInput, {nullable:true})
+    coach?: CoachOrderByWithRelationInput;
 }

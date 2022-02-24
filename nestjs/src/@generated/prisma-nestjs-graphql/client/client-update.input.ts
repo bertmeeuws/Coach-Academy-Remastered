@@ -38,5 +38,5 @@ export class ClientUpdateInput {
     user?: UserUpdateOneRequiredWithoutClientInput;
 
     @Field(() => CoachUpdateOneWithoutClientsInput, {nullable:true})
-    Coach?: CoachUpdateOneWithoutClientsInput;
+    coach?: CoachUpdateOneWithoutClientsInput;
 }

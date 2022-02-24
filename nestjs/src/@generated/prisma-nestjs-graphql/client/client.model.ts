@@ -42,7 +42,7 @@ export class Client {
     city!: string | null;
 
     @Field(() => Coach, {nullable:true})
-    Coach?: Coach | null;
+    coach?: Coach | null;
 
     @Field(() => Int, {nullable:true})
     coachId!: number | null;

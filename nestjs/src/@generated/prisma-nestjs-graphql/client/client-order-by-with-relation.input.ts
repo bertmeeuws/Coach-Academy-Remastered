@@ -41,7 +41,7 @@ export class ClientOrderByWithRelationInput {
     city?: keyof typeof SortOrder;
 
     @Field(() => CoachOrderByWithRelationInput, {nullable:true})
-    Coach?: CoachOrderByWithRelationInput;
+    coach?: CoachOrderByWithRelationInput;
 
     @Field(() => SortOrder, {nullable:true})
     coachId?: keyof typeof SortOrder;

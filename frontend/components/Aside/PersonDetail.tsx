@@ -1,54 +1,66 @@
 import { MailIcon, PhoneIcon } from "@heroicons/react/outline";
+import { XCircleIcon } from "@heroicons/react/solid";
 import React from "react";
 
-export default function PersonDetail() {
+export default function PersonDetail({ data, setSelectedClient }: any) {
+  const { address, city, dob, name, number, phone, postal, surname, user } =
+    data.client;
+
   return (
-    <div className="w-[300px] rounded-lg flex flex-col items-center bg-white h-full">
+    <div className="w-[300px] rounded-lg flex flex-col items-center bg-white h-full relative">
+      <XCircleIcon
+        className="w-10 h-10 text-white absolute right-2 top-2 z-10 cursor-pointer"
+        onClick={(e) => setSelectedClient(null)}
+      />
       <div className="bg-fluoGreen w-full h-[150px] rounded-t-lg rounded-b-[75px] flex relative justify-center">
         <div className="w-[150px] h-[150px] bg-white rounded-full border-4 absolute -bottom-10 shadow-md"></div>
       </div>
       <div className="mt-14 text-center">
-        <p className="font-bold text-darkBlue">Maxime Vercruysse</p>
-        <p className="text-gray-600">20/06/1995</p>
+        <p className="font-bold text-darkBlue">
+          {name} {surname}
+        </p>
+        <p className="text-gray-600">{dob}</p>
       </div>
-      <div className="py-8 flex flex-col space-y-6">
+      <div className="py-8 flex flex-col space-y-6 px-2 w-[90%]">
         <div className="flex flex-col justify-start">
           <p className="uppercase text-gray-600 text-xs font-medium mb-2">
             ADDRESS
           </p>
-          <p>Potagierstraat</p>
+          <p className="text-xs">
+            {address} {number}
+          </p>
         </div>
         <div className="flex space-x-6">
           <div className="flex flex-col justify-start">
             <p className="uppercase text-gray-600 text-xs font-medium mb-2">
               POSTAL
             </p>
-            <p>Potagierstraat</p>
+            <p className="text-xs">{postal}</p>
           </div>
           <div className="flex flex-col justify-start">
             <p className="uppercase text-gray-600 text-xs font-medium mb-2">
               CITY
             </p>
-            <p>Potagierstraat</p>
+            <p className="text-xs">{city}</p>
           </div>
         </div>
         <div className="flex flex-col justify-start">
           <p className="uppercase text-gray-600 text-xs font-medium mb-2">
             AGE
           </p>
-          <p>20 years old</p>
+          <p className="text-xs">20 years old</p>
         </div>
         <div className="flex flex-col justify-start">
           <p className="uppercase text-gray-600 text-xs font-medium mb-2">
             CONTACT INFORMATION
           </p>
           <div className="flex space-x-2">
-            <PhoneIcon className="w-5 h-5 text-gray-600" />
-            <p>email@email.com</p>
+            <PhoneIcon className="w-5 h-5 text-gray-600 " />
+            <p className="truncate text-xs">{user.email}</p>
           </div>
           <div className="flex space-x-2">
             <MailIcon className="w-5 h-5 text-gray-600" />
-            <p>04 911 444 29</p>
+            <p className="text-xs">{phone}</p>
           </div>
         </div>
         <div className="flex flex-col justify-center items-center space-y-2 pt-8">

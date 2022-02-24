@@ -54,7 +54,7 @@ export class ClientWhereInput {
     city?: StringNullableFilter;
 
     @Field(() => CoachRelationFilter, {nullable:true})
-    Coach?: CoachRelationFilter;
+    coach?: CoachRelationFilter;
 
     @Field(() => IntNullableFilter, {nullable:true})
     coachId?: IntNullableFilter;

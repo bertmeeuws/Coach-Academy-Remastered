@@ -1,14 +1,21 @@
-import { Client } from "@urql/core";
+import {
+  createClient,
+  ssrExchange,
+  dedupExchange,
+  cacheExchange,
+  fetchExchange,
+} from "urql";
 import { GRAPHQL_SERVER } from "../constants/server";
 
-export const client = new Client({
+const isServerSide = typeof window === "undefined";
+const ssrCache = ssrExchange({ isClient: !isServerSide });
+
+const client = createClient({
   url: GRAPHQL_SERVER,
+  exchanges: [dedupExchange, cacheExchange, ssrCache, fetchExchange],
   fetchOptions: () => ({
     credentials: "include",
-    headers: {
-      cookie: document?.cookie,
-    },
   }),
 });
 
-export default client;
+export { client, ssrCache };

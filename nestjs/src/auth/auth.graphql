@@ -22,8 +22,13 @@ enum UserType {
   COACH
 }
 
+type MeInfo {
+  role: UserType!
+  id: Int!
+}
+
 type Query {
-  me: Int
+  me: MeInfo
 }
 
 type Mutation {

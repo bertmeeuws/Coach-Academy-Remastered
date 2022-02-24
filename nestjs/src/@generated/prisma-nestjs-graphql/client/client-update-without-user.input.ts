@@ -34,5 +34,5 @@ export class ClientUpdateWithoutUserInput {
     city?: NullableStringFieldUpdateOperationsInput;
 
     @Field(() => CoachUpdateOneWithoutClientsInput, {nullable:true})
-    Coach?: CoachUpdateOneWithoutClientsInput;
+    coach?: CoachUpdateOneWithoutClientsInput;
 }

@@ -3,6 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { ClientCreateInput } from '../@generated/prisma-nestjs-graphql/client/client-create.input';
 import { ClientUpdateInput } from '../@generated/prisma-nestjs-graphql/client/client-update.input';
 import { UsersService } from 'src/users/users.service';
+import { CreateClientInput } from 'src/graphql';
 
 @Injectable()
 export class ClientService {
@@ -11,18 +12,35 @@ export class ClientService {
     private readonly userService: UsersService,
   ) {}
 
-  create(createClientInput: ClientCreateInput) {
+  create(createClientInput: CreateClientInput) {
     return this.prisma.client.create({
       data: createClientInput,
     });
   }
 
-  findAll() {
-    return this.prisma.client.findMany();
+  findAll(id: number) {
+    return this.prisma.client.findMany({
+      where: {
+        coachId: id,
+      },
+    });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} client`;
+  findOneAsCoach(clientId: number, coachId) {
+    return this.prisma.client.findFirst({
+      where: {
+        id: clientId,
+        coachId: coachId,
+      },
+    });
+  }
+
+  findOne(clientId: number) {
+    return this.prisma.client.findFirst({
+      where: {
+        id: clientId,
+      },
+    });
   }
 
   getUser(userId) {

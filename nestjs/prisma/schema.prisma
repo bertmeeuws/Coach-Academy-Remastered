@@ -23,14 +23,14 @@ model User {
   email     String
   password  String
   createdAt DateTime @default(now())
-  role      String   @default("client")
-  Client    Client[]
-  Coach     Coach[]
+  role      String   @default("CLIENT")
+  client    Client?
+  coach     Coach?
 }
 
 model Client {
   id      Int       @id @default(autoincrement())
-  user    User      @relation(fields: [userId], references: [id])
+  user    User      @relation(fields: [userId], references: [id], onUpdate: Cascade, onDelete: Cascade)
   userId  Int       @unique
   surname String
   name    String
@@ -40,13 +40,13 @@ model Client {
   number  Int?
   postal  Int?
   city    String?
-  Coach   Coach?    @relation(fields: [coachId], references: [id])
+  coach   Coach?    @relation(fields: [coachId], references: [id], onUpdate: Cascade, onDelete: Cascade)
   coachId Int?
 }
 
 model Coach {
   id      Int      @id @default(autoincrement())
-  user    User     @relation(fields: [userId], references: [id])
+  user    User     @relation(fields: [userId], references: [id], onUpdate: Cascade, onDelete: Cascade)
   userId  Int      @unique
   surname String
   name    String

@@ -68,8 +68,13 @@ export class Login {
     type: UserType;
 }
 
+export class MeInfo {
+    role: UserType;
+    id: number;
+}
+
 export abstract class IQuery {
-    abstract me(): Nullable<number> | Promise<Nullable<number>>;
+    abstract me(): Nullable<MeInfo> | Promise<Nullable<MeInfo>>;
 
     abstract clients(): Nullable<Client>[] | Promise<Nullable<Client>[]>;
 

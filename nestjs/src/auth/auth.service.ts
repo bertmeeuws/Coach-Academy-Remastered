@@ -8,6 +8,7 @@ import { Injectable, ExecutionContext } from '@nestjs/common';
 import { UsersService } from 'src/users/users.service';
 import { GraphQLError } from 'graphql';
 import * as bcrypt from 'bcrypt';
+import { ClientCreateInput } from 'src/@generated/prisma-nestjs-graphql/client/client-create.input';
 
 @Injectable()
 export class AuthService {
@@ -38,7 +39,7 @@ export class AuthService {
   async register(
     registerUserInput: RegisterUserInput,
     ctx: MyContext,
-  ): Promise<number> {
+  ): Promise<boolean> {
     console.log(registerUserInput);
 
     const { email, password, surname, name, type } = registerUserInput;
@@ -64,13 +65,21 @@ export class AuthService {
       (ctx.req.session as any)['userId'] = createdUser.id;
       (ctx.req.session as any)['role'] = type;
       (ctx.req.session as any)['typeId'] = coach.id;
-      return createdUser.id;
+      return true;
     }
 
     if ((type as any) === ENUM_USER_ROLES.CLIENT) {
-      return 5;
+      const client = await this.clientService.create({
+        surname: surname,
+        name: name,
+        userId: createdUser.id,
+      });
+      (ctx.req.session as any)['userId'] = createdUser.id;
+      (ctx.req.session as any)['role'] = type;
+      (ctx.req.session as any)['typeId'] = client.id;
+      return true;
     }
 
-    return 5;
+    return false;
   }
 }

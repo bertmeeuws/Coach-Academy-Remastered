@@ -108,10 +108,10 @@ export default function Example({ children }: { children: JSX.Element }) {
                   </div>
                   <nav className="mt-5 px-2 space-y-1">
                     {navigation.map((item) => (
-                      <Link passHref href={item.href}>
+                      <Link key={item.name} passHref href={item.href}>
                         <div
                           //router.pathname == "/" ? "active" : ""
-                          key={item.name}
+
                           className={classNames(
                             {
                               "bg-fluoGreen text-white":
@@ -187,10 +187,10 @@ export default function Example({ children }: { children: JSX.Element }) {
               <nav className="flex-1 px-4 space-y-4 mt-12">
                 <p className="font-medium text-xs text-white">Personal</p>
                 {navigation.map((item) => (
-                  <Link passHref href={item.href}>
+                  <Link key={item.name} passHref href={item.href}>
                     <div
                       //router.pathname == "/" ? "active" : ""
-                      key={item.name}
+
                       className={classNames(
                         {
                           "bg-white bg-opacity-20":

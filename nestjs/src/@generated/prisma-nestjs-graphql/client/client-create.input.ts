@@ -35,5 +35,5 @@ export class ClientCreateInput {
     user!: UserCreateNestedOneWithoutClientInput;
 
     @Field(() => CoachCreateNestedOneWithoutClientsInput, {nullable:true})
-    Coach?: CoachCreateNestedOneWithoutClientsInput;
+    coach?: CoachCreateNestedOneWithoutClientsInput;
 }

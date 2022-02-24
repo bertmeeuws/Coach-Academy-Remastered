@@ -1,27 +1,6 @@
-/* This example requires Tailwind CSS v2.0+ */
-const people = [
-  {
-    name: "Jane Cooper",
-    title: "Regional Paradigm Technician",
-    role: "Admin",
-    email: "jane.cooper@example.com",
-  },
-  {
-    name: "Jane Cooper",
-    title: "Regional Paradigm Technician",
-    role: "Admin",
-    email: "jane.cooper@example.com",
-  },
-  {
-    name: "Jane Cooper",
-    title: "Regional Paradigm Technician",
-    role: "Admin",
-    email: "jane.cooper@example.com",
-  },
-  // More people...
-];
+import classNames from "classnames";
 
-export default function Example() {
+export default function Table({ data, setSelectedClient }: any) {
   return (
     <div className="flex flex-col">
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -49,22 +28,32 @@ export default function Example() {
                 </tr>
               </thead>
               <tbody className="w-full">
-                {people.map((person) => (
-                  <tr className="rounded-lg my-4 bg-white " key={person.email}>
+                {data?.clients?.map((person: any, idx: number) => (
+                  <tr
+                    onClick={(e) => setSelectedClient(person.id)}
+                    className={classNames(
+                      "rounded-lg my-4 cursor-pointer hover:bg-gray-100 transition-all duration-100",
+                      {
+                        "bg-gray-50": idx % 2 === 0,
+                        "bg-white": idx % 2 !== 0,
+                      }
+                    )}
+                    key={idx}
+                  >
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                      {person.name}
+                      {person.name} {person.surname}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {person.title}
+                      dsqdd
                     </td>
 
                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                      <a
-                        href="#"
-                        className="text-indigo-600 hover:text-indigo-900"
+                      <p
+                        onClick={(e) => setSelectedClient(person.id)}
+                        className="text-indigo-600 hover:text-indigo-900 cursor-pointer"
                       >
                         Edit
-                      </a>
+                      </p>
                     </td>
                   </tr>
                 ))}

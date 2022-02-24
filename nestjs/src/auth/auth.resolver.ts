@@ -1,7 +1,12 @@
 import { AuthService } from './auth.service';
 import { GetUserId } from './decorators/getuserid.decorator';
 import { UsersService } from 'src/users/users.service';
-import { CreateLoginInput, RegisterUserInput } from './../graphql';
+import {
+  CreateLoginInput,
+  RegisterUserInput,
+  MeInfo,
+  UserType,
+} from './../graphql';
 import { PrismaService } from './../../prisma/prisma.service';
 import { Args, Context, Mutation, Resolver, Query } from '@nestjs/graphql';
 import { GraphQLError } from 'graphql';
@@ -22,9 +27,16 @@ export class AuthResolver {
 
   @UseGuards(AuthGuard)
   @Query('me')
-  async me(@GetUserId() userId: number): Promise<number> {
+  async me(@GetUserId() userId: number): Promise<MeInfo> {
     const user = await this.userService.findOne(userId);
-    return user.id;
+    console.log({
+      role: user.role as UserType,
+      id: user.id,
+    });
+    return {
+      role: user.role as UserType,
+      id: user.id,
+    };
   }
 
   @Mutation('createLogin')
@@ -39,7 +51,7 @@ export class AuthResolver {
   async register(
     @Args('registerUser') registerUser: RegisterUserInput,
     @Context() context: MyContext,
-  ): Promise<number> {
+  ): Promise<boolean> {
     return this.authService.register(registerUser, context);
   }
 

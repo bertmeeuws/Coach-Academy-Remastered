@@ -1,7 +1,11 @@
+import { Resolver } from "@nestjs/graphql";
 import { gql } from "urql";
 
 export const ME = gql`
-  query Query {
-    me
+  query Me {
+    me {
+      role
+      id
+    }
   }
 `;
