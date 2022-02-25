@@ -10,10 +10,15 @@ import { GET_CLIENT_BY_ID_AS_COACH } from "../../../types/clients";
 import AuthHOC from "../../../components/AuthHOC/AuthProvider";
 import Head from "next/head";
 import HOCSection from "../../../ui/HOCSection";
+import MyModal from "../../../components/Modal";
+import Button from "../../../ui/Button";
+import { ExclamationCircleIcon } from "@heroicons/react/solid";
+import { ENUM_ERRORS } from "../../../types/enum";
 
-export default function index() {
+export default function index({ query }: any) {
   const [selectedClient, setSelectedClient] = React.useState(null);
   const [nameFilter, setNameFilter] = React.useState("");
+  const [clientNotFound, setClientNotFound] = React.useState<boolean>(false);
 
   const [result] = useQuery({
     query: GET_ALL_CLIENTS_FROM_COACH,
@@ -32,6 +37,13 @@ export default function index() {
   });
 
   React.useEffect(() => {
+    if (query.state === ENUM_ERRORS.CLIENT_NOT_FOUND) {
+      setClientNotFound(true);
+      return;
+    }
+  }, [query]);
+
+  React.useEffect(() => {
     if (!selectedClient) return;
     (async function fetch() {
       await fetchSelectedUser();
@@ -39,7 +51,24 @@ export default function index() {
   }, [selectedClient]);
 
   return (
-    <section className="">
+    <section>
+      <MyModal
+        className={"text-center"}
+        title="Client not found"
+        isOpen={clientNotFound}
+        setIsOpen={setClientNotFound}
+      >
+        <div className="flex justify-center my-4 flex-col items-center space-y-4">
+          <ExclamationCircleIcon className="w-8 h-8 text-red-400" />
+          <p className="text-gray-600 font-semibold mb-10 w-3/5 text-center">
+            The user you were trying to view does not exist.
+          </p>
+        </div>
+
+        <Button onClick={(e: EventListenerObject) => setClientNotFound(false)}>
+          Continue
+        </Button>
+      </MyModal>
       <Head>
         <title>Clients | CoachAcademy</title>
       </Head>
@@ -52,7 +81,12 @@ export default function index() {
                 setNameFilter={setNameFilter}
                 nameFilter={nameFilter}
               />
-              <Table setSelectedClient={setSelectedClient} data={allClients} />
+              <div className="overflow-y-auto h-[80vh] scrollbar-hide">
+                <Table
+                  setSelectedClient={setSelectedClient}
+                  data={allClients}
+                />
+              </div>
             </div>
             <div>
               {selectedClientFetch.data && selectedClient && (
@@ -68,3 +102,9 @@ export default function index() {
     </section>
   );
 }
+
+index.getInitialProps = ({ query }: any) => {
+  return {
+    query,
+  };
+};

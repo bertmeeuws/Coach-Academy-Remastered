@@ -8,11 +8,11 @@ export default function index() {
   return (
     <section className="">
       <Head>
-        <title>Dashboard | CoachAcademy</title>
+        <title>Notifications | CoachAcademy</title>
       </Head>
       <Sidebar>
         <HOCSection>
-          <Header page="Client overview" />
+          <Header page="Notifications" />
         </HOCSection>
       </Sidebar>
     </section>

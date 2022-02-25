@@ -295,7 +295,9 @@ export default function Example({ children }: { children: JSX.Element }) {
               <MenuIcon className="h-6 w-6" aria-hidden="true" />
             </button>
           </div>
-          <main className="flex-1 flex-grow">{children}</main>
+          <main className="flex-1 flex-grow max-h-screen overflow-hidden">
+            {children}
+          </main>
         </div>
       </div>
     </>
