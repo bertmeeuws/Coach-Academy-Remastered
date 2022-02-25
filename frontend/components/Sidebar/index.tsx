@@ -35,6 +35,15 @@ const navigation = [
   },
 ];
 
+const navigationSettings = [
+  {
+    name: "Account details",
+    href: "/settings/details",
+    icon: TemplateIcon,
+    current: false,
+  },
+];
+
 export default function Example({ children }: { children: JSX.Element }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const router = useRouter();
@@ -114,8 +123,7 @@ export default function Example({ children }: { children: JSX.Element }) {
 
                           className={classNames(
                             {
-                              "bg-fluoGreen text-white":
-                                router.pathname === item.href,
+                              " text-white": router.pathname === item.href,
                             },
                             {
                               "bg-gray-100 text-red-900":
@@ -175,7 +183,7 @@ export default function Example({ children }: { children: JSX.Element }) {
         {/* Static sidebar for desktop */}
         <div className="hidden md:flex md:w-[300px] md:flex-col md:fixed md:inset-y-0 ">
           {/* Sidebar component, swap this element with another sidebar if you like */}
-          <div className="flex-1 flex flex-col min-h-0  bg-fluoGreen pt-4">
+          <div className="flex-1 flex flex-col min-h-0  pt-4">
             <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
               <div className="flex items-center flex-shrink-0 px-4">
                 <img
@@ -184,8 +192,8 @@ export default function Example({ children }: { children: JSX.Element }) {
                   alt="Workflow"
                 />
               </div>
-              <nav className="flex-1 px-4 space-y-4 mt-12">
-                <p className="font-medium text-xs text-white">Personal</p>
+              <nav className="flex-1 px-[18px] space-y-4 mt-12">
+                <p className="font-medium text-xs text-gray-600">Personal</p>
                 {navigation.map((item) => (
                   <Link key={item.name} passHref href={item.href}>
                     <div
@@ -193,18 +201,45 @@ export default function Example({ children }: { children: JSX.Element }) {
 
                       className={classNames(
                         {
-                          "bg-white bg-opacity-20":
+                          "bg-gray-100 rounded-md":
                             router.pathname === item.href,
                         },
                         {
-                          "bg-transparent": router.pathname !== item.href,
+                          "": router.pathname !== item.href,
                         },
-                        "text-white group flex items-center px-[21px] py-[14px] text-lg  font-semibold cursor-pointer hover:bg-white hover:bg-opacity-20 transition-all duration-100"
+                        "group flex items-center px-[21px] py-[14px] text-lg  font-semibold cursor-pointer text-gray-800 hover:bg-gray-100  transition-all duration-100"
                       )}
                     >
                       <item.icon
                         className={classNames(
-                          "w-[20px] h-[20px] mr-[22px] text-white"
+                          "w-[20px] h-[20px] mr-[22px] text-neutralGreen"
+                        )}
+                        aria-hidden="true"
+                      />
+                      {item.name}
+                    </div>
+                  </Link>
+                ))}
+                <p className="font-medium text-xs text-gray-600">Settings</p>
+                {navigationSettings.map((item) => (
+                  <Link key={item.name} passHref href={item.href}>
+                    <div
+                      //router.pathname == "/" ? "active" : ""
+
+                      className={classNames(
+                        {
+                          "bg-gray-100 rounded-md":
+                            router.pathname === item.href,
+                        },
+                        {
+                          "": router.pathname !== item.href,
+                        },
+                        "group flex items-center px-[21px] py-[14px] text-lg  font-semibold cursor-pointer text-gray-800 hover:bg-gray-100  transition-all duration-100"
+                      )}
+                    >
+                      <item.icon
+                        className={classNames(
+                          "w-[20px] h-[20px] mr-[22px] text-neutralGreen"
                         )}
                         aria-hidden="true"
                       />
@@ -225,10 +260,12 @@ export default function Example({ children }: { children: JSX.Element }) {
                     />
                   </div>
                   <div className="ml-3">
-                    <p className="text-sm font-medium text-white">Tom Cook</p>
+                    <p className="text-sm font-medium text-gray-800">
+                      Tom Cook
+                    </p>
                     <p
                       onClick={(e) => handleLogout()}
-                      className="text-xs font-medium text-white cursor-pointer"
+                      className="text-xs font-medium text-neutralGreen cursor-pointer "
                     >
                       Log out
                     </p>

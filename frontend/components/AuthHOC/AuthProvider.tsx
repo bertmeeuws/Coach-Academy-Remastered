@@ -18,7 +18,7 @@ export function AuthProvider({ children }: any) {
     );
 
   if (data) {
-    switch (data.me.role) {
+    switch (data?.me?.role) {
       case ENUM_USER_ROLES.CLIENT:
         Router.push("/portal");
         break;

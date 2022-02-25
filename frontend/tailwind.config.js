@@ -10,6 +10,7 @@ module.exports = {
         ghost: "#F8F8FF",
         fluoRed: "#E63946",
         darkBlue: "#344B63",
+        neutralGreen: "#00C49A",
       },
     },
   },

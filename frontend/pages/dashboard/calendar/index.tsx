@@ -8,7 +8,7 @@ import Calendar from "../../../components/Calendar/index";
 
 export default function index() {
   return (
-    <section className="bg-fluoGreen">
+    <section className="">
       <Sidebar>
         <div className="bg-ghost min-h-screen overflow-hidden rounded-tl-[50px] rounded-bl-[100px] flex flex-col">
           <Header page="Calendar" />

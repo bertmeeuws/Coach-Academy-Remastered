@@ -7,6 +7,8 @@ import PersonDetail from "../../../components/Aside/PersonDetail";
 import { useQuery } from "urql";
 import { GET_ALL_CLIENTS_FROM_COACH } from "../../../graphql/clients/Query.gql";
 import { GET_CLIENT_BY_ID_AS_COACH } from "../../../types/clients";
+import AuthHOC from "../../../components/AuthHOC/AuthProvider";
+import Head from "next/head";
 
 export default function index() {
   const [selectedClient, setSelectedClient] = React.useState(null);
@@ -33,7 +35,10 @@ export default function index() {
   }, [selectedClient]);
 
   return (
-    <section className="bg-fluoGreen">
+    <section className="">
+      <Head>
+        <title>Clients | CoachAcademy</title>
+      </Head>
       <Sidebar>
         <div className="bg-ghost min-h-screen overflow-hidden rounded-tl-[50px] rounded-bl-[100px]">
           <Header page="Clients" />

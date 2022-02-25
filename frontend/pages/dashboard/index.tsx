@@ -6,7 +6,7 @@ export default function index() {
   const { auth, setAuth } = useContext(UserContext);
 
   return (
-    <section className="bg-fluoGreen">
+    <section className="">
       <Sidebar>
         <div className="bg-ghost min-h-screen rounded-tl-[50px] rounded-bl-[100px]">
           <Header page="Dashboard" />
