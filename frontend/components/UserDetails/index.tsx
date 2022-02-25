@@ -13,7 +13,7 @@ export default function index({ className }: any) {
               <div>
                 <h2
                   id="payment-details-heading"
-                  className="text-lg leading-6 font-medium text-gray-900"
+                  className="text-lg leading-6 font-semibold text-gray-700"
                 >
                   Personal settings
                 </h2>
@@ -25,7 +25,7 @@ export default function index({ className }: any) {
               <div className="sm:col-span-6 my-4">
                 <label
                   htmlFor="first-name"
-                  className="block text-sm font-medium text-gray-700 mb-2"
+                  className="block text-sm font-semibold text-gray-700 mb-2"
                 >
                   Profile picture
                 </label>
@@ -39,7 +39,7 @@ export default function index({ className }: any) {
                     <div className="relative bg-white py-2 px-3 border border-blue-gray-300 rounded-md  flex items-center cursor-pointer hover:bg-blue-gray-50 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-blue-gray-50 focus-within:ring-blue-500">
                       <label
                         htmlFor="user-photo"
-                        className="relative text-sm font-medium text-blue-gray-900 pointer-events-none"
+                        className="relative text-sm font-semibold text-blue-gray-900 pointer-events-none"
                       >
                         <span>Change</span>
                         <span className="sr-only"> user photo</span>
@@ -53,7 +53,7 @@ export default function index({ className }: any) {
                     </div>
                     <button
                       type="button"
-                      className="ml-3 bg-transparent py-2 px-3 border border-transparent rounded-md text-sm font-medium text-blue-gray-900 hover:text-blue-gray-700 focus:outline-none focus:border-blue-gray-300 focus:ring-2 focus:ring-offset-2 focus:ring-offset-blue-gray-50 focus:ring-blue-500"
+                      className="ml-3 bg-transparent py-2 px-3 border border-transparent rounded-md text-sm font-semibold text-blue-gray-900 hover:text-blue-gray-700 focus:outline-none focus:border-blue-gray-300 focus:ring-2 focus:ring-offset-2 focus:ring-offset-blue-gray-50 focus:ring-blue-500"
                     >
                       Remove
                     </button>
@@ -65,7 +65,7 @@ export default function index({ className }: any) {
                 <div className="col-span-4 sm:col-span-2">
                   <label
                     htmlFor="first-name"
-                    className="block text-sm font-medium text-gray-700"
+                    className="block text-sm font-semibold text-gray-700"
                   >
                     First name
                   </label>
@@ -81,7 +81,7 @@ export default function index({ className }: any) {
                 <div className="col-span-4 sm:col-span-2">
                   <label
                     htmlFor="last-name"
-                    className="block text-sm font-medium text-gray-700"
+                    className="block text-sm font-semibold text-gray-700"
                   >
                     Last name
                   </label>
@@ -97,7 +97,7 @@ export default function index({ className }: any) {
                 <div className="col-span-4 sm:col-span-2">
                   <label
                     htmlFor="email-address"
-                    className="block text-sm font-medium text-gray-700"
+                    className="block text-sm font-semibold text-gray-700"
                   >
                     Email address
                   </label>
@@ -113,7 +113,7 @@ export default function index({ className }: any) {
                 <div className="col-span-4 sm:col-span-1">
                   <label
                     htmlFor="expiration-date"
-                    className="block text-sm font-medium text-gray-700"
+                    className="block text-sm font-semibold text-gray-700"
                   >
                     Company name
                   </label>
@@ -129,7 +129,7 @@ export default function index({ className }: any) {
                 <div className="col-span-4 sm:col-span-1">
                   <label
                     htmlFor="security-code"
-                    className="flex items-center text-sm font-medium text-gray-700"
+                    className="flex items-center text-sm font-semibold text-gray-700"
                   >
                     <span>Phone</span>
                   </label>
@@ -145,7 +145,7 @@ export default function index({ className }: any) {
                 <div className="col-span-4 sm:col-span-2">
                   <label
                     htmlFor="country"
-                    className="block text-sm font-medium text-gray-700"
+                    className="block text-sm font-semibold text-gray-700"
                   >
                     Street
                   </label>
@@ -161,7 +161,7 @@ export default function index({ className }: any) {
                 <div className="col-span-4 sm:col-span-2">
                   <label
                     htmlFor="postal-code"
-                    className="block text-sm font-medium text-gray-700"
+                    className="block text-sm font-semibold text-gray-700"
                   >
                     ZIP / Postal code
                   </label>

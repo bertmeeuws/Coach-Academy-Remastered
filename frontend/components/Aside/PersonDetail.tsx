@@ -1,10 +1,17 @@
 import { MailIcon, PhoneIcon } from "@heroicons/react/outline";
 import { XCircleIcon } from "@heroicons/react/solid";
 import React from "react";
+import { useRouter } from "next/router";
 
 export default function PersonDetail({ data, setSelectedClient }: any) {
-  const { address, city, dob, name, number, phone, postal, surname, user } =
+  const router = useRouter();
+
+  const { address, city, dob, name, number, phone, postal, surname, user, id } =
     data.client;
+
+  const redirectToUserPage = () => {
+    router.push("/dashboard/clients/" + id);
+  };
 
   return (
     <div className="w-[300px] rounded-lg flex flex-col items-center bg-white h-full relative">
@@ -23,7 +30,7 @@ export default function PersonDetail({ data, setSelectedClient }: any) {
       </div>
       <div className="py-8 flex flex-col space-y-6 px-2 w-[90%]">
         <div className="flex flex-col justify-start">
-          <p className="uppercase text-gray-600 text-xs font-medium mb-2">
+          <p className="uppercase text-gray-600 text-xs font-semibold mb-2">
             ADDRESS
           </p>
           <p className="text-xs">
@@ -32,26 +39,26 @@ export default function PersonDetail({ data, setSelectedClient }: any) {
         </div>
         <div className="flex space-x-6">
           <div className="flex flex-col justify-start">
-            <p className="uppercase text-gray-600 text-xs font-medium mb-2">
+            <p className="uppercase text-gray-600 text-xs font-semibold mb-2">
               POSTAL
             </p>
             <p className="text-xs">{postal}</p>
           </div>
           <div className="flex flex-col justify-start">
-            <p className="uppercase text-gray-600 text-xs font-medium mb-2">
+            <p className="uppercase text-gray-600 text-xs font-semibold mb-2">
               CITY
             </p>
             <p className="text-xs">{city}</p>
           </div>
         </div>
         <div className="flex flex-col justify-start">
-          <p className="uppercase text-gray-600 text-xs font-medium mb-2">
+          <p className="uppercase text-gray-600 text-xs font-semibold mb-2">
             AGE
           </p>
           <p className="text-xs">20 years old</p>
         </div>
         <div className="flex flex-col justify-start">
-          <p className="uppercase text-gray-600 text-xs font-medium mb-2">
+          <p className="uppercase text-gray-600 text-xs font-semibold mb-2">
             CONTACT INFORMATION
           </p>
           <div className="flex space-x-2">
@@ -64,10 +71,13 @@ export default function PersonDetail({ data, setSelectedClient }: any) {
           </div>
         </div>
         <div className="flex flex-col justify-center items-center space-y-2 pt-8">
-          <p className="bg-fluoGreen flex-grow w-full text-center text-white cursor-pointer font-medium py-2 px-3 rounded-lg">
+          <p
+            onClick={(e) => redirectToUserPage()}
+            className="bg-fluoGreen flex-grow w-full text-center text-white cursor-pointer font-semibold py-2 px-3 rounded-lg"
+          >
             View client
           </p>
-          <p className="text-xs font-medium py-2 px-3 rounded-lg underline cursor-pointer">
+          <p className="text-xs font-semibold py-2 px-3 rounded-lg underline cursor-pointer">
             Change status
           </p>
         </div>

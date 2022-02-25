@@ -40,17 +40,17 @@ export default function Table({ data, setSelectedClient }: any) {
                     )}
                     key={idx}
                   >
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-800">
                       {person.name} {person.surname}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-500">
                       dsqdd
                     </td>
 
                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                       <p
                         onClick={(e) => setSelectedClient(person.id)}
-                        className="text-indigo-600 hover:text-indigo-900 cursor-pointer"
+                        className="text-indigo-600 hover:text-indigo-900 cursor-pointer font-semibold"
                       >
                         Edit
                       </p>

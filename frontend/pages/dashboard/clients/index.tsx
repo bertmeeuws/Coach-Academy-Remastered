@@ -9,6 +9,7 @@ import { GET_ALL_CLIENTS_FROM_COACH } from "../../../graphql/clients/Query.gql";
 import { GET_CLIENT_BY_ID_AS_COACH } from "../../../types/clients";
 import AuthHOC from "../../../components/AuthHOC/AuthProvider";
 import Head from "next/head";
+import HOCSection from "../../../ui/HOCSection";
 
 export default function index() {
   const [selectedClient, setSelectedClient] = React.useState(null);
@@ -30,7 +31,6 @@ export default function index() {
     if (!selectedClient) return;
     (async function fetch() {
       await fetchSelectedUser();
-      console.log(selectedClientFetch);
     })();
   }, [selectedClient]);
 
@@ -40,7 +40,7 @@ export default function index() {
         <title>Clients | CoachAcademy</title>
       </Head>
       <Sidebar>
-        <div className="bg-ghost min-h-screen overflow-hidden rounded-tl-[50px] rounded-bl-[100px]">
+        <HOCSection>
           <Header page="Clients" />
           <div className="p-6 flex space-x-3">
             <div className="flex-grow">
@@ -56,7 +56,7 @@ export default function index() {
               )}
             </div>
           </div>
-        </div>
+        </HOCSection>
       </Sidebar>
     </section>
   );

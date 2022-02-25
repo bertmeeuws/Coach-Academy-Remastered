@@ -1,5 +1,6 @@
 import { BellIcon, DocumentIcon } from "@heroicons/react/outline";
 import React from "react";
+import Router from "next/router";
 
 interface IProps {
   page: string;
@@ -14,9 +15,12 @@ export default function Header({ page }: IProps) {
           <p className="font-medium">Friday, 30 October 2020</p>
           <BellIcon className="w-6 h-6 cursor-pointer" />
           <DocumentIcon className="w-6 h-6 cursor-pointer" />
-          <div className="flex items-center border-l-2 pl-4 space-x-6">
-            <div className="w-10 h-10 bg-red-400 rounded-full flex-shrink-0"></div>
-            <p className="cursor-pointer">
+          <div
+            onClick={(e) => Router.push("/settings/details")}
+            className="flex items-center border-l-2 pl-4 space-x-2 cursor-pointer"
+          >
+            <div className="w-10 h-10 bg-red-400 rounded-full flex-shrink-0 "></div>
+            <p className="">
               <span className="font-bold text-darkBlue">Coach</span>
               <span className="font-bold text-fluoGreen"> Bert</span>
             </p>

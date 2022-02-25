@@ -5,7 +5,7 @@ export default function Button({ children, ...props }: any) {
     <button
       {...props}
       type="button"
-      className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-neutralGreen border border-transparent rounded-md hover:bg-opacity-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+      className="inline-flex justify-center px-4 py-2 text-sm  text-white bg-fluoGreen font-semibold border border-transparent rounded-md hover:bg-opacity-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
     >
       {children}
     </button>

@@ -2,15 +2,21 @@ import React, { useContext } from "react";
 import Sidebar from "../../components/Sidebar/index";
 import Header from "../../components/Header/Header";
 import { UserContext } from "../../context/UserContext";
+import HOCSection from "../../ui/HOCSection";
+import Head from "next/head";
+
 export default function index() {
   const { auth, setAuth } = useContext(UserContext);
 
   return (
     <section className="">
+      <Head>
+        <title>Dashboard | CoachAcademy</title>
+      </Head>
       <Sidebar>
-        <div className="bg-ghost min-h-screen rounded-tl-[50px] rounded-bl-[100px]">
+        <HOCSection>
           <Header page="Dashboard" />
-        </div>
+        </HOCSection>
       </Sidebar>
     </section>
   );
