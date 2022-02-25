@@ -13,9 +13,13 @@ import HOCSection from "../../../ui/HOCSection";
 
 export default function index() {
   const [selectedClient, setSelectedClient] = React.useState(null);
+  const [nameFilter, setNameFilter] = React.useState("");
 
   const [result] = useQuery({
     query: GET_ALL_CLIENTS_FROM_COACH,
+    variables: {
+      filter: nameFilter === "" ? undefined : nameFilter,
+    },
   });
   const { data: allClients, fetching } = result;
 
@@ -44,7 +48,10 @@ export default function index() {
           <Header page="Clients" />
           <div className="p-6 flex space-x-3">
             <div className="flex-grow">
-              <SearchBar />
+              <SearchBar
+                setNameFilter={setNameFilter}
+                nameFilter={nameFilter}
+              />
               <Table setSelectedClient={setSelectedClient} data={allClients} />
             </div>
             <div>

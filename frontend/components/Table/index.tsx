@@ -59,6 +59,11 @@ export default function Table({ data, setSelectedClient }: any) {
                 ))}
               </tbody>
             </table>
+            {data?.clients.length === 0 && (
+              <div className="flex justify-center w-full mt-16">
+                <p className="font-semibold text-gray-600">No clients found.</p>
+              </div>
+            )}
           </div>
         </div>
       </div>

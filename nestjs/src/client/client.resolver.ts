@@ -39,9 +39,9 @@ export class ClientResolver {
     @Context() ctx: MyContext,
     @GetUserId() userId: number,
     @GetCoachId() coachId: number,
+    @Args('filter') filter: string,
   ) {
-    console.log(coachId);
-    return this.clientService.findAll(coachId);
+    return this.clientService.findAll(coachId, filter);
   }
 
   @UseGuards(AuthGuard)

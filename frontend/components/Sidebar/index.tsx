@@ -2,6 +2,8 @@
 import { Children, Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import {
+  AdjustmentsIcon,
+  BellIcon,
   CalendarIcon,
   ChartBarIcon,
   FolderIcon,
@@ -33,13 +35,19 @@ const navigation = [
     icon: CalendarIcon,
     current: false,
   },
+  {
+    name: "Notifications",
+    href: "/dashboard/notifications",
+    icon: BellIcon,
+    current: false,
+  },
 ];
 
 const navigationSettings = [
   {
     name: "Account details",
     href: "/settings/details",
-    icon: TemplateIcon,
+    icon: AdjustmentsIcon,
     current: false,
   },
 ];
@@ -110,7 +118,8 @@ export default function Example({ children }: { children: JSX.Element }) {
                 <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
                   <div className="flex-shrink-0 flex items-center px-4">
                     <img
-                      className="h-8 w-auto px-2"
+                      onClick={(e) => router.push("/dashboard")}
+                      className="h-8 w-auto px-2 cursor-pointer"
                       src="/svg/logo.svg"
                       alt="Workflow"
                     />
@@ -187,7 +196,8 @@ export default function Example({ children }: { children: JSX.Element }) {
             <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
               <div className="flex items-center flex-shrink-0 px-4">
                 <img
-                  className="h-8 px-4 w-auto"
+                  onClick={(e) => router.push("/dashboard")}
+                  className="h-8 px-4 w-auto cursor-pointer"
                   src="/svg/logo.svg"
                   alt="Workflow"
                 />
@@ -201,13 +211,12 @@ export default function Example({ children }: { children: JSX.Element }) {
 
                       className={classNames(
                         {
-                          "bg-gray-100 rounded-md":
-                            router.pathname === item.href,
+                          "bg-gray-100": router.pathname === item.href,
                         },
                         {
                           "": router.pathname !== item.href,
                         },
-                        "group flex items-center px-[21px] py-[14px] text-lg  font-semibold cursor-pointer text-gray-800 hover:bg-gray-100  transition-all duration-100"
+                        "group flex items-center px-[21px] py-[14px] text-lg  font-semibold cursor-pointer text-gray-800 hover:bg-gray-100  transition-all duration-100 rounded-lg"
                       )}
                     >
                       <item.icon

@@ -10,4 +10,7 @@ export class ClientWhereUniqueInput {
 
     @Field(() => Int, {nullable:true})
     userId?: number;
+
+    @Field(() => String, {nullable:true})
+    inviteId?: string;
 }

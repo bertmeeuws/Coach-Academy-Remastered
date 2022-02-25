@@ -4,6 +4,7 @@ import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 import { ClientUpdateOneWithoutUserInput } from '../client/client-update-one-without-user.input';
 import { CoachUpdateOneWithoutUserInput } from '../coach/coach-update-one-without-user.input';
+import { NotificationsUpdateManyWithoutUserInput } from '../notifications/notifications-update-many-without-user.input';
 
 @InputType()
 export class UserUpdateInput {
@@ -25,4 +26,7 @@ export class UserUpdateInput {
 
     @Field(() => CoachUpdateOneWithoutUserInput, {nullable:true})
     coach?: CoachUpdateOneWithoutUserInput;
+
+    @Field(() => NotificationsUpdateManyWithoutUserInput, {nullable:true})
+    Notifications?: NotificationsUpdateManyWithoutUserInput;
 }

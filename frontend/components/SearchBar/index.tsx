@@ -1,17 +1,30 @@
 import { PlusIcon, SearchIcon } from "@heroicons/react/outline";
 import { UserAddIcon } from "@heroicons/react/solid";
 import React from "react";
+import { useMutation } from "urql";
+import { CREATE_INVITE } from "../../graphql/invites/Mutation.gql";
 import Button from "../../ui/Button";
 import Modal from "../Modal/index";
 
-export default function index() {
+export default function index({ setNameFilter, nameFilter }: any) {
   const [invite, setInvite] = React.useState(false);
+  const [link, setLink] = React.useState("");
   const createInviteLink = () => {
     setInvite(true);
   };
 
-  const createNewInvite = () => {
-    setInvite(false);
+  const [createdInvite, createInvite] = useMutation(CREATE_INVITE);
+
+  React.useEffect(() => {
+    (async function generateLink() {
+      const { data } = await createInvite();
+      setLink(data.createInvite.id);
+    })();
+  }, []);
+
+  const createNewInvite = async () => {
+    const { data } = await createInvite();
+    setLink(data.createInvite.id);
   };
 
   return (
@@ -33,10 +46,10 @@ export default function index() {
         <p className="text-xs my-4 text-red-400">
           This link can only be used one time.
         </p>
-        <p className="mb-8 border-2 rounded-md py-2">invite.url/123456</p>
+        <p className="mb-8 border-2 rounded-md py-2">invite.url/{link}</p>
         <div className="mt-4">
           <Button onClick={(e: EventListenerObject) => createNewInvite()}>
-            Make new invite link
+            Generate a new link
           </Button>
         </div>
       </Modal>
@@ -48,6 +61,8 @@ export default function index() {
               type="text"
               className="px-4 py-4 rounded-lg flex-grow pl-14"
               placeholder="Search names of clients"
+              value={nameFilter}
+              onChange={(e) => setNameFilter(e.currentTarget.value)}
             />
           </div>
 

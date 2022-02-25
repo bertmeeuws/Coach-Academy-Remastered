@@ -4,6 +4,7 @@ import { IntFilter } from '../prisma/int-filter.input';
 import { UserRelationFilter } from '../user/user-relation-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
 import { ClientListRelationFilter } from '../client/client-list-relation-filter.input';
+import { InviteListRelationFilter } from '../invite/invite-list-relation-filter.input';
 
 @InputType()
 export class CoachWhereInput {
@@ -34,4 +35,7 @@ export class CoachWhereInput {
 
     @Field(() => ClientListRelationFilter, {nullable:true})
     clients?: ClientListRelationFilter;
+
+    @Field(() => InviteListRelationFilter, {nullable:true})
+    Invite?: InviteListRelationFilter;
 }

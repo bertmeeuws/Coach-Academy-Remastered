@@ -18,30 +18,33 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
+  id            Int             @id @default(autoincrement())
   /// @Validator.IsEmail()
-  email     String
-  password  String
-  createdAt DateTime @default(now())
-  role      String   @default("CLIENT")
-  client    Client?
-  coach     Coach?
+  email         String
+  password      String
+  createdAt     DateTime        @default(now())
+  role          String          @default("CLIENT")
+  client        Client?
+  coach         Coach?
+  Notifications Notifications[]
 }
 
 model Client {
-  id      Int       @id @default(autoincrement())
-  user    User      @relation(fields: [userId], references: [id], onUpdate: Cascade, onDelete: Cascade)
-  userId  Int       @unique
-  surname String
-  name    String
-  dob     DateTime?
-  phone   String?
-  address String?
-  number  Int?
-  postal  Int?
-  city    String?
-  coach   Coach?    @relation(fields: [coachId], references: [id], onUpdate: Cascade, onDelete: Cascade)
-  coachId Int?
+  id       Int       @id @default(autoincrement())
+  user     User      @relation(fields: [userId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  userId   Int       @unique
+  surname  String
+  name     String
+  dob      DateTime?
+  phone    String?
+  address  String?
+  number   Int?
+  postal   Int?
+  city     String?
+  coach    Coach?    @relation(fields: [coachId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  coachId  Int?
+  invite   Invite?   @relation(fields: [inviteId], references: [id])
+  inviteId String?   @unique @db.Uuid
 }
 
 model Coach {
@@ -51,4 +54,30 @@ model Coach {
   surname String
   name    String
   clients Client[]
+  Invite  Invite[]
+}
+
+model Invite {
+  id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  coach       Coach     @relation(fields: [coachId], references: [id])
+  coachId     Int
+  createdAt   DateTime  @default(now())
+  client      Client?
+  invalidated DateTime?
+}
+
+enum NOTIFICATION_TYPE {
+  NEW_MESSAGE
+  INVITE_ACCEPTED
+  NEW_DOCUMENT
+}
+
+model Notifications {
+  id        String            @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  type      NOTIFICATION_TYPE
+  user      User              @relation(fields: [userId], references: [id])
+  userId    Int
+  createdAt DateTime          @default(now())
+  read      Boolean           @default(false)
+  content   String?
 }

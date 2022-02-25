@@ -63,7 +63,7 @@ export default function MyModal({
               >
                 <Dialog.Title
                   as="h3"
-                  className="text-lg font-medium leading-6 text-gray-900"
+                  className="text-lg font-bold leading-6 text-gray-700"
                 >
                   {title}
                 </Dialog.Title>

@@ -39,5 +39,8 @@ export class ClientCountAggregate {
     coachId!: number;
 
     @Field(() => Int, {nullable:false})
+    inviteId!: number;
+
+    @Field(() => Int, {nullable:false})
     _all!: number;
 }

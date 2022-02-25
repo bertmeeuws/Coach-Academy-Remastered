@@ -37,4 +37,7 @@ export class ClientMinOrderByAggregateInput {
 
     @Field(() => SortOrder, {nullable:true})
     coachId?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
+    inviteId?: keyof typeof SortOrder;
 }

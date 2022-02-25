@@ -5,6 +5,7 @@ import { NullableDateTimeFieldUpdateOperationsInput } from '../prisma/nullable-d
 import { NullableStringFieldUpdateOperationsInput } from '../prisma/nullable-string-field-update-operations.input';
 import { NullableIntFieldUpdateOperationsInput } from '../prisma/nullable-int-field-update-operations.input';
 import { UserUpdateOneRequiredWithoutClientInput } from '../user/user-update-one-required-without-client.input';
+import { InviteUpdateOneWithoutClientInput } from '../invite/invite-update-one-without-client.input';
 
 @InputType()
 export class ClientUpdateWithoutCoachInput {
@@ -35,4 +36,7 @@ export class ClientUpdateWithoutCoachInput {
 
     @Field(() => UserUpdateOneRequiredWithoutClientInput, {nullable:true})
     user?: UserUpdateOneRequiredWithoutClientInput;
+
+    @Field(() => InviteUpdateOneWithoutClientInput, {nullable:true})
+    invite?: InviteUpdateOneWithoutClientInput;
 }

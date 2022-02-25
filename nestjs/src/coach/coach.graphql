@@ -5,6 +5,7 @@ type Coach {
   name: String!
   user: User!
   clients: [Client]
+  invites: [Invite]
 }
 
 input CreateCoachInput {

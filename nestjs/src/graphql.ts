@@ -52,6 +52,22 @@ export class UpdateCoachInput {
     id: number;
 }
 
+export class CreateInviteInput {
+    coachId: number;
+}
+
+export class UpdateInviteInput {
+    id: number;
+}
+
+export class CreateNotificationInput {
+    exampleField?: Nullable<number>;
+}
+
+export class UpdateNotificationInput {
+    id: number;
+}
+
 export class CreateUserInput {
     email: string;
     password: string;
@@ -76,13 +92,21 @@ export class MeInfo {
 export abstract class IQuery {
     abstract me(): Nullable<MeInfo> | Promise<Nullable<MeInfo>>;
 
-    abstract clients(): Nullable<Client>[] | Promise<Nullable<Client>[]>;
+    abstract clients(filter?: Nullable<string>): Nullable<Client>[] | Promise<Nullable<Client>[]>;
 
     abstract client(id: number): Nullable<Client> | Promise<Nullable<Client>>;
 
     abstract coaches(): Nullable<Coach>[] | Promise<Nullable<Coach>[]>;
 
     abstract coach(id: number): Nullable<Coach> | Promise<Nullable<Coach>>;
+
+    abstract invites(): Nullable<Invite>[] | Promise<Nullable<Invite>[]>;
+
+    abstract invite(id: number): Nullable<Invite> | Promise<Nullable<Invite>>;
+
+    abstract notifications(): Nullable<Notification>[] | Promise<Nullable<Notification>[]>;
+
+    abstract notification(id: number): Nullable<Notification> | Promise<Nullable<Notification>>;
 
     abstract users(): Nullable<User>[] | Promise<Nullable<User>[]>;
 
@@ -107,6 +131,18 @@ export abstract class IMutation {
     abstract updateCoach(updateCoachInput: UpdateCoachInput): Coach | Promise<Coach>;
 
     abstract removeCoach(id: number): Nullable<Coach> | Promise<Nullable<Coach>>;
+
+    abstract createInvite(): Invite | Promise<Invite>;
+
+    abstract updateInvite(updateInviteInput: UpdateInviteInput): Invite | Promise<Invite>;
+
+    abstract removeInvite(id: number): Nullable<Invite> | Promise<Nullable<Invite>>;
+
+    abstract createNotification(createNotificationInput: CreateNotificationInput): Notification | Promise<Notification>;
+
+    abstract updateNotification(updateNotificationInput: UpdateNotificationInput): Notification | Promise<Notification>;
+
+    abstract removeNotification(id: number): Nullable<Notification> | Promise<Nullable<Notification>>;
 
     abstract createUser(createUserInput: CreateUserInput): User | Promise<User>;
 
@@ -135,6 +171,18 @@ export class Coach {
     name: string;
     user: User;
     clients?: Nullable<Nullable<Client>[]>;
+    invites?: Nullable<Nullable<Invite>[]>;
+}
+
+export class Invite {
+    id?: Nullable<string>;
+    coach: Coach;
+    client?: Nullable<Client>;
+    invalidated?: Nullable<DateTime>;
+}
+
+export class Notification {
+    exampleField?: Nullable<number>;
 }
 
 export class User {

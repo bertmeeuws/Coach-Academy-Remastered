@@ -11,7 +11,8 @@ export enum ClientScalarFieldEnum {
     number = "number",
     postal = "postal",
     city = "city",
-    coachId = "coachId"
+    coachId = "coachId",
+    inviteId = "inviteId"
 }
 
 

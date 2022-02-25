@@ -50,4 +50,7 @@ export class ClientScalarWhereInput {
 
     @Field(() => IntNullableFilter, {nullable:true})
     coachId?: IntNullableFilter;
+
+    @Field(() => StringNullableFilter, {nullable:true})
+    inviteId?: StringNullableFilter;
 }

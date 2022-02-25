@@ -36,4 +36,7 @@ export class ClientMaxAggregateInput {
 
     @Field(() => Boolean, {nullable:true})
     coachId?: true;
+
+    @Field(() => Boolean, {nullable:true})
+    inviteId?: true;
 }

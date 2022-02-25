@@ -3,6 +3,7 @@ import { InputType } from '@nestjs/graphql';
 import * as Validator from 'class-validator';
 import { ClientCreateNestedOneWithoutUserInput } from '../client/client-create-nested-one-without-user.input';
 import { CoachCreateNestedOneWithoutUserInput } from '../coach/coach-create-nested-one-without-user.input';
+import { NotificationsCreateNestedManyWithoutUserInput } from '../notifications/notifications-create-nested-many-without-user.input';
 
 @InputType()
 export class UserCreateInput {
@@ -25,4 +26,7 @@ export class UserCreateInput {
 
     @Field(() => CoachCreateNestedOneWithoutUserInput, {nullable:true})
     coach?: CoachCreateNestedOneWithoutUserInput;
+
+    @Field(() => NotificationsCreateNestedManyWithoutUserInput, {nullable:true})
+    Notifications?: NotificationsCreateNestedManyWithoutUserInput;
 }

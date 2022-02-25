@@ -38,4 +38,7 @@ export class ClientUncheckedUpdateManyWithoutClientsInput {
 
     @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
     city?: NullableStringFieldUpdateOperationsInput;
+
+    @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
+    inviteId?: NullableStringFieldUpdateOperationsInput;
 }

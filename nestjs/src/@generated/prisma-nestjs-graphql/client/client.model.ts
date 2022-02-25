@@ -4,6 +4,7 @@ import { ID } from '@nestjs/graphql';
 import { User } from '../user/user.model';
 import { Int } from '@nestjs/graphql';
 import { Coach } from '../coach/coach.model';
+import { Invite } from '../invite/invite.model';
 
 @ObjectType()
 export class Client {
@@ -46,4 +47,10 @@ export class Client {
 
     @Field(() => Int, {nullable:true})
     coachId!: number | null;
+
+    @Field(() => Invite, {nullable:true})
+    invite?: Invite | null;
+
+    @Field(() => String, {nullable:true})
+    inviteId!: string | null;
 }

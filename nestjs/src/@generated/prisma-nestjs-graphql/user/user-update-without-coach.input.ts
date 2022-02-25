@@ -3,6 +3,7 @@ import { InputType } from '@nestjs/graphql';
 import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 import { ClientUpdateOneWithoutUserInput } from '../client/client-update-one-without-user.input';
+import { NotificationsUpdateManyWithoutUserInput } from '../notifications/notifications-update-many-without-user.input';
 
 @InputType()
 export class UserUpdateWithoutCoachInput {
@@ -21,4 +22,7 @@ export class UserUpdateWithoutCoachInput {
 
     @Field(() => ClientUpdateOneWithoutUserInput, {nullable:true})
     client?: ClientUpdateOneWithoutUserInput;
+
+    @Field(() => NotificationsUpdateManyWithoutUserInput, {nullable:true})
+    Notifications?: NotificationsUpdateManyWithoutUserInput;
 }

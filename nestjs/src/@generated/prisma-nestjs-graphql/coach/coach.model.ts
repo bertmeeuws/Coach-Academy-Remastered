@@ -4,6 +4,7 @@ import { ID } from '@nestjs/graphql';
 import { User } from '../user/user.model';
 import { Int } from '@nestjs/graphql';
 import { Client } from '../client/client.model';
+import { Invite } from '../invite/invite.model';
 import { CoachCount } from './coach-count.output';
 
 @ObjectType()
@@ -26,6 +27,9 @@ export class Coach {
 
     @Field(() => [Client], {nullable:true})
     clients?: Array<Client>;
+
+    @Field(() => [Invite], {nullable:true})
+    Invite?: Array<Invite>;
 
     @Field(() => CoachCount, {nullable:false})
     _count?: CoachCount;

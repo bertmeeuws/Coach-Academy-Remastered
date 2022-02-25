@@ -14,6 +14,8 @@ import { AuthModule } from './auth/auth.module';
 import { Redis } from 'ioredis';
 import { CoachModule } from './coach/coach.module';
 import { ClientModule } from './client/client.module';
+import { InviteModule } from './invite/invite.module';
+import { NotificationModule } from './notification/notification.module';
 
 @Module({
   imports: [
@@ -44,6 +46,8 @@ import { ClientModule } from './client/client.module';
     UsersModule,
     CoachModule,
     ClientModule,
+    InviteModule,
+    NotificationModule,
   ],
   controllers: [AppController],
   providers: [AppService],

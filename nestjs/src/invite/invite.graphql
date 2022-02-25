@@ -1,0 +1,27 @@
+type Invite {
+  # Example field (placeholder)
+  id: String #uuid
+  coach: Coach!
+  client: Client
+  invalidated: DateTime
+}
+
+input CreateInviteInput {
+  # Example field (placeholder)
+  coachId: Int!
+}
+
+input UpdateInviteInput {
+  id: Int!
+}
+
+type Query {
+  invites: [Invite]!
+  invite(id: Int!): Invite
+}
+
+type Mutation {
+  createInvite: Invite!
+  updateInvite(updateInviteInput: UpdateInviteInput!): Invite!
+  removeInvite(id: Int!): Invite
+}

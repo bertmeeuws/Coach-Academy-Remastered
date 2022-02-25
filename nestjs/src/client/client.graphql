@@ -30,7 +30,7 @@ input UpdateClientInput {
 }
 
 type Query {
-  clients: [Client]!
+  clients(filter: String): [Client]!
   client(id: Int!): Client
 }
 

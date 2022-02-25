@@ -37,4 +37,7 @@ export class ClientMaxAggregate {
 
     @Field(() => Int, {nullable:true})
     coachId?: number;
+
+    @Field(() => String, {nullable:true})
+    inviteId?: string;
 }

@@ -34,4 +34,7 @@ export class ClientCreateManyCoachInput {
 
     @Field(() => String, {nullable:true})
     city?: string;
+
+    @Field(() => String, {nullable:true})
+    inviteId?: string;
 }

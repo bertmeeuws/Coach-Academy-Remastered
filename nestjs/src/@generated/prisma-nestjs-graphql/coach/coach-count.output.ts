@@ -7,4 +7,7 @@ export class CoachCount {
 
     @Field(() => Int, {nullable:false})
     clients?: number;
+
+    @Field(() => Int, {nullable:false})
+    Invite?: number;
 }

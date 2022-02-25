@@ -38,5 +38,8 @@ export class ClientCountAggregateInput {
     coachId?: true;
 
     @Field(() => Boolean, {nullable:true})
+    inviteId?: true;
+
+    @Field(() => Boolean, {nullable:true})
     _all?: true;
 }

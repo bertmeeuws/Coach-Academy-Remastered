@@ -18,7 +18,28 @@ export class ClientService {
     });
   }
 
-  findAll(id: number) {
+  findAll(id: number, filter) {
+    if (filter) {
+      return this.prisma.client.findMany({
+        where: {
+          coachId: id,
+          OR: [
+            {
+              surname: {
+                contains: filter,
+                mode: 'insensitive',
+              },
+            },
+            {
+              name: {
+                contains: filter,
+                mode: 'insensitive',
+              },
+            },
+          ],
+        },
+      });
+    }
     return this.prisma.client.findMany({
       where: {
         coachId: id,

@@ -5,6 +5,7 @@ import { StringFilter } from '../prisma/string-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { ClientRelationFilter } from '../client/client-relation-filter.input';
 import { CoachRelationFilter } from '../coach/coach-relation-filter.input';
+import { NotificationsListRelationFilter } from '../notifications/notifications-list-relation-filter.input';
 
 @InputType()
 export class UserWhereInput {
@@ -38,4 +39,7 @@ export class UserWhereInput {
 
     @Field(() => CoachRelationFilter, {nullable:true})
     coach?: CoachRelationFilter;
+
+    @Field(() => NotificationsListRelationFilter, {nullable:true})
+    Notifications?: NotificationsListRelationFilter;
 }

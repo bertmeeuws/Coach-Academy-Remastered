@@ -50,4 +50,7 @@ export class ClientScalarWhereWithAggregatesInput {
 
     @Field(() => IntNullableWithAggregatesFilter, {nullable:true})
     coachId?: IntNullableWithAggregatesFilter;
+
+    @Field(() => StringNullableWithAggregatesFilter, {nullable:true})
+    inviteId?: StringNullableWithAggregatesFilter;
 }

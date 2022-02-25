@@ -3,6 +3,8 @@ import { ObjectType } from '@nestjs/graphql';
 import { ID } from '@nestjs/graphql';
 import { Client } from '../client/client.model';
 import { Coach } from '../coach/coach.model';
+import { Notifications } from '../notifications/notifications.model';
+import { UserCount } from './user-count.output';
 
 @ObjectType()
 export class User {
@@ -27,4 +29,10 @@ export class User {
 
     @Field(() => Coach, {nullable:true})
     coach?: Coach | null;
+
+    @Field(() => [Notifications], {nullable:true})
+    Notifications?: Array<Notifications>;
+
+    @Field(() => UserCount, {nullable:false})
+    _count?: UserCount;
 }

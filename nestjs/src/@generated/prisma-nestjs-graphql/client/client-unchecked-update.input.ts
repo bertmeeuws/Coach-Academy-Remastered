@@ -41,4 +41,7 @@ export class ClientUncheckedUpdateInput {
 
     @Field(() => NullableIntFieldUpdateOperationsInput, {nullable:true})
     coachId?: NullableIntFieldUpdateOperationsInput;
+
+    @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
+    inviteId?: NullableStringFieldUpdateOperationsInput;
 }

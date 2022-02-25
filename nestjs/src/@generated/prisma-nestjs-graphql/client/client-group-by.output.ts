@@ -43,6 +43,9 @@ export class ClientGroupBy {
     @Field(() => Int, {nullable:true})
     coachId?: number;
 
+    @Field(() => String, {nullable:true})
+    inviteId?: string;
+
     @Field(() => ClientCountAggregate, {nullable:true})
     _count?: ClientCountAggregate;
 

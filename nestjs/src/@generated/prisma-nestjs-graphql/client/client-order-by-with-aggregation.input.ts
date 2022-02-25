@@ -43,6 +43,9 @@ export class ClientOrderByWithAggregationInput {
     @Field(() => SortOrder, {nullable:true})
     coachId?: keyof typeof SortOrder;
 
+    @Field(() => SortOrder, {nullable:true})
+    inviteId?: keyof typeof SortOrder;
+
     @Field(() => ClientCountOrderByAggregateInput, {nullable:true})
     _count?: ClientCountOrderByAggregateInput;
 

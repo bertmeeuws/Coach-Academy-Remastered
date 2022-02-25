@@ -36,4 +36,7 @@ export class ClientMinAggregateInput {
 
     @Field(() => Boolean, {nullable:true})
     coachId?: true;
+
+    @Field(() => Boolean, {nullable:true})
+    inviteId?: true;
 }
