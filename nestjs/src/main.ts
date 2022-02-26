@@ -8,6 +8,7 @@ import * as redisSession from 'connect-redis';
 import * as Redis from 'ioredis';
 import * as cookieParser from 'cookie-parser';
 import { NestExpressApplication } from '@nestjs/platform-express';
+import { graphqlUploadExpress } from 'graphql-upload';
 
 let RedisStore = redisSession(session);
 let redisClient = new Redis(config.redis);
@@ -46,6 +47,7 @@ async function bootstrap() {
       },
     }),
   );
+  app.use(graphqlUploadExpress({ maxFileSize: 1000000, maxFiles: 10 }));
 
   await app.listen(3000);
 }

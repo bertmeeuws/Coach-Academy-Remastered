@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import Sidebar from "../../../components/Sidebar/index";
 import Header from "../../../components/Header/Header";
 import Table from "../../../components/Table/index";
@@ -14,6 +14,7 @@ import MyModal from "../../../components/Modal";
 import Button from "../../../ui/Button";
 import { ExclamationCircleIcon } from "@heroicons/react/solid";
 import { ENUM_ERRORS } from "../../../types/enum";
+import Spinner from "../../../ui/Spinner";
 
 export default function index({ query }: any) {
   const [selectedClient, setSelectedClient] = React.useState(null);
@@ -58,9 +59,9 @@ export default function index({ query }: any) {
         isOpen={clientNotFound}
         setIsOpen={setClientNotFound}
       >
-        <div className="flex justify-center my-4 flex-col items-center space-y-4">
-          <ExclamationCircleIcon className="w-8 h-8 text-red-400" />
-          <p className="text-gray-600 font-semibold mb-10 w-3/5 text-center">
+        <div className="my-4 flex flex-col items-center justify-center space-y-4">
+          <ExclamationCircleIcon className="h-8 w-8 text-red-400" />
+          <p className="mb-10 w-3/5 text-center font-semibold text-gray-600">
             The user you were trying to view does not exist.
           </p>
         </div>
@@ -75,17 +76,20 @@ export default function index({ query }: any) {
       <Sidebar>
         <HOCSection>
           <Header page="Clients" />
-          <div className="p-6 flex space-x-3">
+          <div className="flex space-x-3 p-6">
             <div className="flex-grow">
               <SearchBar
                 setNameFilter={setNameFilter}
                 nameFilter={nameFilter}
               />
-              <div className="overflow-y-auto h-[80vh] scrollbar-hide">
-                <Table
-                  setSelectedClient={setSelectedClient}
-                  data={allClients}
-                />
+
+              <div className="h-[80vh] overflow-y-auto scrollbar-hide">
+                <Suspense fallback={<Spinner />}>
+                  <Table
+                    setSelectedClient={setSelectedClient}
+                    data={allClients}
+                  />
+                </Suspense>
               </div>
             </div>
             <div>

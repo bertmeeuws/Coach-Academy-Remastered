@@ -19,4 +19,7 @@ export class UserMaxAggregate {
 
     @Field(() => String, {nullable:true})
     role?: string;
+
+    @Field(() => String, {nullable:true})
+    profile_image?: string;
 }

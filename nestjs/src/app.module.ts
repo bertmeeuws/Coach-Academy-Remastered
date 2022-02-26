@@ -8,7 +8,7 @@ import { UsersModule } from './users/users.module';
 import { ApolloDriver } from '@nestjs/apollo';
 import { GraphQLDateTime } from 'graphql-iso-date';
 import { InjectRedis, RedisModule } from '@liaoliaots/nestjs-redis';
-import { config } from './config/index';
+import { config, minio_config } from './config/index';
 import { AuthService } from './auth/auth.service';
 import { AuthModule } from './auth/auth.module';
 import { Redis } from 'ioredis';
@@ -16,6 +16,8 @@ import { CoachModule } from './coach/coach.module';
 import { ClientModule } from './client/client.module';
 import { InviteModule } from './invite/invite.module';
 import { NotificationModule } from './notification/notification.module';
+import { MinioModule } from 'nestjs-minio-client';
+import { MinioClientModule } from './minio-client/minio-client.module';
 
 @Module({
   imports: [
@@ -25,6 +27,7 @@ import { NotificationModule } from './notification/notification.module';
       playground: false,
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
       resolvers: { DateTime: GraphQLDateTime },
+      uploads: false,
       cors: {
         credentials: true,
         origin: [
@@ -48,6 +51,7 @@ import { NotificationModule } from './notification/notification.module';
     ClientModule,
     InviteModule,
     NotificationModule,
+    MinioClientModule,
   ],
   controllers: [AppController],
   providers: [AppService],

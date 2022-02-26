@@ -18,4 +18,7 @@ export class UserMinAggregateInput {
 
     @Field(() => Boolean, {nullable:true})
     role?: true;
+
+    @Field(() => Boolean, {nullable:true})
+    profile_image?: true;
 }

@@ -21,5 +21,8 @@ export class UserCountAggregate {
     role!: number;
 
     @Field(() => Int, {nullable:false})
+    profile_image!: number;
+
+    @Field(() => Int, {nullable:false})
     _all!: number;
 }

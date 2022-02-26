@@ -20,6 +20,9 @@ export class UserCreateWithoutCoachInput {
     @Field(() => String, {nullable:true})
     role?: string;
 
+    @Field(() => String, {nullable:true})
+    profile_image?: string;
+
     @Field(() => ClientCreateNestedOneWithoutUserInput, {nullable:true})
     client?: ClientCreateNestedOneWithoutUserInput;
 

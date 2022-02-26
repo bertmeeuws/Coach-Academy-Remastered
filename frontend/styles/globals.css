@@ -50,10 +50,6 @@ body {
   font-weight: 400;
 }
 
-svg path {
-  stroke-width: 1.5;
-}
-
 a {
   color: inherit;
   text-decoration: none;

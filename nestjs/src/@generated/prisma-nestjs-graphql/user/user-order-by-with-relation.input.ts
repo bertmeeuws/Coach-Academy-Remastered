@@ -31,4 +31,7 @@ export class UserOrderByWithRelationInput {
 
     @Field(() => NotificationsOrderByRelationAggregateInput, {nullable:true})
     Notifications?: NotificationsOrderByRelationAggregateInput;
+
+    @Field(() => SortOrder, {nullable:true})
+    profile_image?: keyof typeof SortOrder;
 }

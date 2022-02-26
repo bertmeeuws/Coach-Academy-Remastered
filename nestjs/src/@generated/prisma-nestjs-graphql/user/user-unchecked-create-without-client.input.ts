@@ -24,6 +24,9 @@ export class UserUncheckedCreateWithoutClientInput {
     @Field(() => String, {nullable:true})
     role?: string;
 
+    @Field(() => String, {nullable:true})
+    profile_image?: string;
+
     @Field(() => CoachUncheckedCreateNestedOneWithoutUserInput, {nullable:true})
     coach?: CoachUncheckedCreateNestedOneWithoutUserInput;
 

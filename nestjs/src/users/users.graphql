@@ -5,12 +5,14 @@ type User {
   email: String!
   password: String!
   createdAt: DateTime
+  profile_image: String
 }
 
 input CreateUserInput {
   email: String!
   password: String!
   createdAt: DateTime
+   profile_image: String
 }
 
 input UpdateUserInput {

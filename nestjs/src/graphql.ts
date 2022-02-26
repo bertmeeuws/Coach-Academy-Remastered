@@ -72,6 +72,7 @@ export class CreateUserInput {
     email: string;
     password: string;
     createdAt?: Nullable<DateTime>;
+    profile_image?: Nullable<string>;
 }
 
 export class UpdateUserInput {
@@ -190,6 +191,7 @@ export class User {
     email: string;
     password: string;
     createdAt?: Nullable<DateTime>;
+    profile_image?: Nullable<string>;
 }
 
 export type DateTime = any;

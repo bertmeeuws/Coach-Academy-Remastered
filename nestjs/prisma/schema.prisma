@@ -27,6 +27,7 @@ model User {
   client        Client?
   coach         Coach?
   Notifications Notifications[]
+  profile_image String?
 }
 
 model Client {

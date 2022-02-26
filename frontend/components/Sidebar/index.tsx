@@ -6,6 +6,7 @@ import {
   BellIcon,
   CalendarIcon,
   ChartBarIcon,
+  DocumentIcon,
   FolderIcon,
   HomeIcon,
   InboxIcon,
@@ -41,6 +42,12 @@ const navigation = [
     icon: BellIcon,
     current: false,
   },
+  {
+    name: "Documents",
+    href: "/dashboard/documents",
+    icon: DocumentIcon,
+    current: false,
+  },
 ];
 
 const navigationSettings = [
@@ -68,7 +75,7 @@ export default function Example({ children }: { children: JSX.Element }) {
         <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog
             as="div"
-            className="fixed inset-0 flex z-40 md:hidden"
+            className="fixed inset-0 z-40 flex md:hidden"
             onClose={setSidebarOpen}
           >
             <Transition.Child
@@ -91,7 +98,7 @@ export default function Example({ children }: { children: JSX.Element }) {
               leaveFrom="translate-x-0"
               leaveTo="-translate-x-full"
             >
-              <div className="relative flex-1 flex flex-col max-w-xs w-full bg-white">
+              <div className="relative flex w-full max-w-xs flex-1 flex-col bg-white">
                 <Transition.Child
                   as={Fragment}
                   enter="ease-in-out duration-300"
@@ -104,7 +111,7 @@ export default function Example({ children }: { children: JSX.Element }) {
                   <div className="absolute top-0 right-0 -mr-12 pt-2">
                     <button
                       type="button"
-                      className="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                      className="ml-1 flex h-10 w-10 items-center justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
                       onClick={() => setSidebarOpen(false)}
                     >
                       <span className="sr-only">Close sidebar</span>
@@ -115,16 +122,16 @@ export default function Example({ children }: { children: JSX.Element }) {
                     </button>
                   </div>
                 </Transition.Child>
-                <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
-                  <div className="flex-shrink-0 flex items-center px-4">
+                <div className="h-0 flex-1 overflow-y-auto pt-5 pb-4">
+                  <div className="flex flex-shrink-0 items-center px-4">
                     <img
                       onClick={(e) => router.push("/dashboard")}
-                      className="h-8 w-auto px-2 cursor-pointer"
+                      className="h-8 w-auto cursor-pointer px-2"
                       src="/svg/logo.svg"
                       alt="Workflow"
                     />
                   </div>
-                  <nav className="mt-5 px-2 space-y-1">
+                  <nav className="mt-5 space-y-1 px-2">
                     {navigation.map((item) => (
                       <Link key={item.name} passHref href={item.href}>
                         <div
@@ -138,7 +145,7 @@ export default function Example({ children }: { children: JSX.Element }) {
                               "bg-gray-100 text-red-900":
                                 router.pathname !== item.href,
                             },
-                            "group flex items-center px-4 py-4 text-base  rounded-md font-bold"
+                            "group flex items-center rounded-md px-4 py-4  text-base font-bold"
                           )}
                         >
                           <item.icon
@@ -150,7 +157,7 @@ export default function Example({ children }: { children: JSX.Element }) {
                                 "bg-gray-100 text-red-900":
                                   router.pathname !== item.href,
                               },
-                              "w-6 h-6 mr-3"
+                              "mr-3 h-6 w-6"
                             )}
                             aria-hidden="true"
                           />
@@ -160,8 +167,8 @@ export default function Example({ children }: { children: JSX.Element }) {
                     ))}
                   </nav>
                 </div>
-                <div className="flex-shrink-0 flex border-t border-gray-200 p-4">
-                  <a href="#" className="flex-shrink-0 group block">
+                <div className="flex flex-shrink-0 border-t border-gray-200 p-4">
+                  <a href="#" className="group block flex-shrink-0">
                     <div className="flex items-center">
                       <div>
                         <img
@@ -183,27 +190,27 @@ export default function Example({ children }: { children: JSX.Element }) {
                 </div>
               </div>
             </Transition.Child>
-            <div className="flex-shrink-0 w-14">
+            <div className="w-14 flex-shrink-0">
               {/* Force sidebar to shrink to fit close icon */}
             </div>
           </Dialog>
         </Transition.Root>
 
         {/* Static sidebar for desktop */}
-        <div className="hidden md:flex md:w-[300px] md:flex-col md:fixed md:inset-y-0 ">
+        <div className="hidden md:fixed md:inset-y-0 md:flex md:w-[300px] md:flex-col ">
           {/* Sidebar component, swap this element with another sidebar if you like */}
-          <div className="flex-1 flex flex-col min-h-0  pt-4">
-            <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
-              <div className="flex items-center flex-shrink-0 px-4">
+          <div className="flex min-h-0 flex-1 flex-col  pt-4">
+            <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
+              <div className="flex flex-shrink-0 items-center px-4">
                 <img
                   onClick={(e) => router.push("/dashboard")}
-                  className="h-8 px-4 w-auto cursor-pointer"
+                  className="h-8 w-auto cursor-pointer px-4"
                   src="/svg/logo.svg"
                   alt="Workflow"
                 />
               </div>
-              <nav className="flex-1 px-[18px] space-y-4 mt-12">
-                <p className="font-medium text-xs text-gray-600">Personal</p>
+              <nav className="mt-12 flex-1 space-y-4 px-[18px]">
+                <p className="text-xs font-medium text-gray-600">Personal</p>
                 {navigation.map((item) => (
                   <Link key={item.name} passHref href={item.href}>
                     <div
@@ -216,12 +223,12 @@ export default function Example({ children }: { children: JSX.Element }) {
                         {
                           "": router.pathname !== item.href,
                         },
-                        "group flex items-center px-[21px] py-[14px] text-lg  font-semibold cursor-pointer text-gray-800 hover:bg-gray-100  transition-all duration-100 rounded-lg"
+                        "group flex cursor-pointer items-center rounded-lg px-[21px]  py-[14px] text-lg font-semibold text-gray-800  transition-all duration-100 hover:bg-gray-100"
                       )}
                     >
                       <item.icon
                         className={classNames(
-                          "w-[20px] h-[20px] mr-[22px] text-neutralGreen"
+                          "mr-[22px] h-[20px] w-[20px] text-neutralGreen"
                         )}
                         aria-hidden="true"
                       />
@@ -229,7 +236,7 @@ export default function Example({ children }: { children: JSX.Element }) {
                     </div>
                   </Link>
                 ))}
-                <p className="font-medium text-xs text-gray-600">Settings</p>
+                <p className="text-xs font-medium text-gray-600">Settings</p>
                 {navigationSettings.map((item) => (
                   <Link key={item.name} passHref href={item.href}>
                     <div
@@ -237,18 +244,18 @@ export default function Example({ children }: { children: JSX.Element }) {
 
                       className={classNames(
                         {
-                          "bg-gray-100 rounded-md":
+                          "rounded-md bg-gray-100":
                             router.pathname === item.href,
                         },
                         {
                           "": router.pathname !== item.href,
                         },
-                        "group flex items-center px-[21px] py-[14px] text-lg  font-semibold cursor-pointer text-gray-800 hover:bg-gray-100  transition-all duration-100"
+                        "group flex cursor-pointer items-center px-[21px] py-[14px]  text-lg font-semibold text-gray-800 transition-all  duration-100 hover:bg-gray-100"
                       )}
                     >
                       <item.icon
                         className={classNames(
-                          "w-[20px] h-[20px] mr-[22px] text-neutralGreen"
+                          "mr-[22px] h-[20px] w-[20px] text-neutralGreen"
                         )}
                         aria-hidden="true"
                       />
@@ -258,8 +265,8 @@ export default function Example({ children }: { children: JSX.Element }) {
                 ))}
               </nav>
             </div>
-            <div className="flex-shrink-0 flex p-10">
-              <a href="#" className="flex-shrink-0 w-full group block">
+            <div className="flex flex-shrink-0 p-10">
+              <a href="#" className="group block w-full flex-shrink-0">
                 <div className="flex items-center">
                   <div>
                     <img
@@ -274,7 +281,7 @@ export default function Example({ children }: { children: JSX.Element }) {
                     </p>
                     <p
                       onClick={(e) => handleLogout()}
-                      className="text-xs font-medium text-neutralGreen cursor-pointer "
+                      className="cursor-pointer text-xs font-medium text-neutralGreen "
                     >
                       Log out
                     </p>
@@ -284,18 +291,18 @@ export default function Example({ children }: { children: JSX.Element }) {
             </div>
           </div>
         </div>
-        <div className="md:pl-[300px] flex flex-col flex-1">
-          <div className="sticky top-0 z-10 md:hidden pl-1 pt-1 sm:pl-3 sm:pt-3 bg-white">
+        <div className="flex flex-1 flex-col md:pl-[300px]">
+          <div className="sticky top-0 z-10 bg-white pl-1 pt-1 sm:pl-3 sm:pt-3 md:hidden">
             <button
               type="button"
-              className="-ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+              className="-ml-0.5 -mt-0.5 inline-flex h-12 w-12 items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
               onClick={() => setSidebarOpen(true)}
             >
               <span className="sr-only">Open sidebar</span>
               <MenuIcon className="h-6 w-6" aria-hidden="true" />
             </button>
           </div>
-          <main className="flex-1 flex-grow max-h-screen overflow-hidden">
+          <main className="max-h-screen flex-1 flex-grow overflow-hidden">
             {children}
           </main>
         </div>

@@ -1,11 +1,9 @@
+import { MinioClientService } from './../minio-client/minio-client.service';
 import {
   GetCoachId,
   isUserCoach,
 } from './../auth/decorators/getuserid.decorator';
 import { Req, Session, UseGuards } from '@nestjs/common';
-import { User } from './../@generated/prisma-nestjs-graphql/user/user.model';
-import { UsersService } from './../users/users.service';
-import { PrismaService } from './../../prisma/prisma.service';
 import {
   Resolver,
   Query,
@@ -18,7 +16,6 @@ import {
 import { ClientService } from './client.service';
 import { ClientUpdateInput } from '../@generated/prisma-nestjs-graphql/client/client-update.input';
 import { Client } from 'src/@generated/prisma-nestjs-graphql/client/client.model';
-import { Request } from 'express';
 import { MyContext } from 'src/types/my-context';
 import { AuthGuard } from 'src/auth/guards/auth.gql.guard';
 import { CreateClientInput } from 'src/graphql';
@@ -26,7 +23,10 @@ import { GetUserId } from 'src/auth/decorators/getuserid.decorator';
 
 @Resolver('Client')
 export class ClientResolver {
-  constructor(private readonly clientService: ClientService) {}
+  constructor(
+    private readonly clientService: ClientService,
+    private minioClientService: MinioClientService,
+  ) {}
 
   @Mutation('createClient')
   create(@Args('createClientInput') createClientInput: CreateClientInput) {
@@ -41,6 +41,7 @@ export class ClientResolver {
     @GetCoachId() coachId: number,
     @Args('filter') filter: string,
   ) {
+    console.log(this.minioClientService.test());
     return this.clientService.findAll(coachId, filter);
   }
 

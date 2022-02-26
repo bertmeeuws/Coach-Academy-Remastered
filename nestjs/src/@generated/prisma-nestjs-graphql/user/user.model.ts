@@ -33,6 +33,9 @@ export class User {
     @Field(() => [Notifications], {nullable:true})
     Notifications?: Array<Notifications>;
 
+    @Field(() => String, {nullable:true})
+    profile_image!: string | null;
+
     @Field(() => UserCount, {nullable:false})
     _count?: UserCount;
 }

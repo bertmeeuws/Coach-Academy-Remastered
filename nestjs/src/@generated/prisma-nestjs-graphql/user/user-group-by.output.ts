@@ -25,6 +25,9 @@ export class UserGroupBy {
     @Field(() => String, {nullable:false})
     role!: string;
 
+    @Field(() => String, {nullable:true})
+    profile_image?: string;
+
     @Field(() => UserCountAggregate, {nullable:true})
     _count?: UserCountAggregate;
 

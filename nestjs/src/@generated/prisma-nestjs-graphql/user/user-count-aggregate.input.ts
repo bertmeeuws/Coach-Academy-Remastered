@@ -20,5 +20,8 @@ export class UserCountAggregateInput {
     role?: true;
 
     @Field(() => Boolean, {nullable:true})
+    profile_image?: true;
+
+    @Field(() => Boolean, {nullable:true})
     _all?: true;
 }

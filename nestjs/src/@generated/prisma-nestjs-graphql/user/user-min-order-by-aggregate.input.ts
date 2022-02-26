@@ -19,4 +19,7 @@ export class UserMinOrderByAggregateInput {
 
     @Field(() => SortOrder, {nullable:true})
     role?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
+    profile_image?: keyof typeof SortOrder;
 }

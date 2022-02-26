@@ -4,13 +4,15 @@ import { ClientCreateInput } from '../@generated/prisma-nestjs-graphql/client/cl
 import { ClientUpdateInput } from '../@generated/prisma-nestjs-graphql/client/client-update.input';
 import { UsersService } from 'src/users/users.service';
 import { CreateClientInput } from 'src/graphql';
+import { MinioService } from 'nestjs-minio-client';
 
 @Injectable()
 export class ClientService {
   constructor(
     private prisma: PrismaService,
     private readonly userService: UsersService,
-  ) {}
+  ) //private readonly minioClient: MinioService,
+  {}
 
   create(createClientInput: CreateClientInput) {
     return this.prisma.client.create({
