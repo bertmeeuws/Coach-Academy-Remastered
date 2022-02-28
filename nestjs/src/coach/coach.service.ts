@@ -1,3 +1,4 @@
+import { UsersService } from 'src/users/users.service';
 import { CreateCoachInput } from './../graphql';
 import { Injectable } from '@nestjs/common';
 import { CoachUpdateInput } from '../@generated/prisma-nestjs-graphql/coach/coach-update.input';
@@ -5,7 +6,10 @@ import { PrismaService } from './../../prisma/prisma.service';
 
 @Injectable()
 export class CoachService {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    private readonly userService: UsersService,
+  ) {}
 
   create(createCoachInput: CreateCoachInput) {
     return this.prisma.coach.create({
@@ -18,7 +22,15 @@ export class CoachService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} coach`;
+    return this.prisma.coach.findFirst({
+      where: {
+        id: id,
+      },
+    });
+  }
+
+  getUser(userId: number) {
+    return this.userService.findOne(userId);
   }
 
   update(id: number, updateCoachInput: CoachUpdateInput) {

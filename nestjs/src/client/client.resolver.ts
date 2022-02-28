@@ -14,7 +14,6 @@ import {
   Context,
 } from '@nestjs/graphql';
 import { ClientService } from './client.service';
-import { ClientUpdateInput } from '../@generated/prisma-nestjs-graphql/client/client-update.input';
 import { Client } from 'src/@generated/prisma-nestjs-graphql/client/client.model';
 import { MyContext } from 'src/types/my-context';
 import { AuthGuard } from 'src/auth/guards/auth.gql.guard';

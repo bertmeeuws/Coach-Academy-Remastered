@@ -69,14 +69,14 @@ export default function Index({ query }: any) {
                 Bert Beukers
               </p>
               <p className="text-xs font-semibold text-gray-400">
-                Joined in October
+                Joined in <span className="font-bold">October</span>
               </p>
             </div>
           </div>
           <div className="mt-8 rounded-lg bg-white p-6">
             <h2
               id="payment-details-heading"
-              className="text-lg font-semibold leading-6 text-gray-700"
+              className="text-xl font-bold leading-6 text-gray-800"
             >
               Client information
             </h2>
@@ -145,7 +145,12 @@ export default function Index({ query }: any) {
             </div>
           </div>
           <div className="grid grid-cols-2 gap-x-8">
-            <div className="group col-span-1 mt-8 flex h-56 cursor-pointer flex-col justify-between rounded-lg bg-white p-6 transition-all duration-100 hover:bg-fluoGreen">
+            <div
+              onClick={(e) =>
+                router.push("/dashboard/clients/" + query.id + "/workout")
+              }
+              className="group col-span-1 mt-8 flex h-56 cursor-pointer flex-col justify-between rounded-lg bg-white p-6 transition-all duration-100 hover:bg-fluoGreen"
+            >
               <h2 className="text-2xl font-bold text-gray-800 group-hover:text-white">
                 Workout
               </h2>
@@ -153,7 +158,12 @@ export default function Index({ query }: any) {
                 Push pull legs
               </p>
             </div>
-            <div className="group col-span-1 mt-8 flex cursor-pointer flex-col justify-between rounded-lg bg-white p-6 transition-all duration-100 hover:bg-fluoGreen">
+            <div
+              onClick={(e) =>
+                router.push("/dashboard/clients/" + query.id + "/food")
+              }
+              className="group col-span-1 mt-8 flex cursor-pointer flex-col justify-between rounded-lg bg-white p-6 transition-all duration-100 hover:bg-fluoGreen"
+            >
               <h2 className="text-2xl font-bold text-gray-800 group-hover:text-white">
                 Diet
               </h2>
