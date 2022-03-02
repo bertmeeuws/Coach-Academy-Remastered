@@ -4,6 +4,7 @@ import { SortOrder } from '../prisma/sort-order.enum';
 import { UserOrderByWithRelationInput } from '../user/user-order-by-with-relation.input';
 import { CoachOrderByWithRelationInput } from '../coach/coach-order-by-with-relation.input';
 import { InviteOrderByWithRelationInput } from '../invite/invite-order-by-with-relation.input';
+import { DietplanOrderByRelationAggregateInput } from '../dietplan/dietplan-order-by-relation-aggregate.input';
 
 @InputType()
 export class ClientOrderByWithRelationInput {
@@ -52,4 +53,7 @@ export class ClientOrderByWithRelationInput {
 
     @Field(() => SortOrder, {nullable:true})
     inviteId?: keyof typeof SortOrder;
+
+    @Field(() => DietplanOrderByRelationAggregateInput, {nullable:true})
+    Dietplan?: DietplanOrderByRelationAggregateInput;
 }

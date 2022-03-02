@@ -12,7 +12,7 @@ input CreateUserInput {
   email: String!
   password: String!
   createdAt: DateTime
-   profile_image: String
+  profile_image: String
 }
 
 input UpdateUserInput {

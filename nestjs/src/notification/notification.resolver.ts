@@ -1,12 +1,13 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { NotificationService } from './notification.service';
-import { CreateNotificationInput } from './dto/create-notification.input';
-import { UpdateNotificationInput } from './dto/update-notification.input';
+//import { CreateNotificationInput } from './dto/create-notification.input';
+//import { UpdateNotificationInput } from './dto/update-notification.input';
 
 @Resolver('Notification')
 export class NotificationResolver {
   constructor(private readonly notificationService: NotificationService) {}
 
+  /*
   @Mutation('createNotification')
   create(@Args('createNotificationInput') createNotificationInput: CreateNotificationInput) {
     return this.notificationService.create(createNotificationInput);
@@ -31,4 +32,5 @@ export class NotificationResolver {
   remove(@Args('id') id: number) {
     return this.notificationService.remove(id);
   }
+  */
 }

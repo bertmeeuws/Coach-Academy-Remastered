@@ -18,6 +18,7 @@ import { InviteModule } from './invite/invite.module';
 import { NotificationModule } from './notification/notification.module';
 import { MinioModule } from 'nestjs-minio-client';
 import { MinioClientModule } from './minio-client/minio-client.module';
+import { DietModule } from './diet/diet.module';
 
 @Module({
   imports: [
@@ -52,6 +53,7 @@ import { MinioClientModule } from './minio-client/minio-client.module';
     InviteModule,
     NotificationModule,
     MinioClientModule,
+    DietModule,
   ],
   controllers: [AppController],
   providers: [AppService],

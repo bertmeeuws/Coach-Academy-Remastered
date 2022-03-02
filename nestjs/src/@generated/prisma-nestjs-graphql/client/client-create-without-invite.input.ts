@@ -3,6 +3,7 @@ import { InputType } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
 import { UserCreateNestedOneWithoutClientInput } from '../user/user-create-nested-one-without-client.input';
 import { CoachCreateNestedOneWithoutClientsInput } from '../coach/coach-create-nested-one-without-clients.input';
+import { DietplanCreateNestedManyWithoutClientInput } from '../dietplan/dietplan-create-nested-many-without-client.input';
 
 @InputType()
 export class ClientCreateWithoutInviteInput {
@@ -36,4 +37,7 @@ export class ClientCreateWithoutInviteInput {
 
     @Field(() => CoachCreateNestedOneWithoutClientsInput, {nullable:true})
     coach?: CoachCreateNestedOneWithoutClientsInput;
+
+    @Field(() => DietplanCreateNestedManyWithoutClientInput, {nullable:true})
+    Dietplan?: DietplanCreateNestedManyWithoutClientInput;
 }

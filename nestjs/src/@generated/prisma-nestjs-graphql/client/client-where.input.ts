@@ -8,6 +8,7 @@ import { StringNullableFilter } from '../prisma/string-nullable-filter.input';
 import { IntNullableFilter } from '../prisma/int-nullable-filter.input';
 import { CoachRelationFilter } from '../coach/coach-relation-filter.input';
 import { InviteRelationFilter } from '../invite/invite-relation-filter.input';
+import { DietplanListRelationFilter } from '../dietplan/dietplan-list-relation-filter.input';
 
 @InputType()
 export class ClientWhereInput {
@@ -65,4 +66,7 @@ export class ClientWhereInput {
 
     @Field(() => StringNullableFilter, {nullable:true})
     inviteId?: StringNullableFilter;
+
+    @Field(() => DietplanListRelationFilter, {nullable:true})
+    Dietplan?: DietplanListRelationFilter;
 }

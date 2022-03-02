@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { CreateNotificationInput } from './dto/create-notification.input';
-import { UpdateNotificationInput } from './dto/update-notification.input';
+
+
 
 @Injectable()
 export class NotificationService {
+  /*
   create(createNotificationInput: CreateNotificationInput) {
     return 'This action adds a new notification';
   }
@@ -23,4 +24,5 @@ export class NotificationService {
   remove(id: number) {
     return `This action removes a #${id} notification`;
   }
+  */
 }

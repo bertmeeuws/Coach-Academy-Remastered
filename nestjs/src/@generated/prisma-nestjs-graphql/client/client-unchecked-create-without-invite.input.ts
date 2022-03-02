@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
+import { DietplanUncheckedCreateNestedManyWithoutClientInput } from '../dietplan/dietplan-unchecked-create-nested-many-without-client.input';
 
 @InputType()
 export class ClientUncheckedCreateWithoutInviteInput {
@@ -37,4 +38,7 @@ export class ClientUncheckedCreateWithoutInviteInput {
 
     @Field(() => Int, {nullable:true})
     coachId?: number;
+
+    @Field(() => DietplanUncheckedCreateNestedManyWithoutClientInput, {nullable:true})
+    Dietplan?: DietplanUncheckedCreateNestedManyWithoutClientInput;
 }

@@ -1,11 +1,26 @@
+enum NOTIFICATION_TYPE {
+  NEW_MESSAGE
+  INVITE_ACCEPTED
+  NEW_DOCUMENT
+  NEW_MEALPLAN
+  NEW_DIETPLAN
+}
+
 type Notification {
   # Example field (placeholder)
-  exampleField: Int
+  id: String!
+  type: NOTIFICATION_TYPE!
+  user: User!
+  createdAt: DateTime
+  read: Boolean
+  content: String
 }
 
 input CreateNotificationInput {
-  # Example field (placeholder)
-  exampleField: Int
+  id: String!
+  type: NOTIFICATION_TYPE!
+  user_id: Int
+  content: String
 }
 
 input UpdateNotificationInput {
@@ -18,7 +33,11 @@ type Query {
 }
 
 type Mutation {
-  createNotification(createNotificationInput: CreateNotificationInput!): Notification!
-  updateNotification(updateNotificationInput: UpdateNotificationInput!): Notification!
+  createNotification(
+    createNotificationInput: CreateNotificationInput!
+  ): Notification!
+  updateNotification(
+    updateNotificationInput: UpdateNotificationInput!
+  ): Notification!
   removeNotification(id: Int!): Notification
 }

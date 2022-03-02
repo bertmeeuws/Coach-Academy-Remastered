@@ -12,6 +12,24 @@ export enum UserType {
     COACH = "COACH"
 }
 
+export enum ENUM_MEAL_DAY {
+    MONDAY = "MONDAY",
+    TUESDAY = "TUESDAY",
+    WEDNESDAY = "WEDNESDAY",
+    THURSDAY = "THURSDAY",
+    FRIDAY = "FRIDAY",
+    SATURDAY = "SATURDAY",
+    SUNDAY = "SUNDAY"
+}
+
+export enum NOTIFICATION_TYPE {
+    NEW_MESSAGE = "NEW_MESSAGE",
+    INVITE_ACCEPTED = "INVITE_ACCEPTED",
+    NEW_DOCUMENT = "NEW_DOCUMENT",
+    NEW_MEALPLAN = "NEW_MEALPLAN",
+    NEW_DIETPLAN = "NEW_DIETPLAN"
+}
+
 export class CreateLoginInput {
     email: string;
     password: string;
@@ -52,6 +70,37 @@ export class UpdateCoachInput {
     id: number;
 }
 
+export class CreateDietplanInput {
+    coach_id: number;
+    client: number;
+}
+
+export class UpdateDietplan {
+    coach_id: number;
+    client_id: number;
+}
+
+export class CreateMealInput {
+    dietplan_id: string;
+    day: ENUM_MEAL_DAY;
+}
+
+export class CreateFoodItemInput {
+    food_id: string;
+    amount: string;
+    meal_id: string;
+    notes?: Nullable<string>;
+}
+
+export class CreateFoodInput {
+    name: string;
+    image?: Nullable<string>;
+    amount: string;
+    carbs: number;
+    protein: number;
+    fat: number;
+}
+
 export class CreateInviteInput {
     coachId: number;
 }
@@ -61,7 +110,10 @@ export class UpdateInviteInput {
 }
 
 export class CreateNotificationInput {
-    exampleField?: Nullable<number>;
+    id: string;
+    type: NOTIFICATION_TYPE;
+    user_id?: Nullable<number>;
+    content?: Nullable<string>;
 }
 
 export class UpdateNotificationInput {
@@ -101,6 +153,18 @@ export abstract class IQuery {
 
     abstract coach(id: number): Nullable<Coach> | Promise<Nullable<Coach>>;
 
+    abstract diets(): Nullable<Dietplan>[] | Promise<Nullable<Dietplan>[]>;
+
+    abstract diet(id: number): Nullable<Dietplan> | Promise<Nullable<Dietplan>>;
+
+    abstract meals(): Nullable<Meal>[] | Promise<Nullable<Meal>[]>;
+
+    abstract meal(id: string): Nullable<Meal> | Promise<Nullable<Meal>>;
+
+    abstract fooditems(): Nullable<FoodItem>[] | Promise<Nullable<FoodItem>[]>;
+
+    abstract fooditem(id: string): Nullable<FoodItem> | Promise<Nullable<FoodItem>>;
+
     abstract invites(): Nullable<Invite>[] | Promise<Nullable<Invite>[]>;
 
     abstract invite(id: number): Nullable<Invite> | Promise<Nullable<Invite>>;
@@ -132,6 +196,24 @@ export abstract class IMutation {
     abstract updateCoach(updateCoachInput: UpdateCoachInput): Coach | Promise<Coach>;
 
     abstract removeCoach(id: number): Nullable<Coach> | Promise<Nullable<Coach>>;
+
+    abstract createDietplan(createDiet: CreateDietplanInput): Dietplan | Promise<Dietplan>;
+
+    abstract updateDietplanByPk(id: string, _set: UpdateDietplan): Dietplan | Promise<Dietplan>;
+
+    abstract removeDietplan(id: number): Nullable<Dietplan> | Promise<Nullable<Dietplan>>;
+
+    abstract createMeal(createMeal: CreateMealInput): Nullable<Meal> | Promise<Nullable<Meal>>;
+
+    abstract updateMeal(id: string): Nullable<Meal> | Promise<Nullable<Meal>>;
+
+    abstract removeMeal(id: string): Nullable<Meal> | Promise<Nullable<Meal>>;
+
+    abstract createFoodItem(createFoodItem: CreateFoodItemInput): Nullable<FoodItem> | Promise<Nullable<FoodItem>>;
+
+    abstract updateFoodItem(id: string): Nullable<FoodItem> | Promise<Nullable<FoodItem>>;
+
+    abstract removeFoodItem(id: string): Nullable<FoodItem> | Promise<Nullable<FoodItem>>;
 
     abstract createInvite(): Invite | Promise<Invite>;
 
@@ -175,6 +257,37 @@ export class Coach {
     invites?: Nullable<Nullable<Invite>[]>;
 }
 
+export class Dietplan {
+    id: string;
+    coach: Coach;
+    client: Client;
+}
+
+export class Meal {
+    id?: Nullable<string>;
+    dietplan: Dietplan;
+    day: ENUM_MEAL_DAY;
+    foods?: Nullable<Nullable<FoodItem>[]>;
+}
+
+export class FoodItem {
+    id: string;
+    food: Food;
+    amount: number;
+    meal: Meal;
+    notes?: Nullable<string>;
+}
+
+export class Food {
+    id?: Nullable<string>;
+    name?: Nullable<string>;
+    image?: Nullable<string>;
+    amount?: Nullable<number>;
+    carbs?: Nullable<number>;
+    protein?: Nullable<number>;
+    fat?: Nullable<number>;
+}
+
 export class Invite {
     id?: Nullable<string>;
     coach: Coach;
@@ -183,7 +296,12 @@ export class Invite {
 }
 
 export class Notification {
-    exampleField?: Nullable<number>;
+    id: string;
+    type: NOTIFICATION_TYPE;
+    user: User;
+    createdAt?: Nullable<DateTime>;
+    read?: Nullable<boolean>;
+    content?: Nullable<string>;
 }
 
 export class User {

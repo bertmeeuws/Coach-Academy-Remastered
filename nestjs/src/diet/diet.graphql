@@ -1,0 +1,101 @@
+type Dietplan {
+  # Example field (placeholder)
+  id: String!
+  coach: Coach!
+  client: Client!
+}
+
+input CreateDietplanInput {
+  coach_id: Int!
+  client: Int!
+}
+
+input UpdateDietplan {
+  coach_id: Int!
+  client_id: Int!
+}
+
+enum ENUM_MEAL_DAY {
+  MONDAY
+  TUESDAY
+  WEDNESDAY
+  THURSDAY
+  FRIDAY
+  SATURDAY
+  SUNDAY
+}
+
+type Meal {
+  id: String
+  dietplan: Dietplan!
+  day: ENUM_MEAL_DAY!
+  foods: [FoodItem]
+}
+
+input CreateMealInput {
+  dietplan_id: String!
+  day: ENUM_MEAL_DAY!
+}
+
+type FoodItem {
+  id: String!
+  food: Food!
+  amount: Int!
+  meal: Meal!
+  notes: String
+}
+
+input CreateFoodItemInput {
+  food_id: String!
+  amount: String!
+  meal_id: String!
+  notes: String
+}
+
+type Food {
+  id: String
+  name: String
+  image: String
+  amount: Int
+  carbs: Int
+  protein: Int
+  fat: Int
+}
+
+input CreateFoodInput {
+  name: String!
+  image: String
+  amount: String!
+  carbs: Int!
+  protein: Int!
+  fat: Int!
+}
+
+type Query {
+  diets: [Dietplan]!
+  diet(id: Int!): Dietplan
+
+  meals: [Meal]!
+  meal(id: String!): Meal
+
+  fooditems: [FoodItem]!
+  fooditem(id: String!): FoodItem
+}
+
+type Mutation {
+  #Diet plan
+  createDietplan(createDiet: CreateDietplanInput!): Dietplan!
+  updateDietplanByPk(id: String!, _set: UpdateDietplan!): Dietplan!
+  removeDietplan(id: Int!): Dietplan
+
+  #Meal
+  createMeal(createMeal: CreateMealInput!): Meal
+  updateMeal(id: String!): Meal
+  removeMeal(id: String!): Meal
+  #Food item
+  createFoodItem(createFoodItem: CreateFoodItemInput!): FoodItem
+  updateFoodItem(id: String!): FoodItem
+  removeFoodItem(id: String!): FoodItem
+  #Food
+  # createFood(createFood: CreateFoodInput!): Food
+}
