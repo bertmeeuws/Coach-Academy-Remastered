@@ -2,14 +2,16 @@ import Head from "next/head";
 import React from "react";
 import ClientNav from "../../../components/Mobile/ClientNav";
 import { add, format } from "date-fns";
+import classNames from "classnames";
 
 export default function index() {
+  const [selectedDate, setSelectedDate] = React.useState<Date>(new Date());
+
   const calculateDate = (plus: number) => {
     const date = add(new Date(), {
       days: plus,
     });
 
-    console.log(date);
     return date;
   };
 
@@ -29,12 +31,41 @@ export default function index() {
           <div className="mt-8 border-t-2 border-b-2 py-4 px-3">
             <div className="flex justify-between">
               {fakeArray.map((i, idx) => (
-                <div className="group flex cursor-pointer flex-col items-center space-y-2">
+                <div
+                  key={idx}
+                  onClick={(e) => setSelectedDate(calculateDate(idx))}
+                  className="group flex cursor-pointer flex-col items-center space-y-2"
+                >
                   <div
-                    key={idx}
-                    className="h-2 w-2 rounded-full bg-gray-500 group-hover:bg-fluoGreen"
+                    className={classNames(
+                      "h-2 w-2 rounded-full group-hover:bg-fluoGreen",
+                      {
+                        "bg-fluoGreen":
+                          calculateDate(idx).toLocaleDateString("nl-be") ===
+                          selectedDate.toLocaleDateString("nl-be"),
+                      },
+                      {
+                        "bg-gray-600":
+                          calculateDate(idx).toLocaleDateString("nl-be") !==
+                          selectedDate.toLocaleDateString("nl-be"),
+                      }
+                    )}
                   ></div>
-                  <span className="text-xs font-bold text-gray-500 group-hover:text-fluoGreen">
+                  <span
+                    className={classNames(
+                      "text-xs font-bold group-hover:text-fluoGreen",
+                      {
+                        "text-fluoGreen":
+                          calculateDate(idx).toLocaleDateString("nl-be") ===
+                          selectedDate.toLocaleDateString("nl-be"),
+                      },
+                      {
+                        "text-gray-600":
+                          calculateDate(idx).toLocaleDateString("nl-be") !==
+                          selectedDate.toLocaleDateString("nl-be"),
+                      }
+                    )}
+                  >
                     {idx === 0 ? "Today" : format(calculateDate(idx), "d MMM")}
                   </span>
                 </div>
