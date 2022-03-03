@@ -5,6 +5,7 @@ import { AdjustmentsIcon, HomeIcon, MenuIcon } from "@heroicons/react/solid";
 import classNames from "classnames";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { format } from "date-fns";
 
 export default function ClientNav({ children }: any) {
   const router = useRouter();
@@ -22,7 +23,7 @@ export default function ClientNav({ children }: any) {
     { name: "Diet plan", href: "/portal/diet", icon: HomeIcon, current: false },
     {
       name: "Settings",
-      href: "portal/settings",
+      href: "/portal/settings",
       icon: AdjustmentsIcon,
       current: false,
     },
@@ -35,6 +36,9 @@ export default function ClientNav({ children }: any) {
           onClick={(e) => setSidebarOpen(true)}
           className="h-10 w-10 text-darkBlue"
         />
+        <p className="font-semibold text-darkBlue">
+          {format(new Date(), "cccc, d MMMM y")}
+        </p>
         <Avatar />
       </nav>
       <Transition.Root show={sidebarOpen} as={Fragment}>

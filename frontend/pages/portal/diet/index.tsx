@@ -3,6 +3,7 @@ import React from "react";
 import ClientNav from "../../../components/Mobile/ClientNav";
 import { add, format } from "date-fns";
 import classNames from "classnames";
+import DietTable from "../../../components/DietTable/DietTable";
 
 export default function index() {
   const [selectedDate, setSelectedDate] = React.useState<Date>(new Date());
@@ -72,6 +73,16 @@ export default function index() {
               ))}
             </div>
           </div>
+          <section className="mt-4 flex flex-col">
+            <div className="my-4">
+              <h2 className="text-lg font-bold text-fluoGreen">Meal 1</h2>
+              <DietTable />
+            </div>
+            <div className="my-4">
+              <h2 className="text-lg font-bold text-fluoGreen">Meal 2</h2>
+              <DietTable />
+            </div>
+          </section>
         </div>
       </ClientNav>
     </section>
