@@ -6,7 +6,7 @@ import Button from "../../../ui/Button";
 import MyModal from "../../../components/Modal/index";
 
 export default function index() {
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
   const [weight, setWeight] = React.useState<undefined | number>(undefined);
 
   const handleSubmitForm = async () => {};
@@ -20,12 +20,12 @@ export default function index() {
         <p>Bent u zeker dat u de gegevens wilt opslaan?</p>
         <div className="mt-8 flex justify-center space-x-2">
           <Button
-            onClick={(e) => setOpen(false)}
+            onClick={(e: any) => setOpen(false)}
             className="border-2 border-gray-400 bg-white text-black"
           >
             Annuleren
           </Button>
-          <Button onClick={(e) => handleSubmitForm()}>Opslaan</Button>
+          <Button onClick={(e: any) => handleSubmitForm()}>Opslaan</Button>
         </div>
       </MyModal>
       <ClientNav>
