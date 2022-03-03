@@ -8,6 +8,10 @@ export const GET_INVITE_BY_ID = gql`
       coach {
         name
         surname
+        user{
+          profile_image
+          email
+        }
       }
     }
   }
