@@ -1,5 +1,13 @@
-import React from "react";
+import { MenuIcon } from "@heroicons/react/outline";
+import React, { Fragment } from "react";
+import ClientNav from "../../components/Mobile/ClientNav";
 
 export default function index() {
-  return <div>Client</div>;
+  const [open, setOpen] = React.useState(true);
+
+  return (
+    <section>
+      <ClientNav />
+    </section>
+  );
 }
