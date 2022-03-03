@@ -16,3 +16,4 @@ export const GET_INVITE_BY_ID = gql`
     }
   }
 `;
+

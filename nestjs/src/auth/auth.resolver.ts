@@ -29,10 +29,6 @@ export class AuthResolver {
   @Query('me')
   async me(@GetUserId() userId: number): Promise<MeInfo> {
     const user = await this.userService.findOne(userId);
-    console.log({
-      role: user.role as UserType,
-      id: user.id,
-    });
     return {
       role: user.role as UserType,
       id: user.id,

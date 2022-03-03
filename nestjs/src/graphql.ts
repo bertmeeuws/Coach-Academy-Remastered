@@ -167,7 +167,7 @@ export abstract class IQuery {
 
     abstract invites(): Nullable<Invite>[] | Promise<Nullable<Invite>[]>;
 
-    abstract invite(id: number): Nullable<Invite> | Promise<Nullable<Invite>>;
+    abstract invite(id: string): Nullable<Invite> | Promise<Nullable<Invite>>;
 
     abstract notifications(): Nullable<Notification>[] | Promise<Nullable<Notification>[]>;
 

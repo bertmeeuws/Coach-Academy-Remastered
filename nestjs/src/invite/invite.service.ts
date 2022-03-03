@@ -4,11 +4,11 @@ import { CreateInviteInput, UpdateInviteInput } from 'src/graphql';
 
 @Injectable()
 export class InviteService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private _prisma: PrismaService) {}
 
   create(coachId: number) {
     console.log(coachId);
-    return this.prisma.invite.create({
+    return this._prisma.invite.create({
       data: {
         coachId: coachId,
       },
@@ -16,11 +16,15 @@ export class InviteService {
   }
 
   findAll() {
-    return `This action returns all invite`;
+    return this._prisma.invite.findMany()
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} invite`;
+  findOne(id: string) {
+    return this._prisma.invite.findFirst({
+      where: {
+        id: id
+      }
+    })
   }
 
   update(id: number, updateInviteInput: UpdateInviteInput) {
@@ -29,5 +33,37 @@ export class InviteService {
 
   remove(id: number) {
     return `This action removes a #${id} invite`;
+  }
+
+  async invalidateInvite(invite_id: string, client_id: number){
+    //aka use invite
+    const invite = await this._prisma.invite.findFirst({
+      where: {
+        id: invite_id
+      }
+    })
+    console.log(invite)
+
+/*
+    await this._prisma.client.update({
+      where: {
+        id: client_id
+      },
+      data: {
+        inviteId: invite_id,
+        coachId: invite.coachId
+      }
+    })
+
+    await this._prisma.invite.update({
+      where: {
+        id: invite_id
+      },
+      data: {
+        invalidated: new Date()
+      }
+    })
+    */
+    return true
   }
 }

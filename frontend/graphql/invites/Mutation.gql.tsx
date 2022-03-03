@@ -7,3 +7,9 @@ export const CREATE_INVITE = gql`
     }
   }
 `;
+
+export const USE_INVITE = gql`
+  mutation useInvite($invite_id: String!) {
+    invalidateInvite(invite_id: $invite_id)
+  }
+`;

@@ -3,7 +3,7 @@ import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
+import { ApolloServerPluginLandingPageLocalDefault, ApolloServerPluginLandingPageDisabled } from 'apollo-server-core';
 import { UsersModule } from './users/users.module';
 import { ApolloDriver } from '@nestjs/apollo';
 import { GraphQLDateTime } from 'graphql-iso-date';
@@ -26,7 +26,7 @@ import { DietModule } from './diet/diet.module';
       driver: ApolloDriver,
       typePaths: ['./**/*.graphql'],
       playground: false,
-      plugins: [ApolloServerPluginLandingPageLocalDefault()],
+      plugins: [ApolloServerPluginLandingPageLocalDefault() , ApolloServerPluginLandingPageDisabled()],
       resolvers: { DateTime: GraphQLDateTime },
       uploads: false,
       cors: {
@@ -35,6 +35,7 @@ import { DietModule } from './diet/diet.module';
           'https://studio.apollogaphql.com',
           'http://localhost:3000/graphql',
           'http://localhost:3002',
+          '*'
         ],
         methods: 'GET, PUT, POST, DELETE',
       },

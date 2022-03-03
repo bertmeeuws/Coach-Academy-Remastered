@@ -17,11 +17,12 @@ input UpdateInviteInput {
 
 type Query {
   invites: [Invite]!
-  invite(id: Int!): Invite
+  invite(id: String!): Invite
 }
 
 type Mutation {
   createInvite: Invite!
   updateInvite(updateInviteInput: UpdateInviteInput!): Invite!
   removeInvite(id: Int!): Invite
+  invalidateInvite(invite_id: String!): Boolean
 }

@@ -29,7 +29,10 @@ export class AuthService {
       throw new GraphQLError('Login not valid');
     }
 
+    //@TODO find user by user_id
+
     (ctx.req.session as any)['userId'] = user.id;
+  
 
     //Before returning were creating the client or coach profile
 
