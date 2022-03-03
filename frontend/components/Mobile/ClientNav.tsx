@@ -3,15 +3,29 @@ import { Dialog, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
 import { AdjustmentsIcon, HomeIcon, MenuIcon } from "@heroicons/react/solid";
 import classNames from "classnames";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 export default function ClientNav({ children }: any) {
+  const router = useRouter();
+
   const [sidebarOpen, setSidebarOpen] = React.useState(false);
 
   const navigation = [
-    { name: "Dashboard", href: "#", icon: HomeIcon, current: true },
-    { name: "Workout", href: "#", icon: HomeIcon, current: false },
-    { name: "Diet plan", href: "#", icon: HomeIcon, current: false },
-    { name: "Settings", href: "#", icon: AdjustmentsIcon, current: false },
+    { name: "Dashboard", href: "/portal", icon: HomeIcon, current: true },
+    {
+      name: "Workout",
+      href: "/portal/workout",
+      icon: HomeIcon,
+      current: false,
+    },
+    { name: "Diet plan", href: "/portal/diet", icon: HomeIcon, current: false },
+    {
+      name: "Settings",
+      href: "portal/settings",
+      icon: AdjustmentsIcon,
+      current: false,
+    },
   ];
 
   return (
@@ -21,7 +35,7 @@ export default function ClientNav({ children }: any) {
           onClick={(e) => setSidebarOpen(true)}
           className="h-10 w-10 text-darkBlue"
         />
-        <div className="h-10 w-10 rounded-full bg-red-600"></div>
+        <Avatar />
       </nav>
       <Transition.Root show={sidebarOpen} as={Fragment}>
         <Dialog
@@ -77,28 +91,30 @@ export default function ClientNav({ children }: any) {
                 <nav className="px-2">
                   <div className="space-y-1">
                     {navigation.map((item) => (
-                      <a
-                        key={item.name}
-                        href={item.href}
-                        className={classNames(
-                          item.current
-                            ? "bg-fluoGreen text-white"
-                            : "text-gray-800 hover:bg-gray-700 hover:text-white",
-                          "group flex items-center rounded-md px-2 py-2 text-base font-semibold"
-                        )}
-                        aria-current={item.current ? "page" : undefined}
-                      >
-                        <item.icon
+                      <Link passHref href={item.href}>
+                        <a
+                          key={item.name}
+                          href={item.href}
                           className={classNames(
                             item.current
-                              ? "text-gray-300"
-                              : "text-gray-400 group-hover:text-gray-300",
-                            "mr-4 h-6 w-6 flex-shrink-0"
+                              ? "bg-fluoGreen text-white"
+                              : "text-gray-800 hover:bg-gray-700 hover:text-white",
+                            "group flex items-center rounded-md px-2 py-2 text-base font-semibold"
                           )}
-                          aria-hidden="true"
-                        />
-                        {item.name}
-                      </a>
+                          aria-current={item.current ? "page" : undefined}
+                        >
+                          <item.icon
+                            className={classNames(
+                              item.current
+                                ? "text-gray-300"
+                                : "text-gray-400 group-hover:text-gray-300",
+                              "mr-4 h-6 w-6 flex-shrink-0"
+                            )}
+                            aria-hidden="true"
+                          />
+                          {item.name}
+                        </a>
+                      </Link>
                     ))}
                   </div>
                 </nav>
@@ -113,4 +129,8 @@ export default function ClientNav({ children }: any) {
       <section>{children}</section>
     </div>
   );
+}
+
+export function Avatar() {
+  return <div className="h-12 w-12 rounded-full bg-red-600"></div>;
 }

@@ -106,7 +106,7 @@ export default function index() {
             <h2 className="mb-4 text-2xl font-semibold text-darkBlue">
               How are you feeling today?
             </h2>
-            <div className="my-4 flex w-full flex-col space-y-6 rounded-lg bg-white p-8 shadow">
+            <div className="my-4 flex w-full flex-col space-y-6 rounded-lg bg-white p-8 ">
               {survey.map((i) => (
                 <ListItem
                   setValue={(number: number) => setSurveyValue(i.name, number)}
@@ -120,7 +120,7 @@ export default function index() {
             <h2 className="mb-4 text-2xl font-semibold text-darkBlue">
               Today's workout
             </h2>
-            <div className="my-4 flex w-full flex-col space-y-6 rounded-lg bg-white shadow">
+            <div className="my-4 flex w-full flex-col space-y-6 rounded-lg bg-white">
               <WorkoutSmallTable />
             </div>
           </div>
