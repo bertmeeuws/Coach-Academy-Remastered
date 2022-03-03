@@ -9,7 +9,8 @@ I will be rebuilding my old project but I will be doing everything without the h
 - URQL
 - Postgres
 - Tailwind
-- Redis
+- Redis (Sessions)
+- Minio S3
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
