@@ -29,13 +29,28 @@ export class AuthService {
       throw new GraphQLError('Login not valid');
     }
 
-    //@TODO find user by user_id
+
+    switch(user.role){
+      case ENUM_USER_ROLES.CLIENT:
+        const client = (await this.clientService.findClientByUserId(user.id));
+        if(!client){
+          throw new GraphQLError("Something went wrong")
+        }
+        (ctx.req.session as any)['role'] = user.role;
+        (ctx.req.session as any)['typeId'] = client.id;
+        break;
+      case ENUM_USER_ROLES.CLIENT:
+        const coach = await this.coachService.findCoachByUserId(user.id);
+        if(!coach){
+          throw new GraphQLError("Something went wrong")
+        }
+        (ctx.req.session as any)['role'] = user.role;
+        (ctx.req.session as any)['typeId'] = coach.id;
+        break;
+    }
 
     (ctx.req.session as any)['userId'] = user.id;
   
-
-    //Before returning were creating the client or coach profile
-
     return user.id;
   }
 

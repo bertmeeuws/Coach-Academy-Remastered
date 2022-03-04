@@ -32,6 +32,7 @@ input UpdateClientInput {
 type Query {
   clients(filter: String): [Client]!
   client(id: Int!): Client
+  getClientInformation: Client!
 }
 
 type Mutation {

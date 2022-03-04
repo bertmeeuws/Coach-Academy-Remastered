@@ -1,5 +1,6 @@
 import { MinioClientService } from './../minio-client/minio-client.service';
 import {
+  GetClientId,
   GetCoachId,
   isUserCoach,
 } from './../auth/decorators/getuserid.decorator';
@@ -49,6 +50,7 @@ export class ClientResolver {
   findOne(
     @Args('id') clientId: number,
     @GetCoachId() coachId: number,
+    @GetClientId() id: number,
     @isUserCoach() isCoach: boolean,
   ) {
     if (isCoach) {
@@ -56,6 +58,13 @@ export class ClientResolver {
     }
     return this.clientService.findOne(clientId);
   }
+
+  @UseGuards(AuthGuard)
+  @Query('getClientInformation')
+  getClientInformation(@GetClientId() client_id: number){
+    return this.clientService.getUser(client_id)
+  }
+
 
   @ResolveField()
   user(@Parent() client: Client) {

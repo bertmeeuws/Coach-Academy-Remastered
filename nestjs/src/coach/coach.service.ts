@@ -29,6 +29,14 @@ export class CoachService {
     });
   }
 
+  findCoachByUserId(id: number){
+    return this.prisma.coach.findFirst({
+      where: {
+        userId : id
+      }
+    })
+  }
+
   getUser(userId: number) {
     return this.userService.findOne(userId);
   }

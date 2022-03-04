@@ -5,6 +5,7 @@ import { ClientUpdateInput } from '../@generated/prisma-nestjs-graphql/client/cl
 import { UsersService } from 'src/users/users.service';
 import { CreateClientInput } from 'src/graphql';
 import { MinioService } from 'nestjs-minio-client';
+import { retryWhen } from 'rxjs';
 
 @Injectable()
 export class ClientService {
@@ -56,6 +57,14 @@ export class ClientService {
         coachId: coachId,
       },
     });
+  }
+
+  findClientByUserId(id: number){
+    return this.prisma.client.findFirst({
+      where: {
+        userId: id
+      }
+    })
   }
 
   findOne(clientId: number) {

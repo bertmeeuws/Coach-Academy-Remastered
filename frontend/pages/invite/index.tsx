@@ -136,8 +136,11 @@ export default function index({ query }: any) {
     const { data } = await INVALIDATE_INVITE({
       invite_id: query.ref,
     });
-    console.log(data);
-    console.log("Accept invite");
+    if (!data.invalidateInvite) {
+      console.log("Error");
+      return;
+    }
+    router.push("/portal");
   };
 
   return (

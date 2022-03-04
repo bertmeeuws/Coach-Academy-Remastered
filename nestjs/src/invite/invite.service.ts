@@ -44,7 +44,7 @@ export class InviteService {
     })
     console.log(invite)
 
-/*
+
     await this._prisma.client.update({
       where: {
         id: client_id
@@ -63,7 +63,7 @@ export class InviteService {
         invalidated: new Date()
       }
     })
-    */
+    
     return true
   }
 }

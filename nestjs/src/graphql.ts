@@ -149,6 +149,8 @@ export abstract class IQuery {
 
     abstract client(id: number): Nullable<Client> | Promise<Nullable<Client>>;
 
+    abstract getClientInformation(): Client | Promise<Client>;
+
     abstract coaches(): Nullable<Coach>[] | Promise<Nullable<Coach>[]>;
 
     abstract coach(id: number): Nullable<Coach> | Promise<Nullable<Coach>>;
@@ -220,6 +222,8 @@ export abstract class IMutation {
     abstract updateInvite(updateInviteInput: UpdateInviteInput): Invite | Promise<Invite>;
 
     abstract removeInvite(id: number): Nullable<Invite> | Promise<Nullable<Invite>>;
+
+    abstract invalidateInvite(invite_id: string): Nullable<boolean> | Promise<Nullable<boolean>>;
 
     abstract createNotification(createNotificationInput: CreateNotificationInput): Notification | Promise<Notification>;
 

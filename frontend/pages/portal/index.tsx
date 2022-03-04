@@ -11,24 +11,24 @@ export interface ISurveyData {
   score: number | undefined;
 }
 
+const surveyData = [
+  {
+    name: "Cravings",
+    score: undefined,
+  },
+  {
+    name: "Energy during the day",
+    score: undefined,
+  },
+  {
+    name: "Energy during workout",
+    score: undefined,
+  },
+];
+
 export default function index() {
   const [open, setOpen] = React.useState(true);
   const [weight, setWeight] = React.useState<undefined | number>(undefined);
-
-  const surveyData = [
-    {
-      name: "Cravings",
-      score: undefined,
-    },
-    {
-      name: "Energy during the day",
-      score: undefined,
-    },
-    {
-      name: "Energy during workout",
-      score: undefined,
-    },
-  ];
 
   const dietPlan = [
     {

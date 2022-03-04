@@ -1,11 +1,18 @@
 import React, { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
-import { AdjustmentsIcon, HomeIcon, MenuIcon } from "@heroicons/react/solid";
+import {
+  AdjustmentsIcon,
+  HomeIcon,
+  LogoutIcon,
+  MenuIcon,
+} from "@heroicons/react/solid";
 import classNames from "classnames";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { format } from "date-fns";
+import { useMutation } from "urql";
+import { LOG_USER_OUT } from "../../graphql/auth/Mutation.gql";
 
 export default function ClientNav({ children }: any) {
   const router = useRouter();
@@ -28,6 +35,8 @@ export default function ClientNav({ children }: any) {
       current: false,
     },
   ];
+
+  const [logoutResult, executeLogout] = useMutation<any>(LOG_USER_OUT);
 
   return (
     <div>
@@ -92,8 +101,8 @@ export default function ClientNav({ children }: any) {
                 <img src="/svg/logo.svg" />
               </div>
               <div className="mt-5 h-0 flex-1 overflow-y-auto">
-                <nav className="px-2">
-                  <div className="space-y-1">
+                <nav className="h-full px-2">
+                  <div className="relative h-full space-y-1">
                     {navigation.map((item) => (
                       <Link passHref href={item.href}>
                         <a
@@ -120,6 +129,21 @@ export default function ClientNav({ children }: any) {
                         </a>
                       </Link>
                     ))}
+                    <div className="absolute bottom-12">
+                      <div
+                        onClick={async (e) => {
+                          await executeLogout();
+                          router.push("/auth/login");
+                        }}
+                        className={classNames(
+                          " hover:bg-fluoGreen hover:text-white",
+                          "group flex items-center rounded-md px-2 py-2 text-base font-semibold"
+                        )}
+                      >
+                        <LogoutIcon className="mr-4 h-6 w-6 text-gray-400" />
+                        <p className="text-gray-800">Sign out</p>
+                      </div>
+                    </div>
                   </div>
                 </nav>
               </div>
