@@ -18,7 +18,7 @@ import { ClientService } from './client.service';
 import { Client } from 'src/@generated/prisma-nestjs-graphql/client/client.model';
 import { MyContext } from 'src/types/my-context';
 import { AuthGuard } from 'src/auth/guards/auth.gql.guard';
-import { CreateClientInput } from 'src/graphql';
+import { CreateClientInput, UpdateClientInput } from 'src/graphql';
 import { GetUserId } from 'src/auth/decorators/getuserid.decorator';
 
 @Resolver('Client')
@@ -41,7 +41,6 @@ export class ClientResolver {
     @GetCoachId() coachId: number,
     @Args('filter') filter: string,
   ) {
-    console.log(this.minioClientService.test());
     return this.clientService.findAll(coachId, filter);
   }
 
@@ -55,6 +54,9 @@ export class ClientResolver {
   ) {
     if (isCoach) {
       return this.clientService.findOneAsCoach(clientId, coachId);
+    }
+    if(clientId){
+      return this.clientService.findOne(id);
     }
     return this.clientService.findOne(clientId);
   }
@@ -71,13 +73,16 @@ export class ClientResolver {
     return this.clientService.getUser(client.userId);
   }
 
-  /*
+  
+  //@Todo add email
+  @UseGuards(AuthGuard)
   @Mutation('updateClient')
-  update(@Args('updateClientInput') updateClientInput: UpdateClientInput) {
-    return this.clientService.update(updateClientInput.id, updateClientInput);
+  update(@Args('updateClientInput') updateClientInput: UpdateClientInput, @GetClientId() client_id: number) {
+    console.log(updateClientInput, client_id)
+    return this.clientService.update(client_id, updateClientInput);
   }
-  */
-
+  
+  
   @Mutation('removeClient')
   remove(@Args('id') id: number) {
     return this.clientService.remove(id);

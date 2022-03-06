@@ -6,6 +6,9 @@ import * as crypto from 'crypto';
 
 @Injectable()
 export class MinioClientService {
+
+
+
   constructor(private readonly minio: MinioService) {
     this.logger = new Logger('MinioService');
   }
@@ -17,9 +20,7 @@ export class MinioClientService {
     return this.minio.client;
   }
 
-  public test() {
-    this.client;
-  }
+ 
 
   public async upload(
     file: BufferedFile,
@@ -76,4 +77,5 @@ export class MinioClientService {
         );
     });
   }
+  
 }

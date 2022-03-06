@@ -1,3 +1,5 @@
+scalar Upload
+
 type Client {
   id: Int!
   user: User
@@ -26,12 +28,20 @@ input CreateClientInput {
 }
 
 input UpdateClientInput {
-  id: Int!
+  surname: String
+  name: String
+  dob: DateTime
+  phone: String
+  address: String
+  number: Int
+  postal: Int
+  city: String
+  profile_image: Upload
 }
 
 type Query {
   clients(filter: String): [Client]!
-  client(id: Int!): Client
+  client: Client
   getClientInformation: Client!
 }
 

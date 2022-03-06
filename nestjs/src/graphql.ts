@@ -57,7 +57,15 @@ export class CreateClientInput {
 }
 
 export class UpdateClientInput {
-    id: number;
+    surname?: Nullable<string>;
+    name?: Nullable<string>;
+    dob?: Nullable<DateTime>;
+    phone?: Nullable<string>;
+    address?: Nullable<string>;
+    number?: Nullable<number>;
+    postal?: Nullable<number>;
+    city?: Nullable<string>;
+    profile_image?: Nullable<Upload>;
 }
 
 export class CreateCoachInput {
@@ -147,7 +155,7 @@ export abstract class IQuery {
 
     abstract clients(filter?: Nullable<string>): Nullable<Client>[] | Promise<Nullable<Client>[]>;
 
-    abstract client(id: number): Nullable<Client> | Promise<Nullable<Client>>;
+    abstract client(): Nullable<Client> | Promise<Nullable<Client>>;
 
     abstract getClientInformation(): Client | Promise<Client>;
 
@@ -316,5 +324,6 @@ export class User {
     profile_image?: Nullable<string>;
 }
 
+export type Upload = any;
 export type DateTime = any;
 type Nullable<T> = T | null;

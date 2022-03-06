@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { ClientCreateInput } from '../@generated/prisma-nestjs-graphql/client/client-create.input';
 import { ClientUpdateInput } from '../@generated/prisma-nestjs-graphql/client/client-update.input';
 import { UsersService } from 'src/users/users.service';
-import { CreateClientInput } from 'src/graphql';
+import { CreateClientInput, UpdateClientInput } from 'src/graphql';
 import { MinioService } from 'nestjs-minio-client';
 import { retryWhen } from 'rxjs';
 
@@ -79,7 +79,7 @@ export class ClientService {
     return this.userService.findOne(userId);
   }
 
-  update(id: number, updateClientInput: ClientUpdateInput) {
+  update(id: number, updateClientInput: UpdateClientInput) {
     return `This action updates a #${id} client`;
   }
 

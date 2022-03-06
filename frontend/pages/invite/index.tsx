@@ -62,7 +62,7 @@ export default function index({ query }: any) {
         })
         .toPromise();
 
-      if (!data.invite) {
+      if (!data?.invite) {
         setNotValid(true);
         setLoading(false);
         return;

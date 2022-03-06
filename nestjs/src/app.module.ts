@@ -19,6 +19,9 @@ import { NotificationModule } from './notification/notification.module';
 import { MinioModule } from 'nestjs-minio-client';
 import { MinioClientModule } from './minio-client/minio-client.module';
 import { DietModule } from './diet/diet.module';
+import { ConfigModule } from '@nestjs/config';
+import { GraphQLUpload } from "graphql-upload";
+
 
 @Module({
   imports: [
@@ -27,7 +30,7 @@ import { DietModule } from './diet/diet.module';
       typePaths: ['./**/*.graphql'],
       playground: false,
       plugins: [ApolloServerPluginLandingPageLocalDefault() , ApolloServerPluginLandingPageDisabled()],
-      resolvers: { DateTime: GraphQLDateTime },
+      resolvers: { DateTime: GraphQLDateTime, Upload: GraphQLUpload },
       uploads: false,
       cors: {
         credentials: true,
@@ -47,6 +50,7 @@ import { DietModule } from './diet/diet.module';
         ...config.redis,
       },
     }),
+    ConfigModule.forRoot({isGlobal: true}),
     AuthModule,
     UsersModule,
     CoachModule,
