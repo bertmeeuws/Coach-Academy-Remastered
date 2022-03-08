@@ -30,7 +30,6 @@ export class UsersService {
 
   async findAll() {
     const cats = await this.client.get('cats');
-    console.log(cats);
     return this.prisma.user.findMany();
   }
 

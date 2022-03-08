@@ -20,7 +20,6 @@ export const GetCoachId = createParamDecorator(
 export const GetClientId = createParamDecorator(
   (data: unknown, ctx: ExecutionContext) => {
     const context: MyContext = GqlExecutionContext.create(ctx).getContext();
-    console.log(context.req.session)
     return context.req.session['typeId'];
   },
 );

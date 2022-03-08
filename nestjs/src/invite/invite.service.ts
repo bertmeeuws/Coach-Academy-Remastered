@@ -7,7 +7,7 @@ export class InviteService {
   constructor(private _prisma: PrismaService) {}
 
   create(coachId: number) {
-    console.log(coachId);
+   
     return this._prisma.invite.create({
       data: {
         coachId: coachId,
@@ -42,7 +42,6 @@ export class InviteService {
         id: invite_id
       }
     })
-    console.log(invite)
 
 
     await this._prisma.client.update({

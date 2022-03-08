@@ -3,6 +3,7 @@ import { Injectable, Logger, HttpException, HttpStatus } from '@nestjs/common';
 import { MinioService } from 'nestjs-minio-client';
 import { BufferedFile } from './types';
 import * as crypto from 'crypto';
+import { Stream } from 'stream';
 
 @Injectable()
 export class MinioClientService {
@@ -37,9 +38,9 @@ export class MinioClientService {
       .createHash('md5')
       .update(timestamp)
       .digest('hex');
-    const extension = file.originalname.substring(
-      file.originalname.lastIndexOf('.'),
-      file.originalname.length,
+    const extension = file.filename.substring(
+      file.filename.lastIndexOf('.'),
+      file.filename.length,
     );
     const metaData = {
       'Content-Type': file.mimetype,
@@ -47,11 +48,12 @@ export class MinioClientService {
 
     // We need to append the extension at the end otherwise Minio will save it as a generic file
     const fileName = hashedFileName + extension;
+    const fileStream = file.createReadStream()
 
     this.client.putObject(
       bucketName,
       fileName,
-      file.buffer,
+      fileStream,
       metaData,
       function (err, res) {
         if (err) {
@@ -64,9 +66,23 @@ export class MinioClientService {
     );
 
     return {
-      url: `${minio_config.endPoint}:${minio_config.port}/images/${fileName}`,
+      url: `${minio_config.endPoint}:${minio_config.port}/${bucketName}/${fileName}`,
     };
   }
+
+
+  async stream2buffer(stream: Stream): Promise<Buffer> {
+
+    return new Promise < Buffer > ((resolve, reject) => {
+        
+        const _buf = Array < any > ();
+
+        stream.on("data", chunk => _buf.push(chunk));
+        stream.on("end", () => resolve(Buffer.concat(_buf)));
+        stream.on("error", err => reject(`error converting stream - ${err}`));
+
+    });
+}  
 
   async delete(objetName: string, bucketName: string = this.bucketName) {
     this.client.removeObject(bucketName, objetName, function (err, res) {

@@ -17,7 +17,6 @@ export class UsersResolver {
 
   @Query('users')
   findAll(@Session() session: Record<string, any>) {
-    console.log(session);
     return this.usersService.findAll();
   }
 

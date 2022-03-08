@@ -4,7 +4,7 @@ import {
   GetCoachId,
   isUserCoach,
 } from './../auth/decorators/getuserid.decorator';
-import { Req, Session, UseGuards } from '@nestjs/common';
+import { Req, Session, UseGuards, UseInterceptors } from '@nestjs/common';
 import {
   Resolver,
   Query,
@@ -18,8 +18,9 @@ import { ClientService } from './client.service';
 import { Client } from 'src/@generated/prisma-nestjs-graphql/client/client.model';
 import { MyContext } from 'src/types/my-context';
 import { AuthGuard } from 'src/auth/guards/auth.gql.guard';
-import { CreateClientInput, UpdateClientInput } from 'src/graphql';
+import { CreateClientInput, UpdateClientInput, Upload } from 'src/graphql';
 import { GetUserId } from 'src/auth/decorators/getuserid.decorator';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Resolver('Client')
 export class ClientResolver {
@@ -78,7 +79,7 @@ export class ClientResolver {
   @UseGuards(AuthGuard)
   @Mutation('updateClient')
   update(@Args('updateClientInput') updateClientInput: UpdateClientInput, @GetClientId() client_id: number) {
-    console.log(updateClientInput, client_id)
+    //console.log(updateClientInput, client_id)
     return this.clientService.update(client_id, updateClientInput);
   }
   
@@ -86,5 +87,17 @@ export class ClientResolver {
   @Mutation('removeClient')
   remove(@Args('id') id: number) {
     return this.clientService.remove(id);
+  }
+
+
+
+  @Mutation('fileUpload')
+  async file(@Args('file') upload: Upload){
+    console.log(upload)
+    console.log(upload.createReadStream())
+    const uploaded_image = await this.minioClientService.upload(upload)
+    console.log(uploaded_image)
+  
+    return true
   }
 }

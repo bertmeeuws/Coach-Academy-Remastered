@@ -28,8 +28,8 @@ import { GraphQLUpload } from "graphql-upload";
     GraphQLModule.forRoot({
       driver: ApolloDriver,
       typePaths: ['./**/*.graphql'],
-      playground: false,
-      plugins: [ApolloServerPluginLandingPageLocalDefault() , ApolloServerPluginLandingPageDisabled()],
+      playground: true,
+      //plugins: [ApolloServerPluginLandingPageLocalDefault() , ApolloServerPluginLandingPageDisabled()],
       resolvers: { DateTime: GraphQLDateTime, Upload: GraphQLUpload },
       uploads: false,
       cors: {

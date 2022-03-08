@@ -4,7 +4,7 @@ import React, { Fragment, useEffect } from "react";
 import ClientNav from "../../../components/Mobile/ClientNav";
 import Button from "../../../ui/Button";
 import MyModal from "../../../components/Modal/index";
-import { useClient, useMutation } from "urql";
+import { gql, useClient, useMutation } from "urql";
 import { GET_CLIENT_DETAILS } from "../../../graphql/clients/Query.gql";
 import { profile } from "console";
 import { UPDATE_CLIENT } from "../../../graphql/clients/Mutation.gql";
@@ -68,7 +68,20 @@ export default function index() {
   */
 
   const handleSubmitForm = async () => {
-    console.log(profile_image);
+    const { data: data1 } = await client
+      .mutation(
+        gql`
+          mutation ($upload: Upload!) {
+            fileUpload(file: $upload)
+          }
+        `,
+        {
+          upload: profile_image,
+        }
+      )
+      .toPromise();
+
+    /*console.log(data1);
 
     const { data } = await client
       .mutation(UPDATE_CLIENT, {
@@ -89,6 +102,7 @@ export default function index() {
       .toPromise();
 
     console.log(data);
+    */
     setOpen(false);
   };
 

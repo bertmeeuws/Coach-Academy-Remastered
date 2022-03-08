@@ -49,4 +49,5 @@ type Mutation {
   createClient(createClientInput: CreateClientInput!): Client!
   updateClient(updateClientInput: UpdateClientInput!): Client!
   removeClient(id: Int!): Client
+  fileUpload(file: Upload!): Boolean!
 }

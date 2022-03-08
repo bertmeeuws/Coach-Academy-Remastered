@@ -1,10 +1,10 @@
 export interface BufferedFile {
   fieldname: string;
-  originalname: string;
+  filename: string;
   encoding: string;
   mimetype: AppMimeType;
   size: number;
-  buffer: Buffer | string;
+  createReadStream: Buffer | string | any;
 }
 
 export interface StoredFile extends HasFile, StoredFileMetadata {}

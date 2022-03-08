@@ -201,6 +201,8 @@ export abstract class IMutation {
 
     abstract removeClient(id: number): Nullable<Client> | Promise<Nullable<Client>>;
 
+    abstract fileUpload(file: Upload): boolean | Promise<boolean>;
+
     abstract createCoach(createCoachInput: CreateCoachInput): Coach | Promise<Coach>;
 
     abstract updateCoach(updateCoachInput: UpdateCoachInput): Coach | Promise<Coach>;
