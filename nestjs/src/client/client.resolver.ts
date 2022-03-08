@@ -93,8 +93,6 @@ export class ClientResolver {
 
   @Mutation('fileUpload')
   async file(@Args('file') upload: Upload){
-    console.log(upload)
-    console.log(upload.createReadStream())
     const uploaded_image = await this.minioClientService.upload(upload)
     console.log(uploaded_image)
   

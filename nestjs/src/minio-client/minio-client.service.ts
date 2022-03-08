@@ -8,10 +8,50 @@ import { Stream } from 'stream';
 @Injectable()
 export class MinioClientService {
 
-
-
   constructor(private readonly minio: MinioService) {
     this.logger = new Logger('MinioService');
+
+    // THIS IS THE POLICY
+    const policy = {
+      Version: '2012-10-17',
+      Statement: [
+        {
+          Effect: 'Allow',
+          Principal: {
+            AWS: ['*'],
+          },
+          Action: [
+            's3:ListBucketMultipartUploads',
+            's3:GetBucketLocation',
+            's3:ListBucket',
+          ],
+          Resource: ['arn:aws:s3:::images'], // Change this according to your bucket name
+        },
+        {
+          Effect: 'Allow',
+          Principal: {
+            AWS: ['*'],
+          },
+          Action: [
+            's3:PutObject',
+            's3:AbortMultipartUpload',
+            's3:DeleteObject',
+            's3:GetObject',
+            's3:ListMultipartUploadParts',
+          ],
+          Resource: ['arn:aws:s3:::images/*'], // Change this according to your bucket name
+        },
+      ],
+    };
+    this.client.setBucketPolicy(
+      "images",
+      JSON.stringify(policy),
+      function (err) {
+        if (err) throw err;
+
+        console.log('Bucket policy set');
+      },
+    );
   }
 
   private readonly logger: Logger;
@@ -66,23 +106,12 @@ export class MinioClientService {
     );
 
     return {
-      url: `${minio_config.endPoint}:${minio_config.port}/${bucketName}/${fileName}`,
+      url: `${minio_config.endPoint}:${minio_config.port}`,
+      path: `/${bucketName}/${fileName}`
     };
   }
 
 
-  async stream2buffer(stream: Stream): Promise<Buffer> {
-
-    return new Promise < Buffer > ((resolve, reject) => {
-        
-        const _buf = Array < any > ();
-
-        stream.on("data", chunk => _buf.push(chunk));
-        stream.on("end", () => resolve(Buffer.concat(_buf)));
-        stream.on("error", err => reject(`error converting stream - ${err}`));
-
-    });
-}  
 
   async delete(objetName: string, bucketName: string = this.bucketName) {
     this.client.removeObject(bucketName, objetName, function (err, res) {
