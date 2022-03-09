@@ -34,3 +34,12 @@ export const GET_CLIENT_DETAILS = gql`query{
       }
   }
 }`
+
+
+export const GET_CLIENT_PROFILE = gql`query{
+  client{
+      user{
+        profile_image
+      }
+  }
+}`

@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
 import {
@@ -6,6 +6,7 @@ import {
   HomeIcon,
   LogoutIcon,
   MenuIcon,
+  UserIcon,
 } from "@heroicons/react/solid";
 import classNames from "classnames";
 import { useRouter } from "next/router";
@@ -13,6 +14,13 @@ import Link from "next/link";
 import { format } from "date-fns";
 import { useMutation } from "urql";
 import { LOG_USER_OUT } from "../../graphql/auth/Mutation.gql";
+import { getImageSize } from "next/dist/server/image-optimizer";
+import { useClient } from "urql";
+import { GET_CLIENT_PROFILE } from "../../graphql/clients/Query.gql";
+import { MINIO_URL } from "../../constants/config";
+import Spinner from "../../ui/Spinner";
+import { atom, useAtom } from "jotai";
+import { PROFILE_IMAGE, REFETCH_PROFILE_IMAGE } from "../../store/store";
 
 export default function ClientNav({ children }: any) {
   const router = useRouter();
@@ -159,6 +167,47 @@ export default function ClientNav({ children }: any) {
   );
 }
 
+export const count = atom(0);
+
 export function Avatar() {
-  return <div className="h-12 w-12 rounded-full bg-red-600"></div>;
+  const client = useClient();
+
+  const [img, setImg] = useAtom(PROFILE_IMAGE);
+  const [refetch] = useAtom(REFETCH_PROFILE_IMAGE);
+
+  const [loading, setLoading] = React.useState(true);
+
+  useEffect(() => {
+    console.log("RERUN");
+    setLoading(true);
+    (async function getImageSize() {
+      const { data } = await client
+        .query(GET_CLIENT_PROFILE, {}, { requestPolicy: "network-only" })
+        .toPromise();
+      const profile_image = data?.client?.user?.profile_image;
+      setImg(profile_image);
+    })();
+    setLoading(false);
+  }, [refetch]);
+
+  if (loading)
+    return (
+      <div className="flex h-12 w-12 items-center justify-center">
+        <Spinner />;
+      </div>
+    );
+
+  return img ? (
+    <div
+      className={classNames(
+        "flex h-12 w-12 items-center justify-center overflow-hidden rounded-full"
+      )}
+    >
+      <img className="h-12 object-cover object-center" src={MINIO_URL + img} />
+    </div>
+  ) : (
+    <div className="flex h-12 w-12 items-center justify-center  rounded-full bg-gray-200">
+      <UserIcon className="h-6 w-6" />
+    </div>
+  );
 }

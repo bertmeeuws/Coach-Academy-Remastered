@@ -197,7 +197,7 @@ export abstract class IMutation {
 
     abstract createClient(createClientInput: CreateClientInput): Client | Promise<Client>;
 
-    abstract updateClient(updateClientInput: UpdateClientInput): Client | Promise<Client>;
+    abstract updateClient(updateClientInput: UpdateClientInput): boolean | Promise<boolean>;
 
     abstract removeClient(id: number): Nullable<Client> | Promise<Nullable<Client>>;
 

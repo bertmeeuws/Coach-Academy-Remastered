@@ -47,7 +47,7 @@ type Query {
 
 type Mutation {
   createClient(createClientInput: CreateClientInput!): Client!
-  updateClient(updateClientInput: UpdateClientInput!): Client!
+  updateClient(updateClientInput: UpdateClientInput!): Boolean!
   removeClient(id: Int!): Client
   fileUpload(file: Upload!): Boolean!
 }

@@ -6,13 +6,15 @@ import { UsersService } from 'src/users/users.service';
 import { CreateClientInput, UpdateClientInput } from 'src/graphql';
 import { MinioService } from 'nestjs-minio-client';
 import { retryWhen } from 'rxjs';
+import { MinioClientService } from 'src/minio-client/minio-client.service';
 
 @Injectable()
 export class ClientService {
   constructor(
     private prisma: PrismaService,
     private readonly userService: UsersService,
-  ) //private readonly minioClient: MinioService,
+    private readonly _minioClientService: MinioClientService,
+  )
   {}
 
   create(createClientInput: CreateClientInput) {
@@ -79,11 +81,42 @@ export class ClientService {
     return this.userService.findOne(userId);
   }
 
-  update(id: number, updateClientInput: UpdateClientInput) {
-    return `This action updates a #${id} client`;
+  async update(id: number, updateClientInput: UpdateClientInput) {
+
+    const {surname, name, address, postal, city, dob, phone, profile_image} = updateClientInput;
+  
+    const updated = await this.prisma.client.update({
+      where: {
+        id: id
+      },
+      data: {
+        surname,
+        name,
+        address,
+        postal,
+        city,
+        dob,
+        phone,
+      }
+    })
+
+    if(profile_image){
+      const upload_url = await this._minioClientService.upload(await profile_image)
+      await this.prisma.user.update({
+        where: {
+          id: updated.userId
+        },
+        data: {
+            profile_image: upload_url.path
+        }
+      })
+
+    }
+    return true
   }
 
   remove(id: number) {
     return `This action removes a #${id} client`;
   }
+
 }

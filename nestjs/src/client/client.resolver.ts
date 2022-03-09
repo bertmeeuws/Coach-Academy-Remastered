@@ -42,6 +42,8 @@ export class ClientResolver {
     @GetCoachId() coachId: number,
     @Args('filter') filter: string,
   ) {
+  
+
     return this.clientService.findAll(coachId, filter);
   }
 
@@ -52,13 +54,17 @@ export class ClientResolver {
     @GetCoachId() coachId: number,
     @GetClientId() id: number,
     @isUserCoach() isCoach: boolean,
+    @Context() context
   ) {
     if (isCoach) {
       return this.clientService.findOneAsCoach(clientId, coachId);
     }
+  
     if(clientId){
       return this.clientService.findOne(id);
     }
+    return this.clientService.findOne(id)
+    console.log(context.req.session)
     return this.clientService.findOne(clientId);
   }
 
@@ -78,9 +84,10 @@ export class ClientResolver {
   //@Todo add email
   @UseGuards(AuthGuard)
   @Mutation('updateClient')
-  update(@Args('updateClientInput') updateClientInput: UpdateClientInput, @GetClientId() client_id: number) {
+  async update(@Args('updateClientInput') updateClientInput: UpdateClientInput, @GetClientId() client_id: number) {
     //console.log(updateClientInput, client_id)
-    return this.clientService.update(client_id, updateClientInput);
+    await this.clientService.update(client_id, updateClientInput);
+    return true
   }
   
   
@@ -93,6 +100,7 @@ export class ClientResolver {
 
   @Mutation('fileUpload')
   async file(@Args('file') upload: Upload){
+
     const uploaded_image = await this.minioClientService.upload(upload)
     console.log(uploaded_image)
   

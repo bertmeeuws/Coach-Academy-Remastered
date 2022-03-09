@@ -9,7 +9,9 @@ import { GET_CLIENT_DETAILS } from "../../../graphql/clients/Query.gql";
 import { profile } from "console";
 import { UPDATE_CLIENT } from "../../../graphql/clients/Mutation.gql";
 import { parse } from "date-fns";
-import { type } from "os";
+import { MINIO_URL } from "../../../constants/config";
+import { useAtom } from "jotai";
+import { PROFILE_IMAGE, REFETCH_PROFILE_IMAGE } from "../../../store/store";
 
 export default function index() {
   const [open, setOpen] = React.useState(false);
@@ -22,8 +24,9 @@ export default function index() {
   const [phone, setPhone] = React.useState<string>("");
   const [postal, setPostal] = React.useState<string>("");
   const [profile_image, setProfile_image] = React.useState<any>();
-
   const [loading, setLoading] = React.useState<boolean>(false);
+
+  const [refetchVal, setRefetchVal] = useAtom(REFETCH_PROFILE_IMAGE);
 
   const client = useClient();
 
@@ -31,13 +34,12 @@ export default function index() {
     (async function operation() {
       setLoading(true);
       const { data } = await client.query(GET_CLIENT_DETAILS).toPromise();
-      console.log(data);
       if (!data.client) {
         console.log("Something went wrong");
         return;
       }
-      console.log(data.client);
-      const { surname, name, dob, address, city, phone, postal } = data?.client;
+      const { surname, name, dob, address, city, phone, postal, user } =
+        data?.client;
 
       setSurname(surname || "");
       setName(name || "");
@@ -47,7 +49,7 @@ export default function index() {
       setPhone(phone || "");
       setProfile_image(profile_image || null);
       setPostal(postal || "");
-
+      setProfile_image(user.profile_image);
       setLoading(false);
     })();
   }, []);
@@ -68,21 +70,6 @@ export default function index() {
   */
 
   const handleSubmitForm = async () => {
-    const { data: data1 } = await client
-      .mutation(
-        gql`
-          mutation ($upload: Upload!) {
-            fileUpload(file: $upload)
-          }
-        `,
-        {
-          upload: profile_image,
-        }
-      )
-      .toPromise();
-
-    /*console.log(data1);
-
     const { data } = await client
       .mutation(UPDATE_CLIENT, {
         client: {
@@ -96,13 +83,13 @@ export default function index() {
               ? parse(dob as string, "yyyy-MM-dd", new Date())
               : dob,
           phone: phone,
-          profile_image: profile_image,
+          profile_image:
+            profile_image instanceof File ? profile_image : undefined,
         },
       })
       .toPromise();
 
-    console.log(data);
-    */
+    setRefetchVal((val: boolean) => !val);
     setOpen(false);
   };
 
@@ -140,7 +127,13 @@ export default function index() {
               {profile_image ? (
                 <img
                   className="inline-block aspect-square h-12 w-12 rounded-full object-cover"
-                  src={URL.createObjectURL(profile_image) || ""}
+                  src={
+                    profile_image instanceof File
+                      ? URL.createObjectURL(profile_image)
+                      : profile_image
+                      ? `${MINIO_URL}${profile_image}`
+                      : ""
+                  }
                   alt=""
                 />
               ) : (
@@ -167,6 +160,7 @@ export default function index() {
                 </div>
                 <button
                   type="button"
+                  onClick={(e) => setProfile_image(null)}
                   className="text-blue-gray-900 hover:text-blue-gray-700 focus:border-blue-gray-300 focus:ring-offset-blue-gray-50 ml-3 rounded-md border border-transparent bg-transparent py-2 px-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                 >
                   Remove

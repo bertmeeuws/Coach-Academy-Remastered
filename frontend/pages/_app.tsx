@@ -22,7 +22,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Provider value={client}>
         <ResponsiveHelper />
         <UserContext.Provider value={providerValue}>
-          <Component {...pageProps} />
+          <Suspense fallback={<Spinner />}>
+            <Component {...pageProps} />
+          </Suspense>
         </UserContext.Provider>
       </Provider>
     </>
