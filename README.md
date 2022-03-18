@@ -11,6 +11,7 @@ I will be rebuilding my old project but I will be doing everything without the h
 - Tailwind
 - Redis (Sessions)
 - Minio S3
+- Jotai
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
