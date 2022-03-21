@@ -161,12 +161,29 @@ export class CreateExerciseInput {
     createdAt?: Nullable<DateTime>;
 }
 
+export class UpdateExerciseInput {
+    id?: Nullable<string>;
+    name?: Nullable<string>;
+    primary_muscle?: Nullable<MUSCLE_GROUP>;
+    image?: Nullable<string>;
+    video?: Nullable<string>;
+    secondary_muscles?: Nullable<Nullable<MUSCLE_GROUP>[]>;
+}
+
 export class CreateWorkoutInput {
     day: string;
     name: string;
     coachId: number;
     clientId: number;
     createdAt?: Nullable<DateTime>;
+}
+
+export class UpdateWorkoutInput {
+    day?: Nullable<string>;
+    name?: Nullable<string>;
+    createdAt?: Nullable<DateTime>;
+    coach?: Nullable<number>;
+    client?: Nullable<number>;
 }
 
 export class CreateExerciseInWorkoutInput {
@@ -297,9 +314,13 @@ export abstract class IMutation {
 
     abstract createExercise(createExerciseInput: CreateExerciseInput): Exercise | Promise<Exercise>;
 
+    abstract updateExercise(id: string, updateExerciseInput: UpdateExerciseInput): Exercise | Promise<Exercise>;
+
     abstract createExerciseInWorkout(createExerciseInWorkoutInput: CreateExerciseInWorkoutInput): ExerciseInWorkout | Promise<ExerciseInWorkout>;
 
     abstract createWorkout(createWorkoutInput: CreateWorkoutInput): Workout | Promise<Workout>;
+
+    abstract updateWorkout(updateWorkoutInput: UpdateWorkoutInput): Workout | Promise<Workout>;
 }
 
 export class Client {

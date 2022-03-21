@@ -30,6 +30,15 @@ input CreateExerciseInput {
   createdAt: DateTime
 }
 
+input UpdateExerciseInput {
+  id: String
+  name: String
+  primary_muscle: MUSCLE_GROUP
+  image: String
+  video: String
+  secondary_muscles: [MUSCLE_GROUP]
+}
+
 type Workout {
   id: String!
   day: String!
@@ -45,6 +54,14 @@ input CreateWorkoutInput {
   coachId: Int!
   clientId: Int!
   createdAt: DateTime
+}
+
+input UpdateWorkoutInput {
+  day: String
+  name: String
+  createdAt: DateTime
+  coach: Int
+  client: Int
 }
 
 type ExerciseInWorkout {
@@ -73,10 +90,15 @@ type Query {
 
 type Mutation {
   createExercise(createExerciseInput: CreateExerciseInput!): Exercise!
+  updateExercise(
+    id: String!
+    updateExerciseInput: UpdateExerciseInput!
+  ): Exercise!
 
   createExerciseInWorkout(
     createExerciseInWorkoutInput: CreateExerciseInWorkoutInput!
   ): ExerciseInWorkout!
 
   createWorkout(createWorkoutInput: CreateWorkoutInput!): Workout!
+  updateWorkout(updateWorkoutInput: UpdateWorkoutInput!): Workout!
 }

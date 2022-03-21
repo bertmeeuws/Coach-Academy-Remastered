@@ -1,7 +1,10 @@
 import { Injectable } from "@nestjs/common";
+import { Prisma } from "@prisma/client";
 import { PrismaService } from "prisma/prisma.service";
 import { ExerciseCreateInput } from "src/@generated/prisma-nestjs-graphql/exercise/exercise-create.input";
+import { ExerciseUpdateInput } from "src/@generated/prisma-nestjs-graphql/exercise/exercise-update.input";
 import { Exercise } from "src/@generated/prisma-nestjs-graphql/exercise/exercise.model";
+import { UpdateExerciseInput } from "src/graphql";
 
 
 @Injectable()
@@ -22,9 +25,9 @@ export class ExerciseService {
         })
     }
 
-    async createOne(createWorkout: ExerciseCreateInput): Promise<Exercise>{
+    async createOne(exerciseCreateInput: Prisma.ExerciseCreateInput): Promise<Exercise>{
         return this._prisma.exercise.create({
-            data: createWorkout
+            data: exerciseCreateInput
         })
     }
 
@@ -35,4 +38,16 @@ export class ExerciseService {
             }
         })
     }
+
+    async update(id: string, updateExerciseInput: Prisma.UserUpdateInput){
+        return this._prisma.exercise.update({
+            where: {
+                id: id
+            },
+            data: updateExerciseInput
+        })
+      
+    }
+
+
 }
