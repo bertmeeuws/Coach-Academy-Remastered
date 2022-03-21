@@ -155,7 +155,7 @@ export abstract class IQuery {
 
     abstract clients(filter?: Nullable<string>): Nullable<Client>[] | Promise<Nullable<Client>[]>;
 
-    abstract client(): Nullable<Client> | Promise<Nullable<Client>>;
+    abstract client(id?: Nullable<number>): Nullable<Client> | Promise<Nullable<Client>>;
 
     abstract getClientInformation(): Client | Promise<Client>;
 

@@ -75,7 +75,7 @@ export default function index() {
         client: {
           surname: surname,
           name: name,
-          postal: postal,
+          postal: parseInt(postal),
           address: address,
           city: city,
           dob:

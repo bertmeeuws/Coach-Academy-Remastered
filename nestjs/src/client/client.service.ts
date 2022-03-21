@@ -100,6 +100,9 @@ export class ClientService {
       }
     })
 
+    console.log("inside upload")
+
+
     if(profile_image){
       const upload_url = await this._minioClientService.upload(await profile_image)
       await this.prisma.user.update({

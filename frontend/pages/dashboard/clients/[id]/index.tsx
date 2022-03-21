@@ -10,6 +10,7 @@ import Spinner from "../../../../ui/Spinner";
 import Breadcrumbs from "../../../../ui/Breadcrumbs";
 import { useRouter } from "next/router";
 import { ENUM_ERRORS } from "../../../../types/enum";
+import UserProfileImage from "../../../../components/UserProfileImage";
 
 export default function Index({ query }: any) {
   const router = useRouter();
@@ -62,11 +63,15 @@ export default function Index({ query }: any) {
     return (
       <>
         <Suspense fallback={<Spinner />}>
-          <div className="mt-8 flex items-center space-x-4 font-semibold">
-            <div className="h-20 w-20 rounded-full bg-[url('http://localhost:9000/images/img.png?Content-Disposition=attachment%3B%20filename%3D%22img.png%22&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minio%2F20220226%2F%2Fs3%2Faws4_request&X-Amz-Date=20220226T125622Z&X-Amz-Expires=432000&X-Amz-SignedHeaders=host&X-Amz-Signature=36f8d19e2aac329f07c0d91366ef9dbc33312252803cb9204852a245cba26060')] bg-cover bg-center bg-no-repeat"></div>
+          <div className="mt-8 flex items-center space-x-2 font-semibold">
+            <UserProfileImage
+              profile_image={user?.profile_image}
+              width={12}
+              height={12}
+            />
             <div>
               <p className="text-lg font-semibold text-gray-800">
-                Bert Beukers
+                {name} {surname}
               </p>
               <p className="text-xs font-semibold text-gray-400">
                 Joined in <span className="font-bold">October</span>

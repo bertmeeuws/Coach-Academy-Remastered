@@ -6,6 +6,7 @@ export const GET_ALL_CLIENTS_FROM_COACH = gql`
       id
       user {
         email
+        profile_image
       }
       surname
       name

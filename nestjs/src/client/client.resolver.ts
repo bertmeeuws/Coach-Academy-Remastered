@@ -56,6 +56,7 @@ export class ClientResolver {
     @isUserCoach() isCoach: boolean,
     @Context() context
   ) {
+    console.log(clientId)
     if (isCoach) {
       return this.clientService.findOneAsCoach(clientId, coachId);
     }

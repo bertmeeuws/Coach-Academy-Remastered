@@ -41,7 +41,7 @@ input UpdateClientInput {
 
 type Query {
   clients(filter: String): [Client]!
-  client: Client
+  client(id: Int): Client
   getClientInformation: Client!
 }
 

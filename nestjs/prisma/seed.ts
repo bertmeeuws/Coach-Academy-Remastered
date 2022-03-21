@@ -11,6 +11,7 @@ async function main() {
         email: faker.internet.email(),
         password: faker.internet.password(),
         role: 'CLIENT',
+        profile_image: "/images/d5e36ea436b98a801e626fafe9ca6a64.jpg"
       },
     });
 
@@ -23,7 +24,7 @@ async function main() {
         phone: faker.phone.phoneNumber(),
         postal: 9000,
         userId: user.id,
-        coachId: 1,
+        coachId: 3,
       },
     });
   }
