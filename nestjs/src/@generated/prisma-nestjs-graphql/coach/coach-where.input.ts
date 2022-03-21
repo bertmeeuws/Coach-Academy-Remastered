@@ -6,6 +6,7 @@ import { StringFilter } from '../prisma/string-filter.input';
 import { ClientListRelationFilter } from '../client/client-list-relation-filter.input';
 import { InviteListRelationFilter } from '../invite/invite-list-relation-filter.input';
 import { DietplanListRelationFilter } from '../dietplan/dietplan-list-relation-filter.input';
+import { WorkoutListRelationFilter } from '../workout/workout-list-relation-filter.input';
 
 @InputType()
 export class CoachWhereInput {
@@ -42,4 +43,7 @@ export class CoachWhereInput {
 
     @Field(() => DietplanListRelationFilter, {nullable:true})
     Dietplan?: DietplanListRelationFilter;
+
+    @Field(() => WorkoutListRelationFilter, {nullable:true})
+    Workout?: WorkoutListRelationFilter;
 }

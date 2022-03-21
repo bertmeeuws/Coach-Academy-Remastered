@@ -6,6 +6,7 @@ import { NullableDateTimeFieldUpdateOperationsInput } from '../prisma/nullable-d
 import { NullableStringFieldUpdateOperationsInput } from '../prisma/nullable-string-field-update-operations.input';
 import { NullableIntFieldUpdateOperationsInput } from '../prisma/nullable-int-field-update-operations.input';
 import { DietplanUncheckedUpdateManyWithoutClientInput } from '../dietplan/dietplan-unchecked-update-many-without-client.input';
+import { WorkoutUncheckedUpdateManyWithoutClientInput } from '../workout/workout-unchecked-update-many-without-client.input';
 
 @InputType()
 export class ClientUncheckedUpdateWithoutInviteInput {
@@ -45,4 +46,7 @@ export class ClientUncheckedUpdateWithoutInviteInput {
 
     @Field(() => DietplanUncheckedUpdateManyWithoutClientInput, {nullable:true})
     Dietplan?: DietplanUncheckedUpdateManyWithoutClientInput;
+
+    @Field(() => WorkoutUncheckedUpdateManyWithoutClientInput, {nullable:true})
+    Workout?: WorkoutUncheckedUpdateManyWithoutClientInput;
 }

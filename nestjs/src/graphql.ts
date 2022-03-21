@@ -30,6 +30,19 @@ export enum NOTIFICATION_TYPE {
     NEW_DIETPLAN = "NEW_DIETPLAN"
 }
 
+export enum MUSCLE_GROUP {
+    CHEST = "CHEST",
+    BICEPS = "BICEPS",
+    TRICPS = "TRICPS",
+    SHOULDERS = "SHOULDERS",
+    TRAPS = "TRAPS",
+    BACK = "BACK",
+    QUADRICEPS = "QUADRICEPS",
+    HAMSTRINGS = "HAMSTRINGS",
+    CALVES = "CALVES",
+    GLUTES = "GLUTES"
+}
+
 export class CreateLoginInput {
     email: string;
     password: string;
@@ -139,6 +152,29 @@ export class UpdateUserInput {
     id: number;
 }
 
+export class CreateExerciseInput {
+    name: string;
+    primary_muscle: MUSCLE_GROUP;
+    image?: Nullable<string>;
+    video?: Nullable<string>;
+    secondary_muscles?: Nullable<Nullable<string>[]>;
+    createdAt?: Nullable<DateTime>;
+}
+
+export class CreateWorkoutInput {
+    day: string;
+    name: string;
+    coachId: number;
+    clientId: number;
+    createdAt?: Nullable<DateTime>;
+}
+
+export class CreateExerciseInWorkoutInput {
+    exerciseId: string;
+    meta: string;
+    workoutId: string;
+}
+
 export class Login {
     email: string;
     password: string;
@@ -186,6 +222,18 @@ export abstract class IQuery {
     abstract users(): Nullable<User>[] | Promise<Nullable<User>[]>;
 
     abstract user(id: number): Nullable<User> | Promise<Nullable<User>>;
+
+    abstract workouts(): Nullable<Workout>[] | Promise<Nullable<Workout>[]>;
+
+    abstract workout(id: string): Workout | Promise<Workout>;
+
+    abstract exercisesInWorkouts(): Nullable<ExerciseInWorkout>[] | Promise<Nullable<ExerciseInWorkout>[]>;
+
+    abstract exerciseInWorkout(id: number): ExerciseInWorkout | Promise<ExerciseInWorkout>;
+
+    abstract exercises(): Nullable<Exercise>[] | Promise<Nullable<Exercise>[]>;
+
+    abstract exercise(id: string): Nullable<Nullable<Exercise>[]> | Promise<Nullable<Nullable<Exercise>[]>>;
 }
 
 export abstract class IMutation {
@@ -246,6 +294,12 @@ export abstract class IMutation {
     abstract updateUser(updateUserInput: UpdateUserInput): User | Promise<User>;
 
     abstract removeUser(id: number): Nullable<User> | Promise<Nullable<User>>;
+
+    abstract createExercise(createExerciseInput: CreateExerciseInput): Exercise | Promise<Exercise>;
+
+    abstract createExerciseInWorkout(createExerciseInWorkoutInput: CreateExerciseInWorkoutInput): ExerciseInWorkout | Promise<ExerciseInWorkout>;
+
+    abstract createWorkout(createWorkoutInput: CreateWorkoutInput): Workout | Promise<Workout>;
 }
 
 export class Client {
@@ -324,6 +378,32 @@ export class User {
     password: string;
     createdAt?: Nullable<DateTime>;
     profile_image?: Nullable<string>;
+}
+
+export class Exercise {
+    id: string;
+    name: string;
+    primary_muscle: MUSCLE_GROUP;
+    image?: Nullable<string>;
+    video?: Nullable<string>;
+    secondary_muscles?: Nullable<Nullable<MUSCLE_GROUP>[]>;
+    createdAt?: Nullable<DateTime>;
+}
+
+export class Workout {
+    id: string;
+    day: string;
+    name: string;
+    createdAt?: Nullable<DateTime>;
+    coach: Coach;
+    client: Client;
+}
+
+export class ExerciseInWorkout {
+    id: number;
+    exercise: Exercise;
+    meta: string;
+    workout: Workout;
 }
 
 export type Upload = any;

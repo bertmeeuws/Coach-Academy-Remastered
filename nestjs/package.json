@@ -50,6 +50,7 @@
     "express-session": "^1.17.2",
     "graphql": "^16.3.0",
     "graphql-iso-date": "^3.6.1",
+    "graphql-type-json": "^0.3.2",
     "graphql-upload": "^13.0.0",
     "ioredis": "^4.28.5",
     "nestjs-minio-client": "^1.1.0",

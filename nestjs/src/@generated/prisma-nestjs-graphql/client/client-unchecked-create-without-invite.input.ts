@@ -2,6 +2,7 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
 import { DietplanUncheckedCreateNestedManyWithoutClientInput } from '../dietplan/dietplan-unchecked-create-nested-many-without-client.input';
+import { WorkoutUncheckedCreateNestedManyWithoutClientInput } from '../workout/workout-unchecked-create-nested-many-without-client.input';
 
 @InputType()
 export class ClientUncheckedCreateWithoutInviteInput {
@@ -41,4 +42,7 @@ export class ClientUncheckedCreateWithoutInviteInput {
 
     @Field(() => DietplanUncheckedCreateNestedManyWithoutClientInput, {nullable:true})
     Dietplan?: DietplanUncheckedCreateNestedManyWithoutClientInput;
+
+    @Field(() => WorkoutUncheckedCreateNestedManyWithoutClientInput, {nullable:true})
+    Workout?: WorkoutUncheckedCreateNestedManyWithoutClientInput;
 }

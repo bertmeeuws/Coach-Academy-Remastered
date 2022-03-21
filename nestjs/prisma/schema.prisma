@@ -47,6 +47,7 @@ model Client {
   invite   Invite?    @relation(fields: [inviteId], references: [id])
   inviteId String?    @unique @db.Uuid
   Dietplan Dietplan[]
+  Workout  Workout[]
 }
 
 model Coach {
@@ -58,6 +59,7 @@ model Coach {
   clients  Client[]
   Invite   Invite[]
   Dietplan Dietplan[]
+  Workout  Workout[]
 }
 
 model Invite {
@@ -133,4 +135,50 @@ model Food {
   protein  Int
   fat      Int
   FoodItem FoodItem[]
+}
+
+enum MUSCLE_GROUP {
+  CHEST
+  BICEPS
+  TRICPS
+  SHOULDERS
+  TRAPS
+  BACK
+  QUADRICEPS
+  HAMSTRINGS
+  CALVES
+  GLUTES
+}
+
+model Exercise {
+  id                String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name              String
+  primary_muscle    MUSCLE_GROUP
+  description       String?
+  image             String
+  createdAt         DateTime            @default(now())
+  video             String?
+  secondary_muscles MUSCLE_GROUP[]
+  ExerciseInWorkout ExerciseInWorkout[]
+}
+
+model ExerciseInWorkout {
+  id         Int      @id @default(autoincrement())
+  exercise   Exercise @relation(fields: [exerciseId], references: [id])
+  exerciseId String   @db.Uuid
+  meta       Json
+  Workout    Workout? @relation(fields: [workoutId], references: [id])
+  workoutId  String?  @db.Uuid
+}
+
+model Workout {
+  id        String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  day       String
+  exercises ExerciseInWorkout[]
+  name      String
+  createdAt DateTime            @default(now())
+  coach     Coach               @relation(fields: [coachId], references: [id])
+  coachId   Int
+  client    Client              @relation(fields: [clientId], references: [id])
+  clientId  Int
 }

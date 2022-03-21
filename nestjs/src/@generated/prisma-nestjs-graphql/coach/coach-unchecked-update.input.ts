@@ -5,6 +5,7 @@ import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-
 import { ClientUncheckedUpdateManyWithoutCoachInput } from '../client/client-unchecked-update-many-without-coach.input';
 import { InviteUncheckedUpdateManyWithoutCoachInput } from '../invite/invite-unchecked-update-many-without-coach.input';
 import { DietplanUncheckedUpdateManyWithoutCoachInput } from '../dietplan/dietplan-unchecked-update-many-without-coach.input';
+import { WorkoutUncheckedUpdateManyWithoutCoachInput } from '../workout/workout-unchecked-update-many-without-coach.input';
 
 @InputType()
 export class CoachUncheckedUpdateInput {
@@ -29,4 +30,7 @@ export class CoachUncheckedUpdateInput {
 
     @Field(() => DietplanUncheckedUpdateManyWithoutCoachInput, {nullable:true})
     Dietplan?: DietplanUncheckedUpdateManyWithoutCoachInput;
+
+    @Field(() => WorkoutUncheckedUpdateManyWithoutCoachInput, {nullable:true})
+    Workout?: WorkoutUncheckedUpdateManyWithoutCoachInput;
 }

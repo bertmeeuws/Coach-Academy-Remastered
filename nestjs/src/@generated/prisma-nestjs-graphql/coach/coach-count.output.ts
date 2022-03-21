@@ -13,4 +13,7 @@ export class CoachCount {
 
     @Field(() => Int, {nullable:false})
     Dietplan?: number;
+
+    @Field(() => Int, {nullable:false})
+    Workout?: number;
 }

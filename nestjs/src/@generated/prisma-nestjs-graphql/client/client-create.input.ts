@@ -5,6 +5,7 @@ import { UserCreateNestedOneWithoutClientInput } from '../user/user-create-neste
 import { CoachCreateNestedOneWithoutClientsInput } from '../coach/coach-create-nested-one-without-clients.input';
 import { InviteCreateNestedOneWithoutClientInput } from '../invite/invite-create-nested-one-without-client.input';
 import { DietplanCreateNestedManyWithoutClientInput } from '../dietplan/dietplan-create-nested-many-without-client.input';
+import { WorkoutCreateNestedManyWithoutClientInput } from '../workout/workout-create-nested-many-without-client.input';
 
 @InputType()
 export class ClientCreateInput {
@@ -44,4 +45,7 @@ export class ClientCreateInput {
 
     @Field(() => DietplanCreateNestedManyWithoutClientInput, {nullable:true})
     Dietplan?: DietplanCreateNestedManyWithoutClientInput;
+
+    @Field(() => WorkoutCreateNestedManyWithoutClientInput, {nullable:true})
+    Workout?: WorkoutCreateNestedManyWithoutClientInput;
 }

@@ -5,6 +5,7 @@ import { UserOrderByWithRelationInput } from '../user/user-order-by-with-relatio
 import { CoachOrderByWithRelationInput } from '../coach/coach-order-by-with-relation.input';
 import { InviteOrderByWithRelationInput } from '../invite/invite-order-by-with-relation.input';
 import { DietplanOrderByRelationAggregateInput } from '../dietplan/dietplan-order-by-relation-aggregate.input';
+import { WorkoutOrderByRelationAggregateInput } from '../workout/workout-order-by-relation-aggregate.input';
 
 @InputType()
 export class ClientOrderByWithRelationInput {
@@ -56,4 +57,7 @@ export class ClientOrderByWithRelationInput {
 
     @Field(() => DietplanOrderByRelationAggregateInput, {nullable:true})
     Dietplan?: DietplanOrderByRelationAggregateInput;
+
+    @Field(() => WorkoutOrderByRelationAggregateInput, {nullable:true})
+    Workout?: WorkoutOrderByRelationAggregateInput;
 }

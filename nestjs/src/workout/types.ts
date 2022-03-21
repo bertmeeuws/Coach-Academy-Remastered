@@ -1,0 +1,13 @@
+export enum ENUM_MUSLCE_GROUP {
+    CHEST = "CHEST",
+    BICEPS = "BICEPS",
+    TRICPS = "TRICEPS",
+    SHOULDERS = "SHOULDERS",
+    TRAPS = "TRAPS",
+    BACK = "BACK",
+    QUADRICEPS = "QAUDRICEPS",
+    HAMSTRINGS = "HAMSTRINGS",
+    CALVES = "CALVES",
+    GLUTES = "GLUTES"
+  }
+  

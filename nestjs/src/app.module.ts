@@ -21,6 +21,7 @@ import { MinioClientModule } from './minio-client/minio-client.module';
 import { DietModule } from './diet/diet.module';
 import { ConfigModule } from '@nestjs/config';
 import { GraphQLUpload } from "graphql-upload";
+import { WorkoutModule } from './workout/workout.module';
 
 
 @Module({
@@ -59,6 +60,7 @@ import { GraphQLUpload } from "graphql-upload";
     NotificationModule,
     MinioClientModule,
     DietModule,
+    WorkoutModule,
   ],
   controllers: [AppController],
   providers: [AppService],

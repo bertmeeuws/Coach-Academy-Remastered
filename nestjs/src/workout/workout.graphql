@@ -1,0 +1,82 @@
+enum MUSCLE_GROUP {
+  CHEST
+  BICEPS
+  TRICPS
+  SHOULDERS
+  TRAPS
+  BACK
+  QUADRICEPS
+  HAMSTRINGS
+  CALVES
+  GLUTES
+}
+
+type Exercise {
+  id: String!
+  name: String!
+  primary_muscle: MUSCLE_GROUP!
+  image: String
+  video: String
+  secondary_muscles: [MUSCLE_GROUP]
+  createdAt: DateTime
+}
+
+input CreateExerciseInput {
+  name: String!
+  primary_muscle: MUSCLE_GROUP!
+  image: String
+  video: String
+  secondary_muscles: [String]
+  createdAt: DateTime
+}
+
+type Workout {
+  id: String!
+  day: String!
+  name: String!
+  createdAt: DateTime
+  coach: Coach!
+  client: Client!
+}
+
+input CreateWorkoutInput {
+  day: String!
+  name: String!
+  coachId: Int!
+  clientId: Int!
+  createdAt: DateTime
+}
+
+type ExerciseInWorkout {
+  id: Int!
+  exercise: Exercise!
+  meta: String!
+  workout: Workout!
+}
+
+input CreateExerciseInWorkoutInput {
+  exerciseId: String!
+  meta: String!
+  workoutId: String!
+}
+
+type Query {
+  workouts: [Workout]!
+  workout(id: String!): Workout!
+
+  exercisesInWorkouts: [ExerciseInWorkout]!
+  exerciseInWorkout(id: Int!): ExerciseInWorkout!
+
+  exercises: [Exercise]!
+  exercise(id: String!): [Exercise]
+}
+
+type Mutation {
+  createExercise(createExerciseInput: CreateExerciseInput!): Exercise!
+
+  createExerciseInWorkout(
+    createExerciseInWorkoutInput: CreateExerciseInWorkoutInput!
+  ): ExerciseInWorkout!
+
+  createWorkout(createWorkoutInput: CreateWorkoutInput!): Workout!
+}

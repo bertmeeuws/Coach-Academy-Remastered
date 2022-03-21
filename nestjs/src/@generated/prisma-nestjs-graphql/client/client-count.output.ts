@@ -7,4 +7,7 @@ export class ClientCount {
 
     @Field(() => Int, {nullable:false})
     Dietplan?: number;
+
+    @Field(() => Int, {nullable:false})
+    Workout?: number;
 }

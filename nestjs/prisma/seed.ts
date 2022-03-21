@@ -1,9 +1,20 @@
 import { PrismaClient } from '@prisma/client';
 import { faker } from '@faker-js/faker';
+import { ENUM_MUSLCE_GROUP } from '../src/workout/types';
 const prisma = new PrismaClient();
 
 async function main() {
-  
+  await prisma.client.deleteMany()
+
+  const exercise = await prisma.exercise.create({
+    data: {
+      name: "Bench press",
+      primary_muscle: ENUM_MUSLCE_GROUP.CHEST,
+      image: "",
+      video: "",
+      secondary_muscles: [ENUM_MUSLCE_GROUP.TRAPS, ENUM_MUSLCE_GROUP.SHOULDERS]
+    }
+  })
 
   for (let i = 1; i <= 20; i++) {
     const user = await prisma.user.create({
@@ -27,7 +38,38 @@ async function main() {
         coachId: 3,
       },
     });
+
+ 
+
+    const workout = await prisma.workout.create({
+      data: {
+        day: "Monday",
+        name: "Push",
+        coachId: 3,
+        clientId: profile.id
+      } 
+    })
+
+    const exerciseInWorkout = await prisma.exerciseInWorkout.create({
+      data: {
+        workoutId: workout.id,
+        exerciseId: exercise.id,
+        meta: {
+          reps: 12,
+          notes: "lorem",
+          rpe: 8,
+          sets: 4
+        }
+      }
+    })
+
+ 
+
+
   }
+
+
+
 }
 
 main()

@@ -7,6 +7,7 @@ import { NullableIntFieldUpdateOperationsInput } from '../prisma/nullable-int-fi
 import { UserUpdateOneRequiredWithoutClientInput } from '../user/user-update-one-required-without-client.input';
 import { InviteUpdateOneWithoutClientInput } from '../invite/invite-update-one-without-client.input';
 import { DietplanUpdateManyWithoutClientInput } from '../dietplan/dietplan-update-many-without-client.input';
+import { WorkoutUpdateManyWithoutClientInput } from '../workout/workout-update-many-without-client.input';
 
 @InputType()
 export class ClientUpdateWithoutCoachInput {
@@ -43,4 +44,7 @@ export class ClientUpdateWithoutCoachInput {
 
     @Field(() => DietplanUpdateManyWithoutClientInput, {nullable:true})
     Dietplan?: DietplanUpdateManyWithoutClientInput;
+
+    @Field(() => WorkoutUpdateManyWithoutClientInput, {nullable:true})
+    Workout?: WorkoutUpdateManyWithoutClientInput;
 }
