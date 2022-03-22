@@ -7,11 +7,19 @@ interface Props {
   setSelectedExercise: React.Dispatch<
     React.SetStateAction<null | EXECISE_ITEM>
   >;
+  setOpenVideoPopup: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Exercise_item: React.FC<Props> = ({ data, setSelectedExercise }) => {
+const Exercise_item: React.FC<Props> = ({
+  data,
+  setSelectedExercise,
+  setOpenVideoPopup,
+}) => {
   return (
-    <div className="rouned group flex cursor-pointer items-center space-x-2 p-4 px-3 shadow hover:bg-gray-100">
+    <div
+      onClick={(e) => setOpenVideoPopup(true)}
+      className="group flex cursor-pointer items-center space-x-2 rounded p-4 px-3 shadow hover:bg-gray-100"
+    >
       <div
         onClick={(e: any) => setSelectedExercise(data)}
         className="flex h-12 w-12 items-center justify-center rounded-md bg-red-400"

@@ -11,6 +11,7 @@ const Exercise_list: React.FC<{}> = () => {
     React.useState<null | EXECISE_ITEM>(null);
 
   const [openVideoPopup, setOpenVideoPopup] = React.useState<boolean>(false);
+  
 
   const [result, refetch] = useQuery({
     query: GET_ALL_EXERCISES,
@@ -20,7 +21,11 @@ const Exercise_list: React.FC<{}> = () => {
 
   return (
     <>
-      <VideoPopup />
+      <VideoPopup
+        openVideoPopup={openVideoPopup}
+        setOpenVideoPopup={setOpenVideoPopup}
+        data={selectedExercise}
+      />
       <aside className="h-full w-[250px] rounded-md bg-white p-2">
         <input
           className="rounded-md bg-fluoGreen p-2 px-3 font-semibold text-white"
@@ -28,7 +33,13 @@ const Exercise_list: React.FC<{}> = () => {
         />
         <ul className="mt-2 space-y-2">
           {result?.data?.exercises?.map((k: EXECISE_ITEM, idx: number) => (
-            <Exercise_item data={k} setSelectedExercise={setSelectedExercise} />
+            <Exercise_item
+              data={k}
+              setSelectedExercise={(e) => {
+                setSelectedExercise(e);
+              }}
+              setOpenVideoPopup={setOpenVideoPopup}
+            />
           ))}
         </ul>
       </aside>

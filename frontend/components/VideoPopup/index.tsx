@@ -1,28 +1,36 @@
 import { Dialog, Transition } from "@headlessui/react";
+import { PlayIcon } from "@heroicons/react/solid";
 import React, { Fragment } from "react";
+import { EXECISE_ITEM } from "../../types/workout";
 
-interface Props {}
+interface Props {
+  data: EXECISE_ITEM | null;
+  openVideoPopup: boolean;
+  setOpenVideoPopup: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-const VideoPopup: React.FC<Props> = ({}) => {
-  let [isOpen, setIsOpen] = React.useState<boolean>(true);
-
+const VideoPopup: React.FC<Props> = ({
+  openVideoPopup,
+  setOpenVideoPopup,
+  data,
+}) => {
   const closeModal = () => {
-    setIsOpen(false);
+    setOpenVideoPopup(false);
   };
 
   const openModal = () => {
-    setIsOpen(true);
+    setOpenVideoPopup(true);
   };
 
   return (
     <>
-      <Transition appear show={isOpen} as={Fragment}>
+      <Transition appear show={openVideoPopup} as={Fragment}>
         <Dialog
           as="div"
           className="fixed inset-0 z-10 overflow-y-auto"
           onClose={closeModal}
         >
-          <div className="min-h-screen px-4 text-center">
+          <div className="min-h-screen px-4 text-center ">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -32,7 +40,7 @@ const VideoPopup: React.FC<Props> = ({}) => {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Dialog.Overlay className="fixed inset-0" />
+              <Dialog.Overlay className="fixed inset-0 bg-black bg-opacity-25" />
             </Transition.Child>
 
             {/* This element is to trick the browser into centering the modal contents. */}
@@ -54,15 +62,12 @@ const VideoPopup: React.FC<Props> = ({}) => {
               <div className="my-8 inline-block w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                 <Dialog.Title
                   as="h3"
-                  className="text-lg font-medium leading-6 text-gray-900"
+                  className="text-gray-903 my-2 text-xl font-semibold leading-6"
                 >
-                  Payment successful
+                  Video fragment {data?.name}
                 </Dialog.Title>
-                <div className="mt-2">
-                  <p className="text-sm text-gray-500">
-                    Your payment has been successfully submitted. We’ve sent you
-                    an email with all of the details of your order.
-                  </p>
+                <div className="mt-2 flex aspect-video cursor-pointer items-center justify-center rounded-md bg-gray-300">
+                  <PlayIcon className="h-8 w-8 text-fluoGreen" />
                 </div>
               </div>
             </Transition.Child>
