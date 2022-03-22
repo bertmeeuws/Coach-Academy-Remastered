@@ -5,19 +5,18 @@ import { IntWithAggregatesFilter } from '../prisma/int-with-aggregates-filter.in
 
 @InputType()
 export class MealPlanScalarWhereWithAggregatesInput {
+  @Field(() => [MealPlanScalarWhereWithAggregatesInput], { nullable: true })
+  AND?: Array<MealPlanScalarWhereWithAggregatesInput>;
 
-    @Field(() => [MealPlanScalarWhereWithAggregatesInput], {nullable:true})
-    AND?: Array<MealPlanScalarWhereWithAggregatesInput>;
+  @Field(() => [MealPlanScalarWhereWithAggregatesInput], { nullable: true })
+  OR?: Array<MealPlanScalarWhereWithAggregatesInput>;
 
-    @Field(() => [MealPlanScalarWhereWithAggregatesInput], {nullable:true})
-    OR?: Array<MealPlanScalarWhereWithAggregatesInput>;
+  @Field(() => [MealPlanScalarWhereWithAggregatesInput], { nullable: true })
+  NOT?: Array<MealPlanScalarWhereWithAggregatesInput>;
 
-    @Field(() => [MealPlanScalarWhereWithAggregatesInput], {nullable:true})
-    NOT?: Array<MealPlanScalarWhereWithAggregatesInput>;
+  @Field(() => StringWithAggregatesFilter, { nullable: true })
+  id?: StringWithAggregatesFilter;
 
-    @Field(() => StringWithAggregatesFilter, {nullable:true})
-    id?: StringWithAggregatesFilter;
-
-    @Field(() => IntWithAggregatesFilter, {nullable:true})
-    coachId?: IntWithAggregatesFilter;
+  @Field(() => IntWithAggregatesFilter, { nullable: true })
+  coachId?: IntWithAggregatesFilter;
 }

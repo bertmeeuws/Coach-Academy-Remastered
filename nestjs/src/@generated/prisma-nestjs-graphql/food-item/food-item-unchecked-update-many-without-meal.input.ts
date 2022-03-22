@@ -11,37 +11,42 @@ import { FoodItemScalarWhereInput } from './food-item-scalar-where.input';
 
 @InputType()
 export class FoodItemUncheckedUpdateManyWithoutMealInput {
+  @Field(() => [FoodItemCreateWithoutMealInput], { nullable: true })
+  create?: Array<FoodItemCreateWithoutMealInput>;
 
-    @Field(() => [FoodItemCreateWithoutMealInput], {nullable:true})
-    create?: Array<FoodItemCreateWithoutMealInput>;
+  @Field(() => [FoodItemCreateOrConnectWithoutMealInput], { nullable: true })
+  connectOrCreate?: Array<FoodItemCreateOrConnectWithoutMealInput>;
 
-    @Field(() => [FoodItemCreateOrConnectWithoutMealInput], {nullable:true})
-    connectOrCreate?: Array<FoodItemCreateOrConnectWithoutMealInput>;
+  @Field(() => [FoodItemUpsertWithWhereUniqueWithoutMealInput], {
+    nullable: true
+  })
+  upsert?: Array<FoodItemUpsertWithWhereUniqueWithoutMealInput>;
 
-    @Field(() => [FoodItemUpsertWithWhereUniqueWithoutMealInput], {nullable:true})
-    upsert?: Array<FoodItemUpsertWithWhereUniqueWithoutMealInput>;
+  @Field(() => FoodItemCreateManyMealInputEnvelope, { nullable: true })
+  createMany?: FoodItemCreateManyMealInputEnvelope;
 
-    @Field(() => FoodItemCreateManyMealInputEnvelope, {nullable:true})
-    createMany?: FoodItemCreateManyMealInputEnvelope;
+  @Field(() => [FoodItemWhereUniqueInput], { nullable: true })
+  set?: Array<FoodItemWhereUniqueInput>;
 
-    @Field(() => [FoodItemWhereUniqueInput], {nullable:true})
-    set?: Array<FoodItemWhereUniqueInput>;
+  @Field(() => [FoodItemWhereUniqueInput], { nullable: true })
+  disconnect?: Array<FoodItemWhereUniqueInput>;
 
-    @Field(() => [FoodItemWhereUniqueInput], {nullable:true})
-    disconnect?: Array<FoodItemWhereUniqueInput>;
+  @Field(() => [FoodItemWhereUniqueInput], { nullable: true })
+  delete?: Array<FoodItemWhereUniqueInput>;
 
-    @Field(() => [FoodItemWhereUniqueInput], {nullable:true})
-    delete?: Array<FoodItemWhereUniqueInput>;
+  @Field(() => [FoodItemWhereUniqueInput], { nullable: true })
+  connect?: Array<FoodItemWhereUniqueInput>;
 
-    @Field(() => [FoodItemWhereUniqueInput], {nullable:true})
-    connect?: Array<FoodItemWhereUniqueInput>;
+  @Field(() => [FoodItemUpdateWithWhereUniqueWithoutMealInput], {
+    nullable: true
+  })
+  update?: Array<FoodItemUpdateWithWhereUniqueWithoutMealInput>;
 
-    @Field(() => [FoodItemUpdateWithWhereUniqueWithoutMealInput], {nullable:true})
-    update?: Array<FoodItemUpdateWithWhereUniqueWithoutMealInput>;
+  @Field(() => [FoodItemUpdateManyWithWhereWithoutMealInput], {
+    nullable: true
+  })
+  updateMany?: Array<FoodItemUpdateManyWithWhereWithoutMealInput>;
 
-    @Field(() => [FoodItemUpdateManyWithWhereWithoutMealInput], {nullable:true})
-    updateMany?: Array<FoodItemUpdateManyWithWhereWithoutMealInput>;
-
-    @Field(() => [FoodItemScalarWhereInput], {nullable:true})
-    deleteMany?: Array<FoodItemScalarWhereInput>;
+  @Field(() => [FoodItemScalarWhereInput], { nullable: true })
+  deleteMany?: Array<FoodItemScalarWhereInput>;
 }

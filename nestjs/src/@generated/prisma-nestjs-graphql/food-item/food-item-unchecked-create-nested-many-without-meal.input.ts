@@ -7,16 +7,15 @@ import { FoodItemWhereUniqueInput } from './food-item-where-unique.input';
 
 @InputType()
 export class FoodItemUncheckedCreateNestedManyWithoutMealInput {
+  @Field(() => [FoodItemCreateWithoutMealInput], { nullable: true })
+  create?: Array<FoodItemCreateWithoutMealInput>;
 
-    @Field(() => [FoodItemCreateWithoutMealInput], {nullable:true})
-    create?: Array<FoodItemCreateWithoutMealInput>;
+  @Field(() => [FoodItemCreateOrConnectWithoutMealInput], { nullable: true })
+  connectOrCreate?: Array<FoodItemCreateOrConnectWithoutMealInput>;
 
-    @Field(() => [FoodItemCreateOrConnectWithoutMealInput], {nullable:true})
-    connectOrCreate?: Array<FoodItemCreateOrConnectWithoutMealInput>;
+  @Field(() => FoodItemCreateManyMealInputEnvelope, { nullable: true })
+  createMany?: FoodItemCreateManyMealInputEnvelope;
 
-    @Field(() => FoodItemCreateManyMealInputEnvelope, {nullable:true})
-    createMany?: FoodItemCreateManyMealInputEnvelope;
-
-    @Field(() => [FoodItemWhereUniqueInput], {nullable:true})
-    connect?: Array<FoodItemWhereUniqueInput>;
+  @Field(() => [FoodItemWhereUniqueInput], { nullable: true })
+  connect?: Array<FoodItemWhereUniqueInput>;
 }

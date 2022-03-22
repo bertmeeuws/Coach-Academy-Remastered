@@ -5,19 +5,18 @@ import { IntFilter } from '../prisma/int-filter.input';
 
 @InputType()
 export class MealPlanScalarWhereInput {
+  @Field(() => [MealPlanScalarWhereInput], { nullable: true })
+  AND?: Array<MealPlanScalarWhereInput>;
 
-    @Field(() => [MealPlanScalarWhereInput], {nullable:true})
-    AND?: Array<MealPlanScalarWhereInput>;
+  @Field(() => [MealPlanScalarWhereInput], { nullable: true })
+  OR?: Array<MealPlanScalarWhereInput>;
 
-    @Field(() => [MealPlanScalarWhereInput], {nullable:true})
-    OR?: Array<MealPlanScalarWhereInput>;
+  @Field(() => [MealPlanScalarWhereInput], { nullable: true })
+  NOT?: Array<MealPlanScalarWhereInput>;
 
-    @Field(() => [MealPlanScalarWhereInput], {nullable:true})
-    NOT?: Array<MealPlanScalarWhereInput>;
+  @Field(() => StringFilter, { nullable: true })
+  id?: StringFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    id?: StringFilter;
-
-    @Field(() => IntFilter, {nullable:true})
-    coachId?: IntFilter;
+  @Field(() => IntFilter, { nullable: true })
+  coachId?: IntFilter;
 }

@@ -6,7 +6,7 @@ describe('DietService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [DietService],
+      providers: [DietService]
     }).compile();
 
     service = module.get<DietService>(DietService);

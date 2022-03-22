@@ -6,22 +6,25 @@ import { InviteUncheckedCreateNestedManyWithoutCoachInput } from '../invite/invi
 
 @InputType()
 export class CoachUncheckedCreateWithoutMealPlanInput {
+  @Field(() => Int, { nullable: true })
+  id?: number;
 
-    @Field(() => Int, {nullable:true})
-    id?: number;
+  @Field(() => Int, { nullable: false })
+  userId!: number;
 
-    @Field(() => Int, {nullable:false})
-    userId!: number;
+  @Field(() => String, { nullable: false })
+  surname!: string;
 
-    @Field(() => String, {nullable:false})
-    surname!: string;
+  @Field(() => String, { nullable: false })
+  name!: string;
 
-    @Field(() => String, {nullable:false})
-    name!: string;
+  @Field(() => ClientUncheckedCreateNestedManyWithoutCoachInput, {
+    nullable: true
+  })
+  clients?: ClientUncheckedCreateNestedManyWithoutCoachInput;
 
-    @Field(() => ClientUncheckedCreateNestedManyWithoutCoachInput, {nullable:true})
-    clients?: ClientUncheckedCreateNestedManyWithoutCoachInput;
-
-    @Field(() => InviteUncheckedCreateNestedManyWithoutCoachInput, {nullable:true})
-    Invite?: InviteUncheckedCreateNestedManyWithoutCoachInput;
+  @Field(() => InviteUncheckedCreateNestedManyWithoutCoachInput, {
+    nullable: true
+  })
+  Invite?: InviteUncheckedCreateNestedManyWithoutCoachInput;
 }

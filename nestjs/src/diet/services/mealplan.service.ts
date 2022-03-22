@@ -1,10 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { DietplanCreateInput } from 'src/@generated/prisma-nestjs-graphql/dietplan/dietplan-create.input';
 
-
-
 @Injectable()
-export class MealplanService{
+export class MealplanService {
   create(createDietInput: DietplanCreateInput) {
     return 'This action adds a new diet';
   }

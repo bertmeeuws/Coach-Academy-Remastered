@@ -3,21 +3,18 @@ import { PrismaService } from 'prisma/prisma.service';
 import { DietplanCreateInput } from 'src/@generated/prisma-nestjs-graphql/dietplan/dietplan-create.input';
 import { CreateDietplanInput } from 'src/graphql';
 
-
-
 @Injectable()
 export class MealPlanService {
-
-  constructor(private _prisma : PrismaService){}
+  constructor(private _prisma: PrismaService) {}
 
   create(createDiet: DietplanCreateInput) {
     return this._prisma.dietplan.create({
       data: createDiet
-    })
+    });
   }
 
-  findAll() { 
-    return this._prisma.dietplan.findMany()
+  findAll() {
+    return this._prisma.dietplan.findMany();
   }
 
   findOne(id: string) {
@@ -25,7 +22,7 @@ export class MealPlanService {
       where: {
         id: id
       }
-    })
+    });
   }
 
   /*
@@ -39,6 +36,6 @@ export class MealPlanService {
       where: {
         id: id
       }
-    })
+    });
   }
 }

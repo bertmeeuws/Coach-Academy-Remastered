@@ -5,5 +5,5 @@ export const SessionAccount = createParamDecorator(
   (data: unknown, context: ExecutionContext) => {
     const ctx = GqlExecutionContext.create(context);
     return ctx.getContext().req.user;
-  },
+  }
 );

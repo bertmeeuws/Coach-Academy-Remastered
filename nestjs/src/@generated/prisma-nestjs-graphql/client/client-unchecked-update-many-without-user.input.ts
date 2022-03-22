@@ -11,37 +11,40 @@ import { ClientScalarWhereInput } from './client-scalar-where.input';
 
 @InputType()
 export class ClientUncheckedUpdateManyWithoutUserInput {
+  @Field(() => [ClientCreateWithoutUserInput], { nullable: true })
+  create?: Array<ClientCreateWithoutUserInput>;
 
-    @Field(() => [ClientCreateWithoutUserInput], {nullable:true})
-    create?: Array<ClientCreateWithoutUserInput>;
+  @Field(() => [ClientCreateOrConnectWithoutUserInput], { nullable: true })
+  connectOrCreate?: Array<ClientCreateOrConnectWithoutUserInput>;
 
-    @Field(() => [ClientCreateOrConnectWithoutUserInput], {nullable:true})
-    connectOrCreate?: Array<ClientCreateOrConnectWithoutUserInput>;
+  @Field(() => [ClientUpsertWithWhereUniqueWithoutUserInput], {
+    nullable: true
+  })
+  upsert?: Array<ClientUpsertWithWhereUniqueWithoutUserInput>;
 
-    @Field(() => [ClientUpsertWithWhereUniqueWithoutUserInput], {nullable:true})
-    upsert?: Array<ClientUpsertWithWhereUniqueWithoutUserInput>;
+  @Field(() => ClientCreateManyUserInputEnvelope, { nullable: true })
+  createMany?: ClientCreateManyUserInputEnvelope;
 
-    @Field(() => ClientCreateManyUserInputEnvelope, {nullable:true})
-    createMany?: ClientCreateManyUserInputEnvelope;
+  @Field(() => [ClientWhereUniqueInput], { nullable: true })
+  set?: Array<ClientWhereUniqueInput>;
 
-    @Field(() => [ClientWhereUniqueInput], {nullable:true})
-    set?: Array<ClientWhereUniqueInput>;
+  @Field(() => [ClientWhereUniqueInput], { nullable: true })
+  disconnect?: Array<ClientWhereUniqueInput>;
 
-    @Field(() => [ClientWhereUniqueInput], {nullable:true})
-    disconnect?: Array<ClientWhereUniqueInput>;
+  @Field(() => [ClientWhereUniqueInput], { nullable: true })
+  delete?: Array<ClientWhereUniqueInput>;
 
-    @Field(() => [ClientWhereUniqueInput], {nullable:true})
-    delete?: Array<ClientWhereUniqueInput>;
+  @Field(() => [ClientWhereUniqueInput], { nullable: true })
+  connect?: Array<ClientWhereUniqueInput>;
 
-    @Field(() => [ClientWhereUniqueInput], {nullable:true})
-    connect?: Array<ClientWhereUniqueInput>;
+  @Field(() => [ClientUpdateWithWhereUniqueWithoutUserInput], {
+    nullable: true
+  })
+  update?: Array<ClientUpdateWithWhereUniqueWithoutUserInput>;
 
-    @Field(() => [ClientUpdateWithWhereUniqueWithoutUserInput], {nullable:true})
-    update?: Array<ClientUpdateWithWhereUniqueWithoutUserInput>;
+  @Field(() => [ClientUpdateManyWithWhereWithoutUserInput], { nullable: true })
+  updateMany?: Array<ClientUpdateManyWithWhereWithoutUserInput>;
 
-    @Field(() => [ClientUpdateManyWithWhereWithoutUserInput], {nullable:true})
-    updateMany?: Array<ClientUpdateManyWithWhereWithoutUserInput>;
-
-    @Field(() => [ClientScalarWhereInput], {nullable:true})
-    deleteMany?: Array<ClientScalarWhereInput>;
+  @Field(() => [ClientScalarWhereInput], { nullable: true })
+  deleteMany?: Array<ClientScalarWhereInput>;
 }

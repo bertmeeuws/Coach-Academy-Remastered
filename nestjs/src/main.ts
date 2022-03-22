@@ -30,7 +30,7 @@ async function bootstrap() {
       'http://localhost:3002',
       '*'
     ],
-    methods: 'GET, PUT, POST, DELETE',
+    methods: 'GET, PUT, POST, DELETE'
   });
 
   app.use(
@@ -44,9 +44,9 @@ async function bootstrap() {
         sameSite: 'lax',
         httpOnly: true,
         secure: false, //true in production or apollo playground
-        maxAge: 1000 * 60 * 60 * 24 * 7,
-      },
-    }),
+        maxAge: 1000 * 60 * 60 * 24 * 7
+      }
+    })
   );
   app.use(graphqlUploadExpress({ maxFileSize: 1000000, maxFiles: 10 }));
 

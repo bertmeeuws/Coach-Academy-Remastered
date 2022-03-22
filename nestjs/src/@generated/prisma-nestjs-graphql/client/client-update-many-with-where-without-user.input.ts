@@ -5,10 +5,9 @@ import { ClientUpdateManyMutationInput } from './client-update-many-mutation.inp
 
 @InputType()
 export class ClientUpdateManyWithWhereWithoutUserInput {
+  @Field(() => ClientScalarWhereInput, { nullable: false })
+  where!: ClientScalarWhereInput;
 
-    @Field(() => ClientScalarWhereInput, {nullable:false})
-    where!: ClientScalarWhereInput;
-
-    @Field(() => ClientUpdateManyMutationInput, {nullable:false})
-    data!: ClientUpdateManyMutationInput;
+  @Field(() => ClientUpdateManyMutationInput, { nullable: false })
+  data!: ClientUpdateManyMutationInput;
 }

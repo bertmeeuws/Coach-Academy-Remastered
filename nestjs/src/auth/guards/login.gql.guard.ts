@@ -17,7 +17,7 @@ export const LoginGuard = (strategy?: string) =>
         // Hack due to local strategy requesting to have a its fields in the "body"
         req.body = {
           ...ctx.getContext().req.body,
-          ...ctx.getContext().req.body.variables,
+          ...ctx.getContext().req.body.variables
         };
       }
       return req;

@@ -6,13 +6,12 @@ import { MealPlanUpdateInput } from './meal-plan-update.input';
 
 @ArgsType()
 export class UpsertOneMealPlanArgs {
+  @Field(() => MealPlanWhereUniqueInput, { nullable: false })
+  where!: MealPlanWhereUniqueInput;
 
-    @Field(() => MealPlanWhereUniqueInput, {nullable:false})
-    where!: MealPlanWhereUniqueInput;
+  @Field(() => MealPlanCreateInput, { nullable: false })
+  create!: MealPlanCreateInput;
 
-    @Field(() => MealPlanCreateInput, {nullable:false})
-    create!: MealPlanCreateInput;
-
-    @Field(() => MealPlanUpdateInput, {nullable:false})
-    update!: MealPlanUpdateInput;
+  @Field(() => MealPlanUpdateInput, { nullable: false })
+  update!: MealPlanUpdateInput;
 }

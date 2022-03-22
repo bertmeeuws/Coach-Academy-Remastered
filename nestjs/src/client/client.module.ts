@@ -9,6 +9,6 @@ import { ClientResolver } from './client.resolver';
 @Module({
   imports: [UsersModule, MinioClientModule],
   exports: [ClientService],
-  providers: [ClientResolver, ClientService, PrismaService],
+  providers: [ClientResolver, ClientService, PrismaService]
 })
 export class ClientModule {}

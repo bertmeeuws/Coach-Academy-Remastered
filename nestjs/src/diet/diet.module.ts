@@ -7,6 +7,13 @@ import { MealResolver } from './resolvers/meal.resolver';
 import { MealService } from './services/meal.service';
 
 @Module({
-  providers: [DietResolver, MealResolver, MealPlanService, PrismaService, FoodItemService, MealService]
+  providers: [
+    DietResolver,
+    MealResolver,
+    MealPlanService,
+    PrismaService,
+    FoodItemService,
+    MealService
+  ]
 })
 export class DietModule {}

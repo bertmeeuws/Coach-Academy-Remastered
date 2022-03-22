@@ -8,6 +8,14 @@ import { ExerciseResolver } from './resolvers/exercise.resolver';
 import { ExercisesInWorkoutResolver } from './resolvers/exercisesInWorkout.resolver';
 
 @Module({
-  providers: [WorkoutService, WorkoutResolver, PrismaService, ExerciseService, ExercisesInWorkoutService, ExerciseResolver, ExercisesInWorkoutResolver]
+  providers: [
+    WorkoutService,
+    WorkoutResolver,
+    PrismaService,
+    ExerciseService,
+    ExercisesInWorkoutService,
+    ExerciseResolver,
+    ExercisesInWorkoutResolver
+  ]
 })
 export class WorkoutModule {}

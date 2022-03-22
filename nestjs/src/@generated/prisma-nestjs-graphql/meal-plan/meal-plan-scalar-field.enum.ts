@@ -1,9 +1,11 @@
 import { registerEnumType } from '@nestjs/graphql';
 
 export enum MealPlanScalarFieldEnum {
-    id = "id",
-    coachId = "coachId"
+  id = 'id',
+  coachId = 'coachId'
 }
 
-
-registerEnumType(MealPlanScalarFieldEnum, { name: 'MealPlanScalarFieldEnum', description: undefined })
+registerEnumType(MealPlanScalarFieldEnum, {
+  name: 'MealPlanScalarFieldEnum',
+  description: undefined
+});

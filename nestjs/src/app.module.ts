@@ -3,7 +3,10 @@ import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ApolloServerPluginLandingPageLocalDefault, ApolloServerPluginLandingPageDisabled } from 'apollo-server-core';
+import {
+  ApolloServerPluginLandingPageLocalDefault,
+  ApolloServerPluginLandingPageDisabled
+} from 'apollo-server-core';
 import { UsersModule } from './users/users.module';
 import { ApolloDriver } from '@nestjs/apollo';
 import { GraphQLDateTime } from 'graphql-iso-date';
@@ -20,9 +23,8 @@ import { MinioModule } from 'nestjs-minio-client';
 import { MinioClientModule } from './minio-client/minio-client.module';
 import { DietModule } from './diet/diet.module';
 import { ConfigModule } from '@nestjs/config';
-import { GraphQLUpload } from "graphql-upload";
+import { GraphQLUpload } from 'graphql-upload';
 import { WorkoutModule } from './workout/workout.module';
-
 
 @Module({
   imports: [
@@ -41,17 +43,17 @@ import { WorkoutModule } from './workout/workout.module';
           'http://localhost:3002',
           '*'
         ],
-        methods: 'GET, PUT, POST, DELETE',
+        methods: 'GET, PUT, POST, DELETE'
       },
-      context: ({ req, res }) => ({ req, res }),
+      context: ({ req, res }) => ({ req, res })
     }),
     RedisModule.forRoot({
       closeClient: true,
       config: {
-        ...config.redis,
-      },
+        ...config.redis
+      }
     }),
-    ConfigModule.forRoot({isGlobal: true}),
+    ConfigModule.forRoot({ isGlobal: true }),
     AuthModule,
     UsersModule,
     CoachModule,
@@ -60,9 +62,9 @@ import { WorkoutModule } from './workout/workout.module';
     NotificationModule,
     MinioClientModule,
     DietModule,
-    WorkoutModule,
+    WorkoutModule
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService]
 })
 export class AppModule {}

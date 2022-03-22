@@ -8,12 +8,12 @@ import { PrismaService } from './../../prisma/prisma.service';
 export class CoachService {
   constructor(
     private prisma: PrismaService,
-    private readonly userService: UsersService,
+    private readonly userService: UsersService
   ) {}
 
   create(createCoachInput: CreateCoachInput) {
     return this.prisma.coach.create({
-      data: createCoachInput,
+      data: createCoachInput
     });
   }
 
@@ -24,17 +24,17 @@ export class CoachService {
   findOne(id: number) {
     return this.prisma.coach.findFirst({
       where: {
-        id: id,
-      },
+        id: id
+      }
     });
   }
 
-  findCoachByUserId(id: number){
+  findCoachByUserId(id: number) {
     return this.prisma.coach.findFirst({
       where: {
-        userId : id
+        userId: id
       }
-    })
+    });
   }
 
   getUser(userId: number) {

@@ -7,16 +7,15 @@ import { CoachWhereUniqueInput } from './coach-where-unique.input';
 
 @InputType()
 export class CoachUncheckedCreateNestedManyWithoutUserInput {
+  @Field(() => [CoachCreateWithoutUserInput], { nullable: true })
+  create?: Array<CoachCreateWithoutUserInput>;
 
-    @Field(() => [CoachCreateWithoutUserInput], {nullable:true})
-    create?: Array<CoachCreateWithoutUserInput>;
+  @Field(() => [CoachCreateOrConnectWithoutUserInput], { nullable: true })
+  connectOrCreate?: Array<CoachCreateOrConnectWithoutUserInput>;
 
-    @Field(() => [CoachCreateOrConnectWithoutUserInput], {nullable:true})
-    connectOrCreate?: Array<CoachCreateOrConnectWithoutUserInput>;
+  @Field(() => CoachCreateManyUserInputEnvelope, { nullable: true })
+  createMany?: CoachCreateManyUserInputEnvelope;
 
-    @Field(() => CoachCreateManyUserInputEnvelope, {nullable:true})
-    createMany?: CoachCreateManyUserInputEnvelope;
-
-    @Field(() => [CoachWhereUniqueInput], {nullable:true})
-    connect?: Array<CoachWhereUniqueInput>;
+  @Field(() => [CoachWhereUniqueInput], { nullable: true })
+  connect?: Array<CoachWhereUniqueInput>;
 }

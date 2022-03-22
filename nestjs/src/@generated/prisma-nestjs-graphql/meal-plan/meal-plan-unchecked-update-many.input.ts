@@ -5,10 +5,9 @@ import { IntFieldUpdateOperationsInput } from '../prisma/int-field-update-operat
 
 @InputType()
 export class MealPlanUncheckedUpdateManyInput {
+  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
+  id?: StringFieldUpdateOperationsInput;
 
-    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
-    id?: StringFieldUpdateOperationsInput;
-
-    @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
-    coachId?: IntFieldUpdateOperationsInput;
+  @Field(() => IntFieldUpdateOperationsInput, { nullable: true })
+  coachId?: IntFieldUpdateOperationsInput;
 }

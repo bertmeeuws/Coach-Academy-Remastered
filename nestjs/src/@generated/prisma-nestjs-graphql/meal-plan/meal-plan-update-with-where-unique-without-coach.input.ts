@@ -5,10 +5,9 @@ import { MealPlanUpdateWithoutCoachInput } from './meal-plan-update-without-coac
 
 @InputType()
 export class MealPlanUpdateWithWhereUniqueWithoutCoachInput {
+  @Field(() => MealPlanWhereUniqueInput, { nullable: false })
+  where!: MealPlanWhereUniqueInput;
 
-    @Field(() => MealPlanWhereUniqueInput, {nullable:false})
-    where!: MealPlanWhereUniqueInput;
-
-    @Field(() => MealPlanUpdateWithoutCoachInput, {nullable:false})
-    data!: MealPlanUpdateWithoutCoachInput;
+  @Field(() => MealPlanUpdateWithoutCoachInput, { nullable: false })
+  data!: MealPlanUpdateWithoutCoachInput;
 }

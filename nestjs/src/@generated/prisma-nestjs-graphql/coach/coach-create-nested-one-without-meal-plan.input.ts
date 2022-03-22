@@ -6,13 +6,12 @@ import { CoachWhereUniqueInput } from './coach-where-unique.input';
 
 @InputType()
 export class CoachCreateNestedOneWithoutMealPlanInput {
+  @Field(() => CoachCreateWithoutMealPlanInput, { nullable: true })
+  create?: CoachCreateWithoutMealPlanInput;
 
-    @Field(() => CoachCreateWithoutMealPlanInput, {nullable:true})
-    create?: CoachCreateWithoutMealPlanInput;
+  @Field(() => CoachCreateOrConnectWithoutMealPlanInput, { nullable: true })
+  connectOrCreate?: CoachCreateOrConnectWithoutMealPlanInput;
 
-    @Field(() => CoachCreateOrConnectWithoutMealPlanInput, {nullable:true})
-    connectOrCreate?: CoachCreateOrConnectWithoutMealPlanInput;
-
-    @Field(() => CoachWhereUniqueInput, {nullable:true})
-    connect?: CoachWhereUniqueInput;
+  @Field(() => CoachWhereUniqueInput, { nullable: true })
+  connect?: CoachWhereUniqueInput;
 }

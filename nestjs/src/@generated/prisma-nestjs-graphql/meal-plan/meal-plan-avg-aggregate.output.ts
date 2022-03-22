@@ -4,7 +4,6 @@ import { Float } from '@nestjs/graphql';
 
 @ObjectType()
 export class MealPlanAvgAggregate {
-
-    @Field(() => Float, {nullable:true})
-    coachId?: number;
+  @Field(() => Float, { nullable: true })
+  coachId?: number;
 }

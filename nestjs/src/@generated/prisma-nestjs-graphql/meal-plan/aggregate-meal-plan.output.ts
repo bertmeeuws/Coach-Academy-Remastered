@@ -8,19 +8,18 @@ import { MealPlanMaxAggregate } from './meal-plan-max-aggregate.output';
 
 @ObjectType()
 export class AggregateMealPlan {
+  @Field(() => MealPlanCountAggregate, { nullable: true })
+  _count?: MealPlanCountAggregate;
 
-    @Field(() => MealPlanCountAggregate, {nullable:true})
-    _count?: MealPlanCountAggregate;
+  @Field(() => MealPlanAvgAggregate, { nullable: true })
+  _avg?: MealPlanAvgAggregate;
 
-    @Field(() => MealPlanAvgAggregate, {nullable:true})
-    _avg?: MealPlanAvgAggregate;
+  @Field(() => MealPlanSumAggregate, { nullable: true })
+  _sum?: MealPlanSumAggregate;
 
-    @Field(() => MealPlanSumAggregate, {nullable:true})
-    _sum?: MealPlanSumAggregate;
+  @Field(() => MealPlanMinAggregate, { nullable: true })
+  _min?: MealPlanMinAggregate;
 
-    @Field(() => MealPlanMinAggregate, {nullable:true})
-    _min?: MealPlanMinAggregate;
-
-    @Field(() => MealPlanMaxAggregate, {nullable:true})
-    _max?: MealPlanMaxAggregate;
+  @Field(() => MealPlanMaxAggregate, { nullable: true })
+  _max?: MealPlanMaxAggregate;
 }

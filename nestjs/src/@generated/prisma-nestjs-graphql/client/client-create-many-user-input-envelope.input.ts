@@ -4,10 +4,9 @@ import { ClientCreateManyUserInput } from './client-create-many-user.input';
 
 @InputType()
 export class ClientCreateManyUserInputEnvelope {
+  @Field(() => [ClientCreateManyUserInput], { nullable: false })
+  data!: Array<ClientCreateManyUserInput>;
 
-    @Field(() => [ClientCreateManyUserInput], {nullable:false})
-    data!: Array<ClientCreateManyUserInput>;
-
-    @Field(() => Boolean, {nullable:true})
-    skipDuplicates?: boolean;
+  @Field(() => Boolean, { nullable: true })
+  skipDuplicates?: boolean;
 }

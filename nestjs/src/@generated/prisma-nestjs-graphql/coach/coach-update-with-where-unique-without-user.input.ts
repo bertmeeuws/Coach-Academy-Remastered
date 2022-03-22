@@ -5,10 +5,9 @@ import { CoachUpdateWithoutUserInput } from './coach-update-without-user.input';
 
 @InputType()
 export class CoachUpdateWithWhereUniqueWithoutUserInput {
+  @Field(() => CoachWhereUniqueInput, { nullable: false })
+  where!: CoachWhereUniqueInput;
 
-    @Field(() => CoachWhereUniqueInput, {nullable:false})
-    where!: CoachWhereUniqueInput;
-
-    @Field(() => CoachUpdateWithoutUserInput, {nullable:false})
-    data!: CoachUpdateWithoutUserInput;
+  @Field(() => CoachUpdateWithoutUserInput, { nullable: false })
+  data!: CoachUpdateWithoutUserInput;
 }

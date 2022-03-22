@@ -9,25 +9,24 @@ import { MealPlanSumOrderByAggregateInput } from './meal-plan-sum-order-by-aggre
 
 @InputType()
 export class MealPlanOrderByWithAggregationInput {
+  @Field(() => SortOrder, { nullable: true })
+  id?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    id?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  coachId?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    coachId?: keyof typeof SortOrder;
+  @Field(() => MealPlanCountOrderByAggregateInput, { nullable: true })
+  _count?: MealPlanCountOrderByAggregateInput;
 
-    @Field(() => MealPlanCountOrderByAggregateInput, {nullable:true})
-    _count?: MealPlanCountOrderByAggregateInput;
+  @Field(() => MealPlanAvgOrderByAggregateInput, { nullable: true })
+  _avg?: MealPlanAvgOrderByAggregateInput;
 
-    @Field(() => MealPlanAvgOrderByAggregateInput, {nullable:true})
-    _avg?: MealPlanAvgOrderByAggregateInput;
+  @Field(() => MealPlanMaxOrderByAggregateInput, { nullable: true })
+  _max?: MealPlanMaxOrderByAggregateInput;
 
-    @Field(() => MealPlanMaxOrderByAggregateInput, {nullable:true})
-    _max?: MealPlanMaxOrderByAggregateInput;
+  @Field(() => MealPlanMinOrderByAggregateInput, { nullable: true })
+  _min?: MealPlanMinOrderByAggregateInput;
 
-    @Field(() => MealPlanMinOrderByAggregateInput, {nullable:true})
-    _min?: MealPlanMinOrderByAggregateInput;
-
-    @Field(() => MealPlanSumOrderByAggregateInput, {nullable:true})
-    _sum?: MealPlanSumOrderByAggregateInput;
+  @Field(() => MealPlanSumOrderByAggregateInput, { nullable: true })
+  _sum?: MealPlanSumOrderByAggregateInput;
 }

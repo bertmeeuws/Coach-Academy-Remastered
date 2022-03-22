@@ -13,13 +13,12 @@ export class ClientService {
   constructor(
     private prisma: PrismaService,
     private readonly userService: UsersService,
-    private readonly _minioClientService: MinioClientService,
-  )
-  {}
+    private readonly _minioClientService: MinioClientService
+  ) {}
 
   create(createClientInput: CreateClientInput) {
     return this.prisma.client.create({
-      data: createClientInput,
+      data: createClientInput
     });
   }
 
@@ -32,23 +31,23 @@ export class ClientService {
             {
               surname: {
                 contains: filter,
-                mode: 'insensitive',
-              },
+                mode: 'insensitive'
+              }
             },
             {
               name: {
                 contains: filter,
-                mode: 'insensitive',
-              },
-            },
-          ],
-        },
+                mode: 'insensitive'
+              }
+            }
+          ]
+        }
       });
     }
     return this.prisma.client.findMany({
       where: {
-        coachId: id,
-      },
+        coachId: id
+      }
     });
   }
 
@@ -56,24 +55,24 @@ export class ClientService {
     return this.prisma.client.findFirst({
       where: {
         id: clientId,
-        coachId: coachId,
-      },
+        coachId: coachId
+      }
     });
   }
 
-  findClientByUserId(id: number){
+  findClientByUserId(id: number) {
     return this.prisma.client.findFirst({
       where: {
         userId: id
       }
-    })
+    });
   }
 
   findOne(clientId: number) {
     return this.prisma.client.findFirst({
       where: {
-        id: clientId,
-      },
+        id: clientId
+      }
     });
   }
 
@@ -82,9 +81,9 @@ export class ClientService {
   }
 
   async update(id: number, updateClientInput: UpdateClientInput) {
+    const { surname, name, address, postal, city, dob, phone, profile_image } =
+      updateClientInput;
 
-    const {surname, name, address, postal, city, dob, phone, profile_image} = updateClientInput;
-  
     const updated = await this.prisma.client.update({
       where: {
         id: id
@@ -96,30 +95,29 @@ export class ClientService {
         postal,
         city,
         dob,
-        phone,
+        phone
       }
-    })
+    });
 
-    console.log("inside upload")
+    console.log('inside upload');
 
-
-    if(profile_image){
-      const upload_url = await this._minioClientService.upload(await profile_image)
+    if (profile_image) {
+      const upload_url = await this._minioClientService.upload(
+        await profile_image
+      );
       await this.prisma.user.update({
         where: {
           id: updated.userId
         },
         data: {
-            profile_image: upload_url.path
+          profile_image: upload_url.path
         }
-      })
-
+      });
     }
-    return true
+    return true;
   }
 
   remove(id: number) {
     return `This action removes a #${id} client`;
   }
-
 }

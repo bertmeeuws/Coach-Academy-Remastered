@@ -7,16 +7,15 @@ import { ClientWhereUniqueInput } from './client-where-unique.input';
 
 @InputType()
 export class ClientUncheckedCreateNestedManyWithoutUserInput {
+  @Field(() => [ClientCreateWithoutUserInput], { nullable: true })
+  create?: Array<ClientCreateWithoutUserInput>;
 
-    @Field(() => [ClientCreateWithoutUserInput], {nullable:true})
-    create?: Array<ClientCreateWithoutUserInput>;
+  @Field(() => [ClientCreateOrConnectWithoutUserInput], { nullable: true })
+  connectOrCreate?: Array<ClientCreateOrConnectWithoutUserInput>;
 
-    @Field(() => [ClientCreateOrConnectWithoutUserInput], {nullable:true})
-    connectOrCreate?: Array<ClientCreateOrConnectWithoutUserInput>;
+  @Field(() => ClientCreateManyUserInputEnvelope, { nullable: true })
+  createMany?: ClientCreateManyUserInputEnvelope;
 
-    @Field(() => ClientCreateManyUserInputEnvelope, {nullable:true})
-    createMany?: ClientCreateManyUserInputEnvelope;
-
-    @Field(() => [ClientWhereUniqueInput], {nullable:true})
-    connect?: Array<ClientWhereUniqueInput>;
+  @Field(() => [ClientWhereUniqueInput], { nullable: true })
+  connect?: Array<ClientWhereUniqueInput>;
 }

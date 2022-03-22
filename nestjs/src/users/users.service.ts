@@ -11,7 +11,7 @@ import { Redis } from 'ioredis';
 export class UsersService {
   constructor(
     private prisma: PrismaService,
-    @InjectRedis('default') private readonly client: Redis,
+    @InjectRedis('default') private readonly client: Redis
   ) {}
 
   async create(createUserInput: UserCreateInput) {
@@ -20,11 +20,11 @@ export class UsersService {
 
     const data: UserCreateInput = {
       ...createUserInput,
-      password: hashed,
+      password: hashed
     };
 
     return this.prisma.user.create({
-      data,
+      data
     });
   }
 
@@ -36,16 +36,16 @@ export class UsersService {
   findOne(id: number) {
     return this.prisma.user.findUnique({
       where: {
-        id: id,
-      },
+        id: id
+      }
     });
   }
 
   findByEmail(email: string) {
     return this.prisma.user.findFirst({
       where: {
-        email: email,
-      },
+        email: email
+      }
     });
   }
 

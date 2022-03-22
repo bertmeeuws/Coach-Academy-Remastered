@@ -9,10 +9,10 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     MinioModule.registerAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => minio_config,
-      inject: [ConfigService],
-    }),
+      inject: [ConfigService]
+    })
   ],
   providers: [MinioClientService],
-  exports: [MinioClientService],
+  exports: [MinioClientService]
 })
 export class MinioClientModule {}

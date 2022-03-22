@@ -5,13 +5,12 @@ import { CoachOrderByWithRelationInput } from '../coach/coach-order-by-with-rela
 
 @InputType()
 export class MealPlanOrderByWithRelationInput {
+  @Field(() => SortOrder, { nullable: true })
+  id?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    id?: keyof typeof SortOrder;
+  @Field(() => CoachOrderByWithRelationInput, { nullable: true })
+  coach?: CoachOrderByWithRelationInput;
 
-    @Field(() => CoachOrderByWithRelationInput, {nullable:true})
-    coach?: CoachOrderByWithRelationInput;
-
-    @Field(() => SortOrder, {nullable:true})
-    coachId?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  coachId?: keyof typeof SortOrder;
 }

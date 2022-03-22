@@ -6,13 +6,12 @@ import { MealWhereUniqueInput } from './meal-where-unique.input';
 
 @InputType()
 export class MealCreateNestedOneWithoutFoodsInput {
+  @Field(() => MealCreateWithoutFoodsInput, { nullable: true })
+  create?: MealCreateWithoutFoodsInput;
 
-    @Field(() => MealCreateWithoutFoodsInput, {nullable:true})
-    create?: MealCreateWithoutFoodsInput;
+  @Field(() => MealCreateOrConnectWithoutFoodsInput, { nullable: true })
+  connectOrCreate?: MealCreateOrConnectWithoutFoodsInput;
 
-    @Field(() => MealCreateOrConnectWithoutFoodsInput, {nullable:true})
-    connectOrCreate?: MealCreateOrConnectWithoutFoodsInput;
-
-    @Field(() => MealWhereUniqueInput, {nullable:true})
-    connect?: MealWhereUniqueInput;
+  @Field(() => MealWhereUniqueInput, { nullable: true })
+  connect?: MealWhereUniqueInput;
 }

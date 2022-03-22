@@ -4,7 +4,6 @@ import { MealPlanWhereInput } from './meal-plan-where.input';
 
 @ArgsType()
 export class DeleteManyMealPlanArgs {
-
-    @Field(() => MealPlanWhereInput, {nullable:true})
-    where?: MealPlanWhereInput;
+  @Field(() => MealPlanWhereInput, { nullable: true })
+  where?: MealPlanWhereInput;
 }

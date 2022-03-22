@@ -11,37 +11,36 @@ import { CoachScalarWhereInput } from './coach-scalar-where.input';
 
 @InputType()
 export class CoachUpdateManyWithoutUserInput {
+  @Field(() => [CoachCreateWithoutUserInput], { nullable: true })
+  create?: Array<CoachCreateWithoutUserInput>;
 
-    @Field(() => [CoachCreateWithoutUserInput], {nullable:true})
-    create?: Array<CoachCreateWithoutUserInput>;
+  @Field(() => [CoachCreateOrConnectWithoutUserInput], { nullable: true })
+  connectOrCreate?: Array<CoachCreateOrConnectWithoutUserInput>;
 
-    @Field(() => [CoachCreateOrConnectWithoutUserInput], {nullable:true})
-    connectOrCreate?: Array<CoachCreateOrConnectWithoutUserInput>;
+  @Field(() => [CoachUpsertWithWhereUniqueWithoutUserInput], { nullable: true })
+  upsert?: Array<CoachUpsertWithWhereUniqueWithoutUserInput>;
 
-    @Field(() => [CoachUpsertWithWhereUniqueWithoutUserInput], {nullable:true})
-    upsert?: Array<CoachUpsertWithWhereUniqueWithoutUserInput>;
+  @Field(() => CoachCreateManyUserInputEnvelope, { nullable: true })
+  createMany?: CoachCreateManyUserInputEnvelope;
 
-    @Field(() => CoachCreateManyUserInputEnvelope, {nullable:true})
-    createMany?: CoachCreateManyUserInputEnvelope;
+  @Field(() => [CoachWhereUniqueInput], { nullable: true })
+  set?: Array<CoachWhereUniqueInput>;
 
-    @Field(() => [CoachWhereUniqueInput], {nullable:true})
-    set?: Array<CoachWhereUniqueInput>;
+  @Field(() => [CoachWhereUniqueInput], { nullable: true })
+  disconnect?: Array<CoachWhereUniqueInput>;
 
-    @Field(() => [CoachWhereUniqueInput], {nullable:true})
-    disconnect?: Array<CoachWhereUniqueInput>;
+  @Field(() => [CoachWhereUniqueInput], { nullable: true })
+  delete?: Array<CoachWhereUniqueInput>;
 
-    @Field(() => [CoachWhereUniqueInput], {nullable:true})
-    delete?: Array<CoachWhereUniqueInput>;
+  @Field(() => [CoachWhereUniqueInput], { nullable: true })
+  connect?: Array<CoachWhereUniqueInput>;
 
-    @Field(() => [CoachWhereUniqueInput], {nullable:true})
-    connect?: Array<CoachWhereUniqueInput>;
+  @Field(() => [CoachUpdateWithWhereUniqueWithoutUserInput], { nullable: true })
+  update?: Array<CoachUpdateWithWhereUniqueWithoutUserInput>;
 
-    @Field(() => [CoachUpdateWithWhereUniqueWithoutUserInput], {nullable:true})
-    update?: Array<CoachUpdateWithWhereUniqueWithoutUserInput>;
+  @Field(() => [CoachUpdateManyWithWhereWithoutUserInput], { nullable: true })
+  updateMany?: Array<CoachUpdateManyWithWhereWithoutUserInput>;
 
-    @Field(() => [CoachUpdateManyWithWhereWithoutUserInput], {nullable:true})
-    updateMany?: Array<CoachUpdateManyWithWhereWithoutUserInput>;
-
-    @Field(() => [CoachScalarWhereInput], {nullable:true})
-    deleteMany?: Array<CoachScalarWhereInput>;
+  @Field(() => [CoachScalarWhereInput], { nullable: true })
+  deleteMany?: Array<CoachScalarWhereInput>;
 }

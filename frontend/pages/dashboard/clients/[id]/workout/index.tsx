@@ -8,6 +8,7 @@ import WorkoutTableItem from "../../../../../components/Workout/WorkoutTableItem
 import { WORKOUT } from "../../../../../types/workout";
 import Breadcrumbs from "../../../../../ui/Breadcrumbs";
 import HOCSection from "../../../../../ui/HOCSection";
+import Spinner from "../../../../../ui/Spinner";
 
 export default function index() {
   const [workout, setWorkout] = React.useState<WORKOUT[]>([
@@ -95,7 +96,9 @@ export default function index() {
                 </article>
               ))}
             </div>
-            <Exercise_list />
+            <React.Suspense fallback={<Spinner />}>
+              <Exercise_list />
+            </React.Suspense>
           </div>
         </HOCSection>
       </Sidebar>

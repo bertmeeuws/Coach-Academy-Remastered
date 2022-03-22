@@ -16,7 +16,7 @@ export class AuthService {
     private prisma: PrismaService,
     private readonly userService: UsersService,
     private readonly coachService: CoachService,
-    private readonly clientService: ClientService,
+    private readonly clientService: ClientService
   ) {}
 
   async login(createLogin: CreateLoginInput, ctx: MyContext): Promise<number> {
@@ -29,20 +29,19 @@ export class AuthService {
       throw new GraphQLError('Login not valid');
     }
 
-
-    switch(user.role){
+    switch (user.role) {
       case ENUM_USER_ROLES.CLIENT:
-        const client = (await this.clientService.findClientByUserId(user.id));
-        if(!client){
-          throw new GraphQLError("Something went wrong")
+        const client = await this.clientService.findClientByUserId(user.id);
+        if (!client) {
+          throw new GraphQLError('Something went wrong');
         }
         (ctx.req.session as any)['role'] = user.role;
         (ctx.req.session as any)['typeId'] = client.id;
         break;
       case ENUM_USER_ROLES.CLIENT:
         const coach = await this.coachService.findCoachByUserId(user.id);
-        if(!coach){
-          throw new GraphQLError("Something went wrong")
+        if (!coach) {
+          throw new GraphQLError('Something went wrong');
         }
         (ctx.req.session as any)['role'] = user.role;
         (ctx.req.session as any)['typeId'] = coach.id;
@@ -50,13 +49,13 @@ export class AuthService {
     }
 
     (ctx.req.session as any)['userId'] = user.id;
-  
+
     return user.id;
   }
 
   async register(
     registerUserInput: RegisterUserInput,
-    ctx: MyContext,
+    ctx: MyContext
   ): Promise<boolean> {
     console.log(registerUserInput);
 
@@ -69,7 +68,7 @@ export class AuthService {
     const createdUser = await this.userService.create({
       email,
       password,
-      role: type,
+      role: type
     });
 
     console.log(createdUser);
@@ -78,7 +77,7 @@ export class AuthService {
       const coach = await this.coachService.create({
         surname,
         name,
-        userId: createdUser.id,
+        userId: createdUser.id
       });
       (ctx.req.session as any)['userId'] = createdUser.id;
       (ctx.req.session as any)['role'] = type;
@@ -90,7 +89,7 @@ export class AuthService {
       const client = await this.clientService.create({
         surname: surname,
         name: name,
-        userId: createdUser.id,
+        userId: createdUser.id
       });
       (ctx.req.session as any)['userId'] = createdUser.id;
       (ctx.req.session as any)['role'] = type;

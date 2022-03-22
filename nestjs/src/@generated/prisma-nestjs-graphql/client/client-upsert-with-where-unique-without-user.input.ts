@@ -6,13 +6,12 @@ import { ClientCreateWithoutUserInput } from './client-create-without-user.input
 
 @InputType()
 export class ClientUpsertWithWhereUniqueWithoutUserInput {
+  @Field(() => ClientWhereUniqueInput, { nullable: false })
+  where!: ClientWhereUniqueInput;
 
-    @Field(() => ClientWhereUniqueInput, {nullable:false})
-    where!: ClientWhereUniqueInput;
+  @Field(() => ClientUpdateWithoutUserInput, { nullable: false })
+  update!: ClientUpdateWithoutUserInput;
 
-    @Field(() => ClientUpdateWithoutUserInput, {nullable:false})
-    update!: ClientUpdateWithoutUserInput;
-
-    @Field(() => ClientCreateWithoutUserInput, {nullable:false})
-    create!: ClientCreateWithoutUserInput;
+  @Field(() => ClientCreateWithoutUserInput, { nullable: false })
+  create!: ClientCreateWithoutUserInput;
 }

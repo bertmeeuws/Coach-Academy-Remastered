@@ -13,37 +13,36 @@ import { MealPlanMaxAggregateInput } from './meal-plan-max-aggregate.input';
 
 @ArgsType()
 export class MealPlanGroupByArgs {
+  @Field(() => MealPlanWhereInput, { nullable: true })
+  where?: MealPlanWhereInput;
 
-    @Field(() => MealPlanWhereInput, {nullable:true})
-    where?: MealPlanWhereInput;
+  @Field(() => [MealPlanOrderByWithAggregationInput], { nullable: true })
+  orderBy?: Array<MealPlanOrderByWithAggregationInput>;
 
-    @Field(() => [MealPlanOrderByWithAggregationInput], {nullable:true})
-    orderBy?: Array<MealPlanOrderByWithAggregationInput>;
+  @Field(() => [MealPlanScalarFieldEnum], { nullable: false })
+  by!: Array<keyof typeof MealPlanScalarFieldEnum>;
 
-    @Field(() => [MealPlanScalarFieldEnum], {nullable:false})
-    by!: Array<keyof typeof MealPlanScalarFieldEnum>;
+  @Field(() => MealPlanScalarWhereWithAggregatesInput, { nullable: true })
+  having?: MealPlanScalarWhereWithAggregatesInput;
 
-    @Field(() => MealPlanScalarWhereWithAggregatesInput, {nullable:true})
-    having?: MealPlanScalarWhereWithAggregatesInput;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 
-    @Field(() => Int, {nullable:true})
-    skip?: number;
+  @Field(() => MealPlanCountAggregateInput, { nullable: true })
+  _count?: MealPlanCountAggregateInput;
 
-    @Field(() => MealPlanCountAggregateInput, {nullable:true})
-    _count?: MealPlanCountAggregateInput;
+  @Field(() => MealPlanAvgAggregateInput, { nullable: true })
+  _avg?: MealPlanAvgAggregateInput;
 
-    @Field(() => MealPlanAvgAggregateInput, {nullable:true})
-    _avg?: MealPlanAvgAggregateInput;
+  @Field(() => MealPlanSumAggregateInput, { nullable: true })
+  _sum?: MealPlanSumAggregateInput;
 
-    @Field(() => MealPlanSumAggregateInput, {nullable:true})
-    _sum?: MealPlanSumAggregateInput;
+  @Field(() => MealPlanMinAggregateInput, { nullable: true })
+  _min?: MealPlanMinAggregateInput;
 
-    @Field(() => MealPlanMinAggregateInput, {nullable:true})
-    _min?: MealPlanMinAggregateInput;
-
-    @Field(() => MealPlanMaxAggregateInput, {nullable:true})
-    _max?: MealPlanMaxAggregateInput;
+  @Field(() => MealPlanMaxAggregateInput, { nullable: true })
+  _max?: MealPlanMaxAggregateInput;
 }

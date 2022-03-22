@@ -5,11 +5,12 @@ import { DietplanCreateInput } from 'src/@generated/prisma-nestjs-graphql/dietpl
 import { CreateDietplanInput } from 'src/graphql';
 import { MealPlanService } from './services/diet.service';
 
-
-
-@Resolver("Dietplan")
+@Resolver('Dietplan')
 export class DietResolver {
-  constructor(private readonly _dietService: MealPlanService, private _prisma: PrismaService) {}
+  constructor(
+    private readonly _dietService: MealPlanService,
+    private _prisma: PrismaService
+  ) {}
 
   @Mutation('createDietplan')
   create(@Args('createDiet') createDiet: DietplanCreateInput) {
@@ -18,7 +19,7 @@ export class DietResolver {
 
   @Query('diets')
   findAll() {
-    return this._dietService.findAll()
+    return this._dietService.findAll();
   }
 
   @Query('diet')

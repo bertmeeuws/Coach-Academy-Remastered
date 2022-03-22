@@ -6,22 +6,21 @@ import { IntFilter } from '../prisma/int-filter.input';
 
 @InputType()
 export class MealPlanWhereInput {
+  @Field(() => [MealPlanWhereInput], { nullable: true })
+  AND?: Array<MealPlanWhereInput>;
 
-    @Field(() => [MealPlanWhereInput], {nullable:true})
-    AND?: Array<MealPlanWhereInput>;
+  @Field(() => [MealPlanWhereInput], { nullable: true })
+  OR?: Array<MealPlanWhereInput>;
 
-    @Field(() => [MealPlanWhereInput], {nullable:true})
-    OR?: Array<MealPlanWhereInput>;
+  @Field(() => [MealPlanWhereInput], { nullable: true })
+  NOT?: Array<MealPlanWhereInput>;
 
-    @Field(() => [MealPlanWhereInput], {nullable:true})
-    NOT?: Array<MealPlanWhereInput>;
+  @Field(() => StringFilter, { nullable: true })
+  id?: StringFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    id?: StringFilter;
+  @Field(() => CoachRelationFilter, { nullable: true })
+  coach?: CoachRelationFilter;
 
-    @Field(() => CoachRelationFilter, {nullable:true})
-    coach?: CoachRelationFilter;
-
-    @Field(() => IntFilter, {nullable:true})
-    coachId?: IntFilter;
+  @Field(() => IntFilter, { nullable: true })
+  coachId?: IntFilter;
 }

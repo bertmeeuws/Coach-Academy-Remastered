@@ -14,3 +14,27 @@ export interface WORKOUT_ITEM {
   notes?: string;
   audio?: string;
 }
+
+export enum ENUM_MUSLCE_GROUP {
+  CHEST = "CHEST",
+  BICEPS = "BICEPS",
+  TRICPS = "TRICEPS",
+  SHOULDERS = "SHOULDERS",
+  TRAPS = "TRAPS",
+  BACK = "BACK",
+  QUADRICEPS = "QAUDRICEPS",
+  HAMSTRINGS = "HAMSTRINGS",
+  CALVES = "CALVES",
+  GLUTES = "GLUTES",
+}
+
+export interface EXECISE_ITEM {
+  id: string;
+  name: string;
+  createdAt: Date;
+  primary_muscle: ENUM_MUSLCE_GROUP;
+  image: string;
+  video?: string;
+  secondary_muscles: ENUM_MUSLCE_GROUP[];
+  __typename: string;
+}

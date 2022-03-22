@@ -5,10 +5,9 @@ import { CoachCreateWithoutMealPlanInput } from './coach-create-without-meal-pla
 
 @InputType()
 export class CoachCreateOrConnectWithoutMealPlanInput {
+  @Field(() => CoachWhereUniqueInput, { nullable: false })
+  where!: CoachWhereUniqueInput;
 
-    @Field(() => CoachWhereUniqueInput, {nullable:false})
-    where!: CoachWhereUniqueInput;
-
-    @Field(() => CoachCreateWithoutMealPlanInput, {nullable:false})
-    create!: CoachCreateWithoutMealPlanInput;
+  @Field(() => CoachCreateWithoutMealPlanInput, { nullable: false })
+  create!: CoachCreateWithoutMealPlanInput;
 }

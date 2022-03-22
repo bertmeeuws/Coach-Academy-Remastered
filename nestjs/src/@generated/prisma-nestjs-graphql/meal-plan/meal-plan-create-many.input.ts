@@ -4,10 +4,9 @@ import { Int } from '@nestjs/graphql';
 
 @InputType()
 export class MealPlanCreateManyInput {
+  @Field(() => String, { nullable: true })
+  id?: string;
 
-    @Field(() => String, {nullable:true})
-    id?: string;
-
-    @Field(() => Int, {nullable:false})
-    coachId!: number;
+  @Field(() => Int, { nullable: false })
+  coachId!: number;
 }

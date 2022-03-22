@@ -2,7 +2,7 @@ import { MinioClientService } from './../minio-client/minio-client.service';
 import {
   GetClientId,
   GetCoachId,
-  isUserCoach,
+  isUserCoach
 } from './../auth/decorators/getuserid.decorator';
 import { Req, Session, UseGuards, UseInterceptors } from '@nestjs/common';
 import {
@@ -12,7 +12,7 @@ import {
   Args,
   Parent,
   ResolveField,
-  Context,
+  Context
 } from '@nestjs/graphql';
 import { ClientService } from './client.service';
 import { Client } from 'src/@generated/prisma-nestjs-graphql/client/client.model';
@@ -26,7 +26,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 export class ClientResolver {
   constructor(
     private readonly clientService: ClientService,
-    private minioClientService: MinioClientService,
+    private minioClientService: MinioClientService
   ) {}
 
   @Mutation('createClient')
@@ -40,10 +40,8 @@ export class ClientResolver {
     @Context() ctx: MyContext,
     @GetUserId() userId: number,
     @GetCoachId() coachId: number,
-    @Args('filter') filter: string,
+    @Args('filter') filter: string
   ) {
-  
-
     return this.clientService.findAll(coachId, filter);
   }
 
@@ -56,55 +54,52 @@ export class ClientResolver {
     @isUserCoach() isCoach: boolean,
     @Context() context
   ) {
-    console.log(clientId)
+    console.log(clientId);
     if (isCoach) {
       return this.clientService.findOneAsCoach(clientId, coachId);
     }
-  
-    if(clientId){
+
+    if (clientId) {
       return this.clientService.findOne(id);
     }
-    return this.clientService.findOne(id)
-    console.log(context.req.session)
+    return this.clientService.findOne(id);
+    console.log(context.req.session);
     return this.clientService.findOne(clientId);
   }
 
   @UseGuards(AuthGuard)
   @Query('getClientInformation')
-  getClientInformation(@GetClientId() client_id: number){
-    return this.clientService.getUser(client_id)
+  getClientInformation(@GetClientId() client_id: number) {
+    return this.clientService.getUser(client_id);
   }
-
 
   @ResolveField()
   user(@Parent() client: Client) {
     return this.clientService.getUser(client.userId);
   }
 
-  
   //@Todo add email
   @UseGuards(AuthGuard)
   @Mutation('updateClient')
-  async update(@Args('updateClientInput') updateClientInput: UpdateClientInput, @GetClientId() client_id: number) {
+  async update(
+    @Args('updateClientInput') updateClientInput: UpdateClientInput,
+    @GetClientId() client_id: number
+  ) {
     //console.log(updateClientInput, client_id)
     await this.clientService.update(client_id, updateClientInput);
-    return true
+    return true;
   }
-  
-  
+
   @Mutation('removeClient')
   remove(@Args('id') id: number) {
     return this.clientService.remove(id);
   }
 
-
-
   @Mutation('fileUpload')
-  async file(@Args('file') upload: Upload){
+  async file(@Args('file') upload: Upload) {
+    const uploaded_image = await this.minioClientService.upload(upload);
+    console.log(uploaded_image);
 
-    const uploaded_image = await this.minioClientService.upload(upload)
-    console.log(uploaded_image)
-  
-    return true
+    return true;
   }
 }

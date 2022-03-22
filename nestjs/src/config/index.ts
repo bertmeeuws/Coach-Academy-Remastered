@@ -3,8 +3,8 @@ export const config = {
     namespace: 'default',
     host: 'localhost',
     port: 6379,
-    password: 'MDNcVb924a',
-  } as { namespace: string; host: string; port: number; password: string },
+    password: 'MDNcVb924a'
+  } as { namespace: string; host: string; port: number; password: string }
 };
 
 export const minio_config = {
@@ -12,5 +12,5 @@ export const minio_config = {
   port: 9000,
   useSSL: false,
   accessKey: 'minio',
-  secretKey: 'minio123',
+  secretKey: 'minio123'
 };

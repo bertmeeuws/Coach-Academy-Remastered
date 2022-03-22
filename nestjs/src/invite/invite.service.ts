@@ -7,16 +7,15 @@ export class InviteService {
   constructor(private _prisma: PrismaService) {}
 
   create(coachId: number) {
-   
     return this._prisma.invite.create({
       data: {
-        coachId: coachId,
-      },
+        coachId: coachId
+      }
     });
   }
 
   findAll() {
-    return this._prisma.invite.findMany()
+    return this._prisma.invite.findMany();
   }
 
   findOne(id: string) {
@@ -24,7 +23,7 @@ export class InviteService {
       where: {
         id: id
       }
-    })
+    });
   }
 
   update(id: number, updateInviteInput: UpdateInviteInput) {
@@ -35,14 +34,13 @@ export class InviteService {
     return `This action removes a #${id} invite`;
   }
 
-  async invalidateInvite(invite_id: string, client_id: number){
+  async invalidateInvite(invite_id: string, client_id: number) {
     //aka use invite
     const invite = await this._prisma.invite.findFirst({
       where: {
         id: invite_id
       }
-    })
-
+    });
 
     await this._prisma.client.update({
       where: {
@@ -52,7 +50,7 @@ export class InviteService {
         inviteId: invite_id,
         coachId: invite.coachId
       }
-    })
+    });
 
     await this._prisma.invite.update({
       where: {
@@ -61,8 +59,8 @@ export class InviteService {
       data: {
         invalidated: new Date()
       }
-    })
-    
-    return true
+    });
+
+    return true;
   }
 }

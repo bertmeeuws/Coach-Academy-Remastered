@@ -6,13 +6,12 @@ import { Int } from '@nestjs/graphql';
 
 @ObjectType()
 export class MealPlan {
+  @Field(() => ID, { nullable: false })
+  id!: string;
 
-    @Field(() => ID, {nullable:false})
-    id!: string;
+  @Field(() => Coach, { nullable: false })
+  coach?: Coach;
 
-    @Field(() => Coach, {nullable:false})
-    coach?: Coach;
-
-    @Field(() => Int, {nullable:false})
-    coachId!: number;
+  @Field(() => Int, { nullable: false })
+  coachId!: number;
 }

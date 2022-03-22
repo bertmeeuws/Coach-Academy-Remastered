@@ -8,7 +8,7 @@ export const GET_INVITE_BY_ID = gql`
       coach {
         name
         surname
-        user{
+        user {
           profile_image
           email
         }
@@ -16,4 +16,3 @@ export const GET_INVITE_BY_ID = gql`
     }
   }
 `;
-

@@ -4,27 +4,29 @@ import { WorkoutCreateInput } from 'src/@generated/prisma-nestjs-graphql/workout
 import { ExercisesInWorkoutService } from '../services/exercisesInWorkout.service';
 import { WorkoutService } from '../workout.service';
 
-
-@Resolver("ExercisesInWorkout")
+@Resolver('ExercisesInWorkout')
 export class ExercisesInWorkoutResolver {
-  constructor(private readonly _exercisesInWorkoutService: ExercisesInWorkoutService) {}
+  constructor(
+    private readonly _exercisesInWorkoutService: ExercisesInWorkoutService
+  ) {}
 
+  @Query('exercisesInWorkouts')
+  findAll() {
+    return this._exercisesInWorkoutService.findAll();
+  }
 
-  @Query("exercisesInWorkouts")
-    findAll(){
-        return this._exercisesInWorkoutService.findAll()
-    }
+  @Query('exerciseInWorkout')
+  findOne(@Args('createWorkoutInput') id: number) {
+    return this._exercisesInWorkoutService.findOne(id);
+  }
 
-    @Query("exerciseInWorkout")
-    findOne(@Args("createWorkoutInput") id: number){
-        return this._exercisesInWorkoutService.findOne(id)
-    }
-
-    @Mutation("createExerciseInWorkout")
-    createOne(@Args("createExerciseInWorkoutInput") createExerciseInWorkoutInput: ExerciseInWorkoutCreateInput){
-        return this._exercisesInWorkoutService.createOne(createExerciseInWorkoutInput)
-    }
-
-
-
+  @Mutation('createExerciseInWorkout')
+  createOne(
+    @Args('createExerciseInWorkoutInput')
+    createExerciseInWorkoutInput: ExerciseInWorkoutCreateInput
+  ) {
+    return this._exercisesInWorkoutService.createOne(
+      createExerciseInWorkoutInput
+    );
+  }
 }

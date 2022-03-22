@@ -4,7 +4,6 @@ import { MealPlanCreateInput } from './meal-plan-create.input';
 
 @ArgsType()
 export class CreateOneMealPlanArgs {
-
-    @Field(() => MealPlanCreateInput, {nullable:false})
-    data!: MealPlanCreateInput;
+  @Field(() => MealPlanCreateInput, { nullable: false })
+  data!: MealPlanCreateInput;
 }

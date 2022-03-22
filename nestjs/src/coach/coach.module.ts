@@ -7,6 +7,6 @@ import { CoachResolver } from './coach.resolver';
 @Module({
   imports: [UsersModule],
   exports: [CoachService],
-  providers: [CoachResolver, CoachService, PrismaService],
+  providers: [CoachResolver, CoachService, PrismaService]
 })
 export class CoachModule {}

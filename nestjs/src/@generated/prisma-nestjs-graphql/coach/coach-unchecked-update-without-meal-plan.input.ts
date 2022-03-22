@@ -7,22 +7,21 @@ import { InviteUncheckedUpdateManyWithoutCoachInput } from '../invite/invite-unc
 
 @InputType()
 export class CoachUncheckedUpdateWithoutMealPlanInput {
+  @Field(() => IntFieldUpdateOperationsInput, { nullable: true })
+  id?: IntFieldUpdateOperationsInput;
 
-    @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
-    id?: IntFieldUpdateOperationsInput;
+  @Field(() => IntFieldUpdateOperationsInput, { nullable: true })
+  userId?: IntFieldUpdateOperationsInput;
 
-    @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
-    userId?: IntFieldUpdateOperationsInput;
+  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
+  surname?: StringFieldUpdateOperationsInput;
 
-    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
-    surname?: StringFieldUpdateOperationsInput;
+  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
+  name?: StringFieldUpdateOperationsInput;
 
-    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
-    name?: StringFieldUpdateOperationsInput;
+  @Field(() => ClientUncheckedUpdateManyWithoutCoachInput, { nullable: true })
+  clients?: ClientUncheckedUpdateManyWithoutCoachInput;
 
-    @Field(() => ClientUncheckedUpdateManyWithoutCoachInput, {nullable:true})
-    clients?: ClientUncheckedUpdateManyWithoutCoachInput;
-
-    @Field(() => InviteUncheckedUpdateManyWithoutCoachInput, {nullable:true})
-    Invite?: InviteUncheckedUpdateManyWithoutCoachInput;
+  @Field(() => InviteUncheckedUpdateManyWithoutCoachInput, { nullable: true })
+  Invite?: InviteUncheckedUpdateManyWithoutCoachInput;
 }

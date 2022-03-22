@@ -4,13 +4,12 @@ import { SortOrder } from '../prisma/sort-order.enum';
 
 @InputType()
 export class FoodItemSumOrderByAggregateInput {
+  @Field(() => SortOrder, { nullable: true })
+  carbs?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    carbs?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  protein?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    protein?: keyof typeof SortOrder;
-
-    @Field(() => SortOrder, {nullable:true})
-    fat?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  fat?: keyof typeof SortOrder;
 }

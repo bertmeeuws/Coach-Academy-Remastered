@@ -4,10 +4,9 @@ import { CoachCreateManyUserInput } from './coach-create-many-user.input';
 
 @InputType()
 export class CoachCreateManyUserInputEnvelope {
+  @Field(() => [CoachCreateManyUserInput], { nullable: false })
+  data!: Array<CoachCreateManyUserInput>;
 
-    @Field(() => [CoachCreateManyUserInput], {nullable:false})
-    data!: Array<CoachCreateManyUserInput>;
-
-    @Field(() => Boolean, {nullable:true})
-    skipDuplicates?: boolean;
+  @Field(() => Boolean, { nullable: true })
+  skipDuplicates?: boolean;
 }

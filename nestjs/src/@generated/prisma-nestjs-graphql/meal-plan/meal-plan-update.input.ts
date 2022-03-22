@@ -5,10 +5,9 @@ import { CoachUpdateOneRequiredWithoutMealPlanInput } from '../coach/coach-updat
 
 @InputType()
 export class MealPlanUpdateInput {
+  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
+  id?: StringFieldUpdateOperationsInput;
 
-    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
-    id?: StringFieldUpdateOperationsInput;
-
-    @Field(() => CoachUpdateOneRequiredWithoutMealPlanInput, {nullable:true})
-    coach?: CoachUpdateOneRequiredWithoutMealPlanInput;
+  @Field(() => CoachUpdateOneRequiredWithoutMealPlanInput, { nullable: true })
+  coach?: CoachUpdateOneRequiredWithoutMealPlanInput;
 }

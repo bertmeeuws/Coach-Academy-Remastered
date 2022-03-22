@@ -6,7 +6,7 @@ describe('MinioClientService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [MinioClientService],
+      providers: [MinioClientService]
     }).compile();
 
     service = module.get<MinioClientService>(MinioClientService);

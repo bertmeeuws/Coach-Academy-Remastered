@@ -8,7 +8,7 @@ import {
   Mutation,
   Args,
   ResolveField,
-  Parent,
+  Parent
 } from '@nestjs/graphql';
 import { CoachService } from './coach.service';
 import { CoachCreateInput } from '../@generated/prisma-nestjs-graphql/coach/coach-create.input';

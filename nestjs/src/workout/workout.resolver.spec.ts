@@ -6,7 +6,7 @@ describe('WorkoutResolver', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [WorkoutResolver],
+      providers: [WorkoutResolver]
     }).compile();
 
     resolver = module.get<WorkoutResolver>(WorkoutResolver);

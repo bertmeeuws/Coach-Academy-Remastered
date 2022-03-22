@@ -7,19 +7,18 @@ import { InviteUpdateManyWithoutCoachInput } from '../invite/invite-update-many-
 
 @InputType()
 export class CoachUpdateWithoutMealPlanInput {
+  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
+  surname?: StringFieldUpdateOperationsInput;
 
-    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
-    surname?: StringFieldUpdateOperationsInput;
+  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
+  name?: StringFieldUpdateOperationsInput;
 
-    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
-    name?: StringFieldUpdateOperationsInput;
+  @Field(() => UserUpdateOneRequiredWithoutCoachInput, { nullable: true })
+  user?: UserUpdateOneRequiredWithoutCoachInput;
 
-    @Field(() => UserUpdateOneRequiredWithoutCoachInput, {nullable:true})
-    user?: UserUpdateOneRequiredWithoutCoachInput;
+  @Field(() => ClientUpdateManyWithoutCoachInput, { nullable: true })
+  clients?: ClientUpdateManyWithoutCoachInput;
 
-    @Field(() => ClientUpdateManyWithoutCoachInput, {nullable:true})
-    clients?: ClientUpdateManyWithoutCoachInput;
-
-    @Field(() => InviteUpdateManyWithoutCoachInput, {nullable:true})
-    Invite?: InviteUpdateManyWithoutCoachInput;
+  @Field(() => InviteUpdateManyWithoutCoachInput, { nullable: true })
+  Invite?: InviteUpdateManyWithoutCoachInput;
 }

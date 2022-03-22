@@ -4,10 +4,9 @@ import { MealPlanCreateManyCoachInput } from './meal-plan-create-many-coach.inpu
 
 @InputType()
 export class MealPlanCreateManyCoachInputEnvelope {
+  @Field(() => [MealPlanCreateManyCoachInput], { nullable: false })
+  data!: Array<MealPlanCreateManyCoachInput>;
 
-    @Field(() => [MealPlanCreateManyCoachInput], {nullable:false})
-    data!: Array<MealPlanCreateManyCoachInput>;
-
-    @Field(() => Boolean, {nullable:true})
-    skipDuplicates?: boolean;
+  @Field(() => Boolean, { nullable: true })
+  skipDuplicates?: boolean;
 }

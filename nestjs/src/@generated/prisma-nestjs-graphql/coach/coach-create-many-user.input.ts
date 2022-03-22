@@ -4,13 +4,12 @@ import { Int } from '@nestjs/graphql';
 
 @InputType()
 export class CoachCreateManyUserInput {
+  @Field(() => Int, { nullable: true })
+  id?: number;
 
-    @Field(() => Int, {nullable:true})
-    id?: number;
+  @Field(() => String, { nullable: false })
+  surname!: string;
 
-    @Field(() => String, {nullable:false})
-    surname!: string;
-
-    @Field(() => String, {nullable:false})
-    name!: string;
+  @Field(() => String, { nullable: false })
+  name!: string;
 }

@@ -20,27 +20,30 @@ export const GET_ALL_CLIENTS_FROM_COACH = gql`
   }
 `;
 
-export const GET_CLIENT_DETAILS = gql`query{
-  client{
+export const GET_CLIENT_DETAILS = gql`
+  query {
+    client {
       id
       surname
       name
       address
       dob
-      city  
+      city
       postal
       phone
-      user{
+      user {
         profile_image
       }
+    }
   }
-}`
+`;
 
-
-export const GET_CLIENT_PROFILE = gql`query{
-  client{
-      user{
+export const GET_CLIENT_PROFILE = gql`
+  query {
+    client {
+      user {
         profile_image
       }
+    }
   }
-}`
+`;

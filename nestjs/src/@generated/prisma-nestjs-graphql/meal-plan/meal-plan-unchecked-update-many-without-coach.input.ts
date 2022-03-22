@@ -11,37 +11,42 @@ import { MealPlanScalarWhereInput } from './meal-plan-scalar-where.input';
 
 @InputType()
 export class MealPlanUncheckedUpdateManyWithoutCoachInput {
+  @Field(() => [MealPlanCreateWithoutCoachInput], { nullable: true })
+  create?: Array<MealPlanCreateWithoutCoachInput>;
 
-    @Field(() => [MealPlanCreateWithoutCoachInput], {nullable:true})
-    create?: Array<MealPlanCreateWithoutCoachInput>;
+  @Field(() => [MealPlanCreateOrConnectWithoutCoachInput], { nullable: true })
+  connectOrCreate?: Array<MealPlanCreateOrConnectWithoutCoachInput>;
 
-    @Field(() => [MealPlanCreateOrConnectWithoutCoachInput], {nullable:true})
-    connectOrCreate?: Array<MealPlanCreateOrConnectWithoutCoachInput>;
+  @Field(() => [MealPlanUpsertWithWhereUniqueWithoutCoachInput], {
+    nullable: true
+  })
+  upsert?: Array<MealPlanUpsertWithWhereUniqueWithoutCoachInput>;
 
-    @Field(() => [MealPlanUpsertWithWhereUniqueWithoutCoachInput], {nullable:true})
-    upsert?: Array<MealPlanUpsertWithWhereUniqueWithoutCoachInput>;
+  @Field(() => MealPlanCreateManyCoachInputEnvelope, { nullable: true })
+  createMany?: MealPlanCreateManyCoachInputEnvelope;
 
-    @Field(() => MealPlanCreateManyCoachInputEnvelope, {nullable:true})
-    createMany?: MealPlanCreateManyCoachInputEnvelope;
+  @Field(() => [MealPlanWhereUniqueInput], { nullable: true })
+  set?: Array<MealPlanWhereUniqueInput>;
 
-    @Field(() => [MealPlanWhereUniqueInput], {nullable:true})
-    set?: Array<MealPlanWhereUniqueInput>;
+  @Field(() => [MealPlanWhereUniqueInput], { nullable: true })
+  disconnect?: Array<MealPlanWhereUniqueInput>;
 
-    @Field(() => [MealPlanWhereUniqueInput], {nullable:true})
-    disconnect?: Array<MealPlanWhereUniqueInput>;
+  @Field(() => [MealPlanWhereUniqueInput], { nullable: true })
+  delete?: Array<MealPlanWhereUniqueInput>;
 
-    @Field(() => [MealPlanWhereUniqueInput], {nullable:true})
-    delete?: Array<MealPlanWhereUniqueInput>;
+  @Field(() => [MealPlanWhereUniqueInput], { nullable: true })
+  connect?: Array<MealPlanWhereUniqueInput>;
 
-    @Field(() => [MealPlanWhereUniqueInput], {nullable:true})
-    connect?: Array<MealPlanWhereUniqueInput>;
+  @Field(() => [MealPlanUpdateWithWhereUniqueWithoutCoachInput], {
+    nullable: true
+  })
+  update?: Array<MealPlanUpdateWithWhereUniqueWithoutCoachInput>;
 
-    @Field(() => [MealPlanUpdateWithWhereUniqueWithoutCoachInput], {nullable:true})
-    update?: Array<MealPlanUpdateWithWhereUniqueWithoutCoachInput>;
+  @Field(() => [MealPlanUpdateManyWithWhereWithoutCoachInput], {
+    nullable: true
+  })
+  updateMany?: Array<MealPlanUpdateManyWithWhereWithoutCoachInput>;
 
-    @Field(() => [MealPlanUpdateManyWithWhereWithoutCoachInput], {nullable:true})
-    updateMany?: Array<MealPlanUpdateManyWithWhereWithoutCoachInput>;
-
-    @Field(() => [MealPlanScalarWhereInput], {nullable:true})
-    deleteMany?: Array<MealPlanScalarWhereInput>;
+  @Field(() => [MealPlanScalarWhereInput], { nullable: true })
+  deleteMany?: Array<MealPlanScalarWhereInput>;
 }

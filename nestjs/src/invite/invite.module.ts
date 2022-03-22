@@ -7,6 +7,6 @@ import { InviteResolver } from './invite.resolver';
 
 @Module({
   imports: [ClientModule, CoachModule],
-  providers: [InviteResolver, InviteService, PrismaService],
+  providers: [InviteResolver, InviteService, PrismaService]
 })
 export class InviteModule {}

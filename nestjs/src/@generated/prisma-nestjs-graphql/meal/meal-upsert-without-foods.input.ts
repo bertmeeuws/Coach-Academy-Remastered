@@ -5,10 +5,9 @@ import { MealCreateWithoutFoodsInput } from './meal-create-without-foods.input';
 
 @InputType()
 export class MealUpsertWithoutFoodsInput {
+  @Field(() => MealUpdateWithoutFoodsInput, { nullable: false })
+  update!: MealUpdateWithoutFoodsInput;
 
-    @Field(() => MealUpdateWithoutFoodsInput, {nullable:false})
-    update!: MealUpdateWithoutFoodsInput;
-
-    @Field(() => MealCreateWithoutFoodsInput, {nullable:false})
-    create!: MealCreateWithoutFoodsInput;
+  @Field(() => MealCreateWithoutFoodsInput, { nullable: false })
+  create!: MealCreateWithoutFoodsInput;
 }

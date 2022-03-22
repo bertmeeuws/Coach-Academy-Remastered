@@ -6,13 +6,12 @@ import { CoachCreateWithoutUserInput } from './coach-create-without-user.input';
 
 @InputType()
 export class CoachUpsertWithWhereUniqueWithoutUserInput {
+  @Field(() => CoachWhereUniqueInput, { nullable: false })
+  where!: CoachWhereUniqueInput;
 
-    @Field(() => CoachWhereUniqueInput, {nullable:false})
-    where!: CoachWhereUniqueInput;
+  @Field(() => CoachUpdateWithoutUserInput, { nullable: false })
+  update!: CoachUpdateWithoutUserInput;
 
-    @Field(() => CoachUpdateWithoutUserInput, {nullable:false})
-    update!: CoachUpdateWithoutUserInput;
-
-    @Field(() => CoachCreateWithoutUserInput, {nullable:false})
-    create!: CoachCreateWithoutUserInput;
+  @Field(() => CoachCreateWithoutUserInput, { nullable: false })
+  create!: CoachCreateWithoutUserInput;
 }

@@ -8,19 +8,18 @@ import { CoachUpdateWithoutMealPlanInput } from './coach-update-without-meal-pla
 
 @InputType()
 export class CoachUpdateOneRequiredWithoutMealPlanInput {
+  @Field(() => CoachCreateWithoutMealPlanInput, { nullable: true })
+  create?: CoachCreateWithoutMealPlanInput;
 
-    @Field(() => CoachCreateWithoutMealPlanInput, {nullable:true})
-    create?: CoachCreateWithoutMealPlanInput;
+  @Field(() => CoachCreateOrConnectWithoutMealPlanInput, { nullable: true })
+  connectOrCreate?: CoachCreateOrConnectWithoutMealPlanInput;
 
-    @Field(() => CoachCreateOrConnectWithoutMealPlanInput, {nullable:true})
-    connectOrCreate?: CoachCreateOrConnectWithoutMealPlanInput;
+  @Field(() => CoachUpsertWithoutMealPlanInput, { nullable: true })
+  upsert?: CoachUpsertWithoutMealPlanInput;
 
-    @Field(() => CoachUpsertWithoutMealPlanInput, {nullable:true})
-    upsert?: CoachUpsertWithoutMealPlanInput;
+  @Field(() => CoachWhereUniqueInput, { nullable: true })
+  connect?: CoachWhereUniqueInput;
 
-    @Field(() => CoachWhereUniqueInput, {nullable:true})
-    connect?: CoachWhereUniqueInput;
-
-    @Field(() => CoachUpdateWithoutMealPlanInput, {nullable:true})
-    update?: CoachUpdateWithoutMealPlanInput;
+  @Field(() => CoachUpdateWithoutMealPlanInput, { nullable: true })
+  update?: CoachUpdateWithoutMealPlanInput;
 }

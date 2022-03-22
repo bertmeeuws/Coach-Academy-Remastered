@@ -1,25 +1,13 @@
-import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 
+@Resolver('food')
+export class FoodItemResolver {
+  @Mutation('createFoodItem')
+  create() {}
 
-@Resolver("food")
-export class FoodItemResolver{
+  @Query('fooditem')
+  findAll() {}
 
-
-    @Mutation("createFoodItem")
-    create(){
-      
-    }
-
-
-    @Query("fooditem")
-    findAll(){
-
-    }
-
-    @Query("fooditem")
-    findOne(@Args("id") id: string ){
-        
-    }
-
-
-}    
+  @Query('fooditem')
+  findOne(@Args('id') id: string) {}
+}

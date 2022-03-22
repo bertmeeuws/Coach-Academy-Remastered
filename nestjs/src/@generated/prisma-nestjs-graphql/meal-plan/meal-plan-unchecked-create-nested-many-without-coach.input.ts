@@ -7,16 +7,15 @@ import { MealPlanWhereUniqueInput } from './meal-plan-where-unique.input';
 
 @InputType()
 export class MealPlanUncheckedCreateNestedManyWithoutCoachInput {
+  @Field(() => [MealPlanCreateWithoutCoachInput], { nullable: true })
+  create?: Array<MealPlanCreateWithoutCoachInput>;
 
-    @Field(() => [MealPlanCreateWithoutCoachInput], {nullable:true})
-    create?: Array<MealPlanCreateWithoutCoachInput>;
+  @Field(() => [MealPlanCreateOrConnectWithoutCoachInput], { nullable: true })
+  connectOrCreate?: Array<MealPlanCreateOrConnectWithoutCoachInput>;
 
-    @Field(() => [MealPlanCreateOrConnectWithoutCoachInput], {nullable:true})
-    connectOrCreate?: Array<MealPlanCreateOrConnectWithoutCoachInput>;
+  @Field(() => MealPlanCreateManyCoachInputEnvelope, { nullable: true })
+  createMany?: MealPlanCreateManyCoachInputEnvelope;
 
-    @Field(() => MealPlanCreateManyCoachInputEnvelope, {nullable:true})
-    createMany?: MealPlanCreateManyCoachInputEnvelope;
-
-    @Field(() => [MealPlanWhereUniqueInput], {nullable:true})
-    connect?: Array<MealPlanWhereUniqueInput>;
+  @Field(() => [MealPlanWhereUniqueInput], { nullable: true })
+  connect?: Array<MealPlanWhereUniqueInput>;
 }

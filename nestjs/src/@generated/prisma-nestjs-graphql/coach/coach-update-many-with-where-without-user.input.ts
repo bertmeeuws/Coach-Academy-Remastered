@@ -5,10 +5,9 @@ import { CoachUpdateManyMutationInput } from './coach-update-many-mutation.input
 
 @InputType()
 export class CoachUpdateManyWithWhereWithoutUserInput {
+  @Field(() => CoachScalarWhereInput, { nullable: false })
+  where!: CoachScalarWhereInput;
 
-    @Field(() => CoachScalarWhereInput, {nullable:false})
-    where!: CoachScalarWhereInput;
-
-    @Field(() => CoachUpdateManyMutationInput, {nullable:false})
-    data!: CoachUpdateManyMutationInput;
+  @Field(() => CoachUpdateManyMutationInput, { nullable: false })
+  data!: CoachUpdateManyMutationInput;
 }

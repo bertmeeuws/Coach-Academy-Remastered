@@ -9,6 +9,6 @@ import { AuthResolver } from './auth.resolver';
 
 @Module({
   imports: [UsersModule, CoachModule, ClientModule],
-  providers: [AuthService, PrismaService, AuthResolver],
+  providers: [AuthService, PrismaService, AuthResolver]
 })
 export class AuthModule {}

@@ -5,10 +5,9 @@ import { MealPlanUpdateManyMutationInput } from './meal-plan-update-many-mutatio
 
 @InputType()
 export class MealPlanUpdateManyWithWhereWithoutCoachInput {
+  @Field(() => MealPlanScalarWhereInput, { nullable: false })
+  where!: MealPlanScalarWhereInput;
 
-    @Field(() => MealPlanScalarWhereInput, {nullable:false})
-    where!: MealPlanScalarWhereInput;
-
-    @Field(() => MealPlanUpdateManyMutationInput, {nullable:false})
-    data!: MealPlanUpdateManyMutationInput;
+  @Field(() => MealPlanUpdateManyMutationInput, { nullable: false })
+  data!: MealPlanUpdateManyMutationInput;
 }

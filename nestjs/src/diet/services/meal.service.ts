@@ -3,29 +3,26 @@ import { PrismaService } from 'prisma/prisma.service';
 import { DietplanCreateInput } from 'src/@generated/prisma-nestjs-graphql/dietplan/dietplan-create.input';
 import { MealCreateInput } from 'src/@generated/prisma-nestjs-graphql/meal/meal-create.input';
 
-
-
 @Injectable()
 export class MealService {
-  constructor(private _prisma: PrismaService){}
-
+  constructor(private _prisma: PrismaService) {}
 
   create(createMealInput: MealCreateInput) {
     return this._prisma.meal.create({
-        data: createMealInput
-    })
-}
+      data: createMealInput
+    });
+  }
 
   findAll() {
-    return this._prisma.meal.findMany()
+    return this._prisma.meal.findMany();
   }
 
   findOne(id: string) {
     return this._prisma.meal.findUnique({
-        where: {
-            id
-        }
-    })
+      where: {
+        id
+      }
+    });
   }
 
   /*
