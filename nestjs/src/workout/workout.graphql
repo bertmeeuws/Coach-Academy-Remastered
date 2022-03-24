@@ -84,7 +84,7 @@ type Query {
   exercisesInWorkouts: [ExerciseInWorkout]!
   exerciseInWorkout(id: Int!): ExerciseInWorkout!
 
-  exercises: [Exercise]!
+  exercises(name: String): [Exercise]!
   exercise(id: String!): [Exercise]
 }
 

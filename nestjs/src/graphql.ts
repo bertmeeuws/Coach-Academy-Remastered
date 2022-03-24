@@ -248,7 +248,7 @@ export abstract class IQuery {
 
     abstract exerciseInWorkout(id: number): ExerciseInWorkout | Promise<ExerciseInWorkout>;
 
-    abstract exercises(): Nullable<Exercise>[] | Promise<Nullable<Exercise>[]>;
+    abstract exercises(name?: Nullable<string>): Nullable<Exercise>[] | Promise<Nullable<Exercise>[]>;
 
     abstract exercise(id: string): Nullable<Nullable<Exercise>[]> | Promise<Nullable<Nullable<Exercise>[]>>;
 }

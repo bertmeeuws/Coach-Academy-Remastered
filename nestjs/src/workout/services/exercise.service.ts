@@ -7,8 +7,17 @@ import { Exercise } from 'src/@generated/prisma-nestjs-graphql/exercise/exercise
 export class ExerciseService {
   constructor(private _prisma: PrismaService) {}
 
-  async findAll(): Promise<Exercise[]> {
-    return await this._prisma.exercise.findMany();
+  async findAll(name?: string): Promise<Exercise[]> {
+    return await this._prisma.exercise.findMany(
+      name && {
+        where: {
+          name: {
+            contains: name,
+            mode: 'insensitive'
+          }
+        }
+      }
+    );
   }
 
   async findOne(id: string): Promise<Exercise> {
@@ -16,6 +25,12 @@ export class ExerciseService {
       where: {
         id: id
       }
+    });
+  }
+
+  async filterByName(where: Prisma.ExerciseWhereInput): Promise<Exercise[]> {
+    return this._prisma.exercise.findMany({
+      where
     });
   }
 

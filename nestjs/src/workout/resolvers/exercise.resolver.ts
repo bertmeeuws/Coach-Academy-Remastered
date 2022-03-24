@@ -8,8 +8,9 @@ export class ExerciseResolver {
   constructor(private readonly _exerciseService: ExerciseService) {}
 
   @Query('exercises')
-  findAll() {
-    return this._exerciseService.findAll();
+  findAll(@Args('name') name: string) {
+    console.log(name);
+    return this._exerciseService.findAll(name);
   }
 
   @Query('exercise')

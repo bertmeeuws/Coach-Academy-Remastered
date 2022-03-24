@@ -1,8 +1,8 @@
 import { gql } from "urql";
 
 export const GET_ALL_EXERCISES = gql`
-  query {
-    exercises {
+  query ($name: String) {
+    exercises(name: $name) {
       id
       name
       createdAt
