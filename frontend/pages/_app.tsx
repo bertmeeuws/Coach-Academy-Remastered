@@ -8,6 +8,8 @@ import { client, ssrCache } from "../libs/clientSideUrqlClient";
 import Head from "next/head";
 import Spinner from "../ui/Spinner";
 import ResponsiveHelper from "../components/ResponsiveHelper";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import { DndProvider } from "react-dnd";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [auth, setAuth] = useState(null);
@@ -23,7 +25,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         <ResponsiveHelper />
         <UserContext.Provider value={providerValue}>
           <Suspense fallback={<Spinner />}>
-            <Component {...pageProps} />
+            <DndProvider backend={HTML5Backend}>
+              <Component {...pageProps} />
+            </DndProvider>
           </Suspense>
         </UserContext.Provider>
       </Provider>

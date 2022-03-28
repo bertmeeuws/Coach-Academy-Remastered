@@ -1,6 +1,8 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { PlayIcon } from "@heroicons/react/solid";
+import { useAtom } from "jotai";
 import React, { Fragment } from "react";
+import { SELECTED_EXERCISE } from "../../store/store";
 import { EXECISE_ITEM } from "../../types/workout";
 
 interface Props {
@@ -21,6 +23,8 @@ const VideoPopup: React.FC<Props> = ({
   const openModal = () => {
     setOpenVideoPopup(true);
   };
+
+  const [currentExercise] = useAtom(SELECTED_EXERCISE);
 
   return (
     <>
@@ -68,6 +72,9 @@ const VideoPopup: React.FC<Props> = ({
                 </Dialog.Title>
                 <div className="mt-2 flex aspect-video cursor-pointer items-center justify-center rounded-md bg-gray-300">
                   <PlayIcon className="h-8 w-8 text-fluoGreen" />
+                </div>
+                <div className="my-4 font-semibold">
+                  <p>Add exercise</p>
                 </div>
               </div>
             </Transition.Child>

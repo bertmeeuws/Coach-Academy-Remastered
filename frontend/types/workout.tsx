@@ -7,6 +7,7 @@ export interface WORKOUT {
 
 export interface WORKOUT_ITEM {
   id: string;
+  exercise_id: string;
   name: string;
   sets: number;
   reps: number;
