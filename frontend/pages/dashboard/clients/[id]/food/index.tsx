@@ -1,11 +1,17 @@
 import { SearchIcon } from "@heroicons/react/outline";
 import classNames from "classnames";
+import { useAtom } from "jotai";
 import Head from "next/head";
 import React from "react";
 import FoodItemCatalog from "../../../../../components/Food/FoodItem";
 import MealItem from "../../../../../components/Food/MealItem";
 import Header from "../../../../../components/Header/Header";
 import Sidebar from "../../../../../components/Sidebar";
+import {
+  dietState,
+  ENUM_DAYS,
+  selectedDay,
+} from "../../../../../store/DietState";
 import { IBreadcrumb } from "../../../../../types/breadcrumbs";
 import { IFoodDay } from "../../../../../types/food";
 import Breadcrumbs from "../../../../../ui/Breadcrumbs";
@@ -13,12 +19,12 @@ import HOCSection from "../../../../../ui/HOCSection";
 
 export default function index() {
   const [breadcrumbs, setBreadcrumbs] = React.useState<IBreadcrumb[]>([]);
-  const [activeDay, setActiveDay] = React.useState("Monday");
-  const [mealplan, setMealplan] = React.useState<IFoodDay[]>([]);
+  const [activeDay, setActiveDay] = useAtom(selectedDay);
+
+  const [DIET_STATE] = useAtom(dietState);
 
   React.useEffect(() => {
     generateBreadCrumbs();
-    initializeMealPlan();
   }, []);
 
   const generateBreadCrumbs = () => {
@@ -38,52 +44,6 @@ export default function index() {
         href: "/dashboard/clients/123",
       },
     ]);
-  };
-
-  const days = [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday",
-  ];
-
-  const createMeals = () => {
-    let meals = [];
-    for (let i = 1; i <= 8; i++) {
-      meals.push({
-        id: i,
-        items: [
-          {
-            id: "1223",
-            name: "Rauw kipfilet",
-            carbs: 25,
-            protein: 10,
-            fats: 4,
-            notes: "",
-          },
-          {
-            id: "4998",
-            name: "Brocolli",
-            carbs: 25,
-            protein: 10,
-            fats: 4,
-            notes: "",
-          },
-        ],
-      });
-    }
-    return meals;
-  };
-
-  const initializeMealPlan = () => {
-    const diet_plan: IFoodDay[] = days.map((i: string) => ({
-      name: i,
-      meals: [...createMeals()],
-    }));
-    setMealplan(diet_plan);
   };
 
   return (
@@ -132,7 +92,7 @@ export default function index() {
             <div className="flex space-x-4">
               <div>
                 <div className="my-4 flex items-center space-x-2 overflow-x-auto scrollbar-hide">
-                  {days.map((day) => (
+                  {Object.values(ENUM_DAYS).map((day) => (
                     <button
                       onClick={(e) => setActiveDay(day)}
                       key={day}
@@ -155,11 +115,11 @@ export default function index() {
                   ))}
                 </div>
                 <div className="h-[70vh] space-y-3 overflow-y-auto pb-4 pr-4">
-                  {mealplan
-                    .find((i) => i.name === activeDay)
-                    ?.meals.map((k, idx) => (
+                  {DIET_STATE.find((i) => i.name === activeDay)?.meals.map(
+                    (k, idx) => (
                       <MealItem key={idx} data={k} id={k.id} />
-                    ))}
+                    )
+                  )}
                 </div>
               </div>
               <div className="h-[70vh] w-[350px] overflow-auto rounded-lg bg-white pr-2 shadow scrollbar-hide">

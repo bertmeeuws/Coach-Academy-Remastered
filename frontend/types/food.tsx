@@ -15,4 +15,5 @@ export interface IMealItem {
   protein: number;
   fats: number;
   notes: string;
+  food_id: string;
 }
